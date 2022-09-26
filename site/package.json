@@ -1,0 +1,20 @@
+{
+  "name": "web-data-viz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --exec node app.js"
+  },
+  "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mssql": "^7.1.3",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7"
+  }
+}
