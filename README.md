@@ -17,7 +17,7 @@ _Implementação de Referência para o seu Projeto de Primeiro Semestre_
 
 3. Acesse o arquivo **/site/app.js** e parametrize o ambiente.
 - Se você estiver utilizando o Ambiente de Produção (SQL Server na nuvem Azure, remoto), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **process.env.AMBIENTE_PROCESSO = "producao";**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (MySQL Workbenc, local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **process.env.AMBIENTE_PROCESSO = "desenvolvimento";**
+- Se você estiver utilizando o Ambiente de Desenvolvimento (MySQL Workbench, local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **process.env.AMBIENTE_PROCESSO = "desenvolvimento";**
 
 4. Adicione as credenciais de Banco de Dados no arquivo **/site/src/database/config.js**, seguindo as instruções neste.
 
