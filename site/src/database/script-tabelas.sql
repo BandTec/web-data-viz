@@ -1,7 +1,11 @@
 -- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-/* para workbench - local - desenvolvimento */
+
+/*
+comandos para mysql - banco local - ambiente de desenvolvimento
+*/
+
 CREATE DATABASE aquatech;
 
 USE aquatech;
@@ -27,7 +31,7 @@ create table aquario (
 	descricao VARCHAR(300)
 );
 
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
+/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
 create table medida (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -42,7 +46,10 @@ create table medida (
 );
 
 
-/* para sql server - remoto - produção */
+/*
+comando para sql server - banco remoto - ambiente de produção
+*/
+
 CREATE TABLE usuario (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	nome VARCHAR(50),
@@ -63,7 +70,7 @@ create table aquario (
 	descricao VARCHAR(300)
 );
 
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
+/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
 CREATE TABLE medida (
 	id INT PRIMARY KEY IDENTITY(1,1),
@@ -75,3 +82,18 @@ CREATE TABLE medida (
 	momento DATETIME,
 	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
 );
+
+/*
+comandos para criar usuário em banco de dados azure, sqlserver,
+com permissão de insert + update + delete + select
+*/
+
+CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
+WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
+DEFAULT_SCHEMA = dbo;
+
+EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
+@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+
+EXEC sys.sp_addrolemember @rolename = N'db_datareader',
+@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
