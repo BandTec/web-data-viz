@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
       "start": "node ./site/app.js",
+      "dev": "cd site && npm run dev",
       "postinstall": "cd site && npm install"
     }
   }
