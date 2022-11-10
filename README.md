@@ -49,7 +49,7 @@ _O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a 
     <th>C.R.U.D</th>
     <th>Ação</th>
     <th>Tradução</th>
-    <th>Verbo HTTP</th>
+    <th>Verbo HTTP *</th>
     <th>Comando BD</th>
   </tr>
   <tr>
@@ -81,6 +81,8 @@ _O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a 
     <td>DELETE</td>
   </tr>
 </table>
+
+_* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
 
 **"E no meu projeto, o que seria um recurso?"** Em web-data-viz manipulamos os recursos **usuário**, **aviso** e **medida**. Podemos conferir isso vendo para quais entidades foram criados os caminhos de inserção e captura de dados, que envolve os diretórios **routes**, **controllers** e **models**.
 
