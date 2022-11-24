@@ -61,21 +61,59 @@
         <div class="dash">
             <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Aquario 1</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Aquario 2</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Aquario 3</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Aquario 4</button>
+                <button class="btn-chart btn-pink" onclick="exibirAquario(1)" id="btnAquario1">Aquario 1</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(2)" id="btnAquario2">Aquario 2</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(3)" id="btnAquario3">Aquario 3</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(4)" id="btnAquario4">Aquario 4</button>
             </div>
-            <div>
-                <h3 class="tituloGraficos">
-                    <span id="tituloAquario">123</span>
-                </h3>
-            </div>
-            <div class="graph">
-                <canvas id="myChart"></canvas>
-            </div>
-            <div class="avisoCaptura">
-                <p id="avisoCaptura" style="color: white"></p>
+            <div id="graficos">
+                <div id="grafico1" class="display-block">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario1">123</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas1"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura1" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico2" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario2"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas2"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura2" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico3" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario3"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas3"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura3" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico4" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario4"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas4"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura4" style="color: white"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -86,18 +124,54 @@
 </html>
 
 <script>
-    
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    
+
     let proximaAtualizacao;
-        
-    window.onload = obterDadosGrafico(1);
+
+    window.onload = obterDadosGraficos();
+
+    function obterDadosGraficos() {
+        obterDadosGrafico(1)
+        obterDadosGrafico(2)
+        obterDadosGrafico(3)
+        obterDadosGrafico(4)
+    }
 
     verificar_autenticacao();
 
     function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById("tituloAquario")
+        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
         tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+    }
+
+    function exibirAquario(idAquario) {
+        let todosOsGraficos = document.getElementById("graficos")
+
+        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+            // exibindo - ou não - o gráfico
+            let elementoAtual = document.getElementById(`grafico${i}`)
+            if (elementoAtual.classList.contains("display-block")) {
+                elementoAtual.classList.remove("display-block")
+            }
+            elementoAtual.classList.add("display-none")
+            
+            // alterando estilo do botão
+            let btnAtual = document.getElementById(`btnAquario${i}`)
+            if (btnAtual.classList.contains("btn-pink")) {
+                btnAtual.classList.remove("btn-pink")
+            }
+            btnAtual.classList.add("btn-white")
+        }
+        
+        // exibindo - ou não - o gráfico
+        let graficoExibir = document.getElementById(`grafico${idAquario}`)
+        graficoExibir.classList.remove("display-none")
+        graficoExibir.classList.add("display-block")
+        
+        // alterando estilo do botão
+        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+        btnExibir.classList.remove("btn-white")
+        btnExibir.classList.add("btn-pink")
     }
 
     // O gráfico é construído com três funções:
@@ -112,6 +186,7 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function obterDadosGrafico(idAquario) {
+
         alterarTitulo(idAquario)
 
         if (proximaAtualizacao != undefined) {
@@ -139,11 +214,12 @@
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta, idAquario) {
+
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
         let labels = [];
-        
+
         // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
@@ -162,11 +238,11 @@
                 tension: 0.1
             }]
         };
-        
+
         console.log('----------------------------------------------')
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
-        
+
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
@@ -174,7 +250,7 @@
             dados.datasets[0].data.push(registro.umidade);
             dados.datasets[1].data.push(registro.temperatura);
         }
-        
+
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
@@ -182,7 +258,7 @@
         console.log('Dados:')
         console.log(dados.datasets)
         console.log('----------------------------------------------')
-        
+
         // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'line',
@@ -191,7 +267,7 @@
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById('myChart'),
+            document.getElementById(`myChartCanvas${idAquario}`),
             config
         );
 
@@ -206,6 +282,8 @@
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGrafico(idAquario, dados, myChart) {
 
+
+
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
@@ -214,12 +292,14 @@
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    document.getElementById("avisoCaptura").innerHTML = ""
+                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                    avisoCaptura.innerHTML = ""
+
 
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        document.getElementById("avisoCaptura").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].momento_grafico)
                         console.log("Horário do último dado capturado:")

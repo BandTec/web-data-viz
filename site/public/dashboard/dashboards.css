@@ -5,7 +5,7 @@ body {
   font-family: "Exo 2", sans-serif;
 }
 
-.avisoCaptura {
+.label-captura {
   display: flex;
   justify-content: center;
 }
@@ -115,19 +115,13 @@ body {
 }
 
 .dash {
-  width: 75%;
+  width: 80%;
   position: relative;
   top: 0;
-  left: 25%;
+  left: 20%;
   background-color: #161618;
-
-  /* width: 75%;
-    display: flex;
-    background-color: #161618;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;*/
   height: 100vh;
+  overflow: auto;
 }
 
 .regua {
@@ -248,4 +242,31 @@ body {
   background-color: white;
   margin: 5px;
   border-radius: 3px;
+}
+
+.btn-pink {
+  color: white;
+  background-color: #e6005a;
+}
+
+.btn-white {
+  color: #e6005a;
+  background-color: white;
+
+}
+
+.label-captura {
+  height: 80px;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-block {
+  display: block;
 }

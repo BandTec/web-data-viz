@@ -258,7 +258,7 @@ input {
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -270,7 +270,7 @@ input {
 
 .dash-right {
   display: flex;
-  width: 75%;
+  width: 80%;
   height: fit-content;
   background-color: #161618;
   position: relative;
