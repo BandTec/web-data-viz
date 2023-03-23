@@ -221,7 +221,7 @@ body {
 }
 
 .graph {
-  width: 60%;
+  width: 80%;
   margin: auto;
   padding-top: 10px;
 }
@@ -270,3 +270,8 @@ body {
 .display-block {
   display: block;
 }
+
+/* canvas {
+  width: 100% !important;
+  height: 100% !important;
+} */
