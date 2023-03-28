@@ -11,7 +11,7 @@
     <script src="./js/funcoes.js"></script>
 
     <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/estilo.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -27,55 +27,49 @@
             <h1 class="titulo">AquaTech</h1>
             <ul class="navbar">
                 <li>
-                    <a href="./index.html">
-                        Inicial
-                    </a>
+                    <a href="index.html">Inicial</a>
                 </li>
                 <li>
-                    <a href="./simulador.html">Simulador</a>
+                    <a href="simulador.html">Simulador</a>
                 </li>
                 <li>|</li>
                 <li class="agora">
-                    <a href="./login.html">Login</a>
+                    <a href="#">Login</a>
                 </li>
                 <li>
-                    <a href="./cadastro.html">Cadastro</a>
+                    <a href="cadastro.html">Cadastro</a>
                 </li>
             </ul>
         </div>
     </div>
 
 
-    <div class="banner">
+    <div class="login">
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
         </div>
         <div class="container">
-            <div class="card">
+            <div class="card card-login">
                 <h2>Olá de volta!</h2>
                 <div class="formulario">
-
-
-                    <span class="tipo_campo">E-mail:</span>
-                    <input id="email_input" type="text" placeholder="Login">
-
-                    <span class="tipo_campo">Senha:</span>
-                    <input id="senha_input" type="password" placeholder="******">
-
-                    <button class="btn" onclick="entrar()">Entrar</button>
-
-
+                    <div class="campo">
+                        <span>E-mail:</span>
+                        <input id="email_input" type="text" placeholder="Login">
+                    </div>
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input id="senha_input" type="text" placeholder="******">
+                    </div>
+                    <button class="botao" onclick="entrar()">Entrar</button>
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
                 </div>
 
-                <div id="div_erros_login">
-
-                </div>
+                <div id="div_erros_login"></div>
             </div>
         </div>
     </div>
@@ -83,12 +77,8 @@
     <!--footer inicio-->
     <div class="footer">
         <div class="container">
-            <h4>Feito com amor por um aluno &hearts; SPTech &copy; 2022
-                <br>
-                <span class="version">
-                    v1.0.0
-                </span>
-            </h4>
+            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+            <span class="version">v1.0.0</span>
         </div>
     </div>
     <!--footer fim-->
