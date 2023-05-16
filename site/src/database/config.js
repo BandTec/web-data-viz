@@ -17,7 +17,7 @@ var sqlServerConfig = {
     }
 }
 
-// CONEXÃO DO MYSQL WORKBENCH (LOCAL)
+// CONEXÃO DO MYSQL WORKBENCH
 var mySqlConfig = {
     host: "SEU_SERVIDOR",
     database: "SEU_BANCO_DE_DADOS",
