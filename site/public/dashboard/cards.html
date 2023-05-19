@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="dashboards.css">
 
     <script src="../js/funcoes.js"></script>
+    <script src="./alerta.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -19,6 +20,7 @@
 </head>
 
 <body onload="validarSessao(), atualizacaoPeriodica()">
+
 
     <div class="janela">
 
@@ -54,26 +56,28 @@
         </div>
 
         <div class="dash">
+            <div id="alerta">
+            </div>
             <div class="regua">
                 <div class="item-regua perigo-frio">
                     <h4>Perigo</h4>
-                    <h2>0°C</h2>
+                    <h2>&lt;=5°C</h2>
                 </div>
                 <div class="item-regua alerta-frio">
                     <h4>Alerta</h4>
-                    <h2>0°C</h2>
+                    <h2>&lt;=10°C</h2>
                 </div>
                 <div class="item-regua ideal">
                     <h4>Ideal</h4>
-                    <h2>0°C</h2>
+                    <h2>20°C</h2>
                 </div>
                 <div class="item-regua alerta-quente">
                     <h4>Alerta</h4>
-                    <h2>0°C</h2>
+                    <h2>&gt;=22°C</h2>
                 </div>
                 <div class="item-regua perigo-quente">
                     <h4>Perigo</h4>
-                    <h2>0°C</h2>
+                    <h2>&gt;=23°C</h2>
                 </div>
             </div>
 
@@ -86,7 +90,7 @@
                     <div class="cor-alerta" id="card_1"></div>
                 </div>
                 <div class="card">
-                    <h1>Aquário 1</h1>
+                    <h1>Aquário 2</h1>
                     <div class="temperatura">
                         <p id="temp_aquario_2">-°C</p>
                     </div>
@@ -94,14 +98,14 @@
 
                 </div>
                 <div class="card">
-                    <h1>Aquário 1</h1>
+                    <h1>Aquário 3</h1>
                     <div class="temperatura">
                         <p id="temp_aquario_3">-°C</p>
                     </div>
-                    <div class="cor-alerta ideal" id="card_3"></div>
+                    <div class="cor-alerta" id="card_3"></div>
                 </div>
                 <div class="card">
-                    <h1>Aquário 1</h1>
+                    <h1>Aquário 4</h1>
                     <div class="temperatura">
                         <p id="temp_aquario_4">-°C</p>
                     </div>
@@ -124,15 +128,16 @@
         obterdados(3);
         obterdados(4);
 
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
+        // function sendData() {
+        //     var http = new XMLHttpRequest();
+        //     http.open('POST', 'http://localhost:3000/api/sendData', false);
+        //     http.send(null);
+        // }
 
-        setInterval(() => {
-			sendData();
-		}, 2000);
+        // setInterval(() => {
+        //     sendData();
+        // }, 2000);
+
         setTimeout(atualizacaoPeriodica, 5000);
     }
 
@@ -147,9 +152,10 @@
 
                         var dados = {
                             temperatura: resposta[0].temperatura,
+                            momento: resposta[0].momento
                         }
-
                         alertar(resposta[0].temperatura, idAquario);
+
                     });
                 } else {
 
@@ -159,59 +165,6 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
-
-    }
-
-    function alertar(temperatura, idAquario) {
-        var limites = {
-            muito_quente: 23,
-            quente: 22,
-            ideal: 20,
-            frio: 10,
-            muito_frio: 5
-        };
-
-        var classe_temperatura = 'cor-alerta';
-
-        if (temperatura >= limites.muito_quente) {
-            classe_temperatura = 'cor-alerta perigo-quente';
-            console.log("caiu no 1")
-        }
-        else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-            classe_temperatura = 'cor-alerta alerta-quente';
-            console.log("caiu no 2")
-        }
-        else if (temperatura < limites.quente && temperatura > limites.frio) {
-            classe_temperatura = 'cor-alerta ideal';
-            console.log("caiu no 3")
-        }
-        else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-            classe_temperatura = 'cor-alerta alerta-frio';
-            console.log("caiu no 4")
-        }
-        else if (temperatura < limites.min_temperatura) {
-            classe_temperatura = 'cor-alerta perigo-frio';
-            console.log("caiu no 5")
-        }
-
-        var card;
-
-        if (idAquario == 1) {
-            temp_aquario_1.innerHTML = temperatura + "°C";
-            card = card_1
-        } else if (idAquario == 2) {
-            temp_aquario_2.innerHTML = temperatura + "°C";
-            card = card_2
-        } else if (idAquario == 3) {
-            temp_aquario_3.innerHTML = temperatura + "°C";
-            card = card_3
-        } else if (idAquario == 4) {
-            temp_aquario_4.innerHTML = temperatura + "°C";
-            card = card_4
-        }
-
-        // alterando
-        card.className = classe_temperatura;
 
     }
 

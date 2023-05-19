@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="dashboards.css">
     <script src="../js/funcoes.js"></script>
+    <script src="./alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -24,7 +25,9 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<body onload=" atualizarFeed()">
+<!-- <body onload=" atualizarFeed()"> -->
+
+<body>
 
     <div class="janela">
         <div class="header-left">
@@ -59,6 +62,9 @@
         </div>
 
         <div class="dash">
+            <div id="alerta">
+            </div>
+
             <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
                 <button class="btn-chart btn-pink" onclick="exibirAquario(1)" id="btnAquario1">Aquario 1</button>
@@ -154,7 +160,7 @@
                 elementoAtual.classList.remove("display-block")
             }
             elementoAtual.classList.add("display-none")
-            
+
             // alterando estilo do botão
             let btnAtual = document.getElementById(`btnAquario${i}`)
             if (btnAtual.classList.contains("btn-pink")) {
@@ -162,12 +168,12 @@
             }
             btnAtual.classList.add("btn-white")
         }
-        
+
         // exibindo - ou não - o gráfico
         let graficoExibir = document.getElementById(`grafico${idAquario}`)
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
-        
+
         // alterando estilo do botão
         let btnExibir = document.getElementById(`btnAquario${idAquario}`)
         btnExibir.classList.remove("btn-white")
