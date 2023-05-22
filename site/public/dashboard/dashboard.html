@@ -206,6 +206,7 @@
                     resposta.reverse();
 
                     plotarGrafico(resposta, idAquario);
+                    
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -294,6 +295,8 @@
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
+                    obterdados(idAquario);
+                    // alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
