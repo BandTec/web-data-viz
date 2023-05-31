@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizacaoPeriodica()">
+<body onload="validarSessao(), buscarAquarios(), atualizacaoPeriodica()">
 
 
     <div class="janela">
@@ -81,36 +81,7 @@
                 </div>
             </div>
 
-            <div class="cards">
-                <div class="card">
-                    <h1>Aquário 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_1">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_1"></div>
-                </div>
-                <div class="card">
-                    <h1>Aquário 2</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_2">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_2"></div>
-
-                </div>
-                <div class="card">
-                    <h1>Aquário 3</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_3">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_3"></div>
-                </div>
-                <div class="card">
-                    <h1>Aquário 4</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_4">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_4"></div>
-                </div>
+            <div class="cards" id="aquariodiv">
 
             </div>
 
@@ -121,16 +92,42 @@
 </body>
 
 <script>
-
-
-
     function atualizacaoPeriodica() {
-        obterdados(1);
-        obterdados(2);
-        obterdados(3);
-        obterdados(4);
-
+        JSON.parse(sessionStorage.getItem("aquarios")).forEach(item => {
+            obterdados(item.id)
+        });
         setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+
+    function buscarAquarios() {
+        fetch(`/aquarios/${sessionStorage.ID_USUARIO}`)
+            .then((resposta) => {
+                resposta.json().then((aquariosAchados) => {
+                    sessionStorage.setItem("aquarios", JSON.stringify(aquariosAchados))
+                }).then(() => {
+                    exibirAquarios();
+                }).catch((err) => {
+                    console.log(err);
+                })
+            }).catch((erro) => {
+                console.log(erro);
+            })
+
+    }
+
+    function exibirAquarios() {
+        JSON.parse(sessionStorage.getItem("aquarios")).forEach(item => {
+            document.getElementById("aquariodiv").innerHTML += `
+                    <div class="card">
+                    <h1>${item.descricao}</h1>
+                    <div class="temperatura">
+                        <p id="temp_aquario_${item.id}">-°C</p>
+                    </div>
+                    <div class="cor-alerta" id="card_${item.id}"></div>
+                    </div>
+                    `
+        });
     }
 
 

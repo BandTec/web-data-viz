@@ -65,12 +65,8 @@
             <div id="alerta">
             </div>
 
-            <div class="btns-dash">
+            <div class="btns-dash" id="btnAquario">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                <button class="btn-chart btn-pink" onclick="exibirAquario(1)" id="btnAquario1">Aquario 1</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(2)" id="btnAquario2">Aquario 2</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(3)" id="btnAquario3">Aquario 3</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(4)" id="btnAquario4">Aquario 4</button>
             </div>
             <div id="graficos">
                 <div id="grafico1" class="display-block">
@@ -134,13 +130,15 @@
 
     let proximaAtualizacao;
 
-    window.onload = obterDadosGraficos();
+    window.onload = exibirAquariosDoUsuario();
 
-    function obterDadosGraficos() {
-        obterDadosGrafico(1)
-        obterDadosGrafico(2)
-        obterDadosGrafico(3)
-        obterDadosGrafico(4)
+    function exibirAquariosDoUsuario() {
+        JSON.parse(sessionStorage.getItem("aquarios")).forEach(item => {
+            document.getElementById("btnAquario").innerHTML += `
+            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+            `
+            obterDadosGrafico(item.id)
+        }); 
     }
 
     verificar_autenticacao();
