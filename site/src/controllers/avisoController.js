@@ -1,10 +1,5 @@
 var avisoModel = require("../models/avisoModel");
 
-function testar(req, res) {
-    console.log("ENTRAMOS NO avisoController");
-    res.send("ENTRAMOS NO AVISO CONTROLLER");
-}
-
 function listar(req, res) {
     avisoModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
@@ -132,7 +127,6 @@ function deletar(req, res) {
 }
 
 module.exports = {
-    testar,
     listar,
     listarPorUsuario,
     pesquisarDescricao,

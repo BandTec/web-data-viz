@@ -9,9 +9,9 @@
     <title>AquaTech | Dashboards</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="dashboards.css">
-    <script src="../js/funcoes.js"></script>
-    <script src="./alerta.js"></script>
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -69,53 +69,6 @@
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
             <div id="graficos">
-                <div id="grafico1" class="display-block">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario1">123</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas1"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura1" style="color: white"></p>
-                    </div>
-                </div>
-
-                <div id="grafico2" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario2"></span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas2"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura2" style="color: white"></p>
-                    </div>
-                </div>
-
-                <div id="grafico3" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario3"></span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas3"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura3" style="color: white"></p>
-                    </div>
-                </div>
-
-                <div id="grafico4" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario4"></span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas4"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura4" style="color: white"></p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -133,15 +86,33 @@
     window.onload = exibirAquariosDoUsuario();
 
     function exibirAquariosDoUsuario() {
-        JSON.parse(sessionStorage.getItem("aquarios")).forEach(item => {
+        var aquarios = JSON.parse(sessionStorage.getItem("aquarios"));
+        aquarios.forEach(item => {
             document.getElementById("btnAquario").innerHTML += `
             <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
             `
-            obterDadosGrafico(item.id)
-        }); 
-    }
 
-    verificar_autenticacao();
+            document.getElementById("graficos").innerHTML += `
+                <div id="grafico${item.id}" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario${item.id}">${item.descricao}</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas${item.id}"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                    </div>
+                </div>
+            `
+
+            obterDadosGrafico(item.id)
+        });
+
+        if (aquarios.length > 0) {
+            exibirAquario(aquarios[0].id)
+        }
+    }
 
     function alterarTitulo(idAquario) {
         var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
@@ -149,22 +120,24 @@
     }
 
     function exibirAquario(idAquario) {
-        let todosOsGraficos = document.getElementById("graficos")
+        let todosOsGraficos = JSON.parse(sessionStorage.getItem("aquarios"));
 
-        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+        for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            let elementoAtual = document.getElementById(`grafico${i}`)
-            if (elementoAtual.classList.contains("display-block")) {
-                elementoAtual.classList.remove("display-block")
-            }
-            elementoAtual.classList.add("display-none")
+            if (todosOsGraficos[i].id != idAquario) {
+                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+                if (elementoAtual.classList.contains("display-block")) {
+                    elementoAtual.classList.remove("display-block")
+                }
+                elementoAtual.classList.add("display-none")
 
-            // alterando estilo do botão
-            let btnAtual = document.getElementById(`btnAquario${i}`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
+                // alterando estilo do botão
+                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+                if (btnAtual.classList.contains("btn-pink")) {
+                    btnAtual.classList.remove("btn-pink")
+                }
+                btnAtual.classList.add("btn-white")
             }
-            btnAtual.classList.add("btn-white")
         }
 
         // exibindo - ou não - o gráfico
@@ -204,7 +177,7 @@
                     resposta.reverse();
 
                     plotarGrafico(resposta, idAquario);
-                    
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

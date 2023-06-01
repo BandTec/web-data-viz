@@ -26,8 +26,8 @@ function alertar(resposta, idAquario) {
     var temp = resposta[0].temperatura;
 
     console.log(idAquario === resposta[0].fk_aquario)
-    
-    var grauDeAviso ='';
+
+    var grauDeAviso = '';
 
 
     var limites = {
@@ -71,10 +71,14 @@ function alertar(resposta, idAquario) {
 
     var card;
 
-    document.getElementById(`temp_aquario_${idAquario}`).innerHTML = temp + "°C";
-    card = document.getElementById(`card_${idAquario}`)
+    if (document.getElementById(`temp_aquario_${idAquario}`) != null) {
+        document.getElementById(`temp_aquario_${idAquario}`).innerHTML = temp + "°C";
+    }
 
-    card.className = classe_temperatura;
+    if (document.getElementById(`card_${idAquario}`)) {
+        card = document.getElementById(`card_${idAquario}`)
+        card.className = classe_temperatura;
+    }
 }
 
 function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
@@ -87,16 +91,16 @@ function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
     }
 
     exibirCards();
-    
-// Dentro da div com classe grauDeAvisoCor há um caractere "invisível", 
-// que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
+
+    // Dentro da div com classe grauDeAvisoCor há um caractere "invisível", 
+    // que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
 }
 
 function removerAlerta(idAquario) {
     alertas = alertas.filter(item => item.idAquario != idAquario);
     exibirCards();
 }
- 
+
 function exibirCards() {
     alerta.innerHTML = '';
 
@@ -116,3 +120,4 @@ function transformarEmDiv({ idAquario, temp, grauDeAviso, grauDeAvisoCor }) {
     <div class="alarme-sino"></div>
     </div>`;
 }
+
