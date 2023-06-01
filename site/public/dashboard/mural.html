@@ -9,9 +9,9 @@
     <title>AquaTech | Avisos</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./dashboards.css">
-    <script src="../js/funcoes.js"></script>
-    <script src="./alerta.js"></script>
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -20,7 +20,6 @@
 </head>
 
 <body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
-    <!-- <body onload="validarSessao()"> -->
 
     <div class="janela">
 
@@ -87,24 +86,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- MODAL -->
-            <!-- <div id="div_modal" class="div-modal">
-                <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
-                </div>
-                <div id="modal_container" class="modal-container">
-                    <button class="btn-fechar-modal" onclick="fecharModal()">X</button>
-                </div>
-            </div> -->
-
-            <!-- AGUARDAR -->
-            <!-- <div id="div_aguardar" class="div-aguardar">
-                <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
-            </div>  -->
-
         </div>
     </div>
 
@@ -191,7 +172,6 @@
     }
 
     function atualizarFeed() {
-        //aguardar();
         fetch("/avisos/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -263,21 +243,6 @@
             console.error(resposta);
             finalizarAguardar();
         });
-    }
-
-    function testar() {
-        aguardar();
-
-        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
-
-        var divResultado = document.getElementById("div_feed");
-
-        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
-        divResultado.innerHTML = formulario.get("descricao");
-
-        finalizarAguardar();
-
-        return false;
     }
 
 </script>

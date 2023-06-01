@@ -8,7 +8,7 @@
 
     <title>AquaTech | Login</title>
 
-    <script src="./js/funcoes.js"></script>
+    <script src="./js/sessao.js"></script>
 
     <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="stylesheet" href="./css/estilo.css">
@@ -127,10 +127,10 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";

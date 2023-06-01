@@ -217,6 +217,8 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap;
+  padding: 0 30% 0 30%
 }
 
 .graph {
