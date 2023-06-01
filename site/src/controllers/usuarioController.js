@@ -17,10 +17,6 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                    var aquarios
-
-
-
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
