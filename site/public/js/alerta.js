@@ -3,8 +3,7 @@ var alertas = [];
 function obterdados(idAquario) {
     fetch(`/medidas/tempo-real/${idAquario}`)
         .then(resposta => {
-
-            if (resposta.ok) {
+            if (resposta.status == 200) {
                 resposta.json().then(resposta => {
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -12,8 +11,7 @@ function obterdados(idAquario) {
                     alertar(resposta, idAquario);
                 });
             } else {
-
-                console.error('Nenhum dado encontrado ou erro na API');
+                console.error(`Nenhum dado encontrado para o id ${idAquario} ou erro na API`);
             }
         })
         .catch(function (error) {
@@ -25,10 +23,7 @@ function obterdados(idAquario) {
 function alertar(resposta, idAquario) {
     var temp = resposta[0].temperatura;
 
-    console.log(idAquario === resposta[0].fk_aquario)
-
     var grauDeAviso = '';
-
 
     var limites = {
         muito_quente: 23,
@@ -91,9 +86,6 @@ function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
     }
 
     exibirCards();
-
-    // Dentro da div com classe grauDeAvisoCor há um caractere "invisível", 
-    // que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
 }
 
 function removerAlerta(idAquario) {
@@ -111,13 +103,23 @@ function exibirCards() {
 }
 
 function transformarEmDiv({ idAquario, temp, grauDeAviso, grauDeAvisoCor }) {
-    return `<div class="mensagem-alarme">
-    <div class="informacao">
-    <div class="${grauDeAvisoCor}">&#12644;</div> 
-     <h3>Aquário ${idAquario} está em estado de ${grauDeAviso}!</h3>
-    <small>Temperatura ${temp}.</small>   
+
+    var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+    return `
+    <div class="mensagem-alarme">
+        <div class="informacao">
+            <div class="${grauDeAvisoCor}">&#12644;</div> 
+            <h3>${descricao} está em estado de ${grauDeAviso}!</h3>
+            <small>Temperatura ${temp}.</small>   
+        </div>
+        <div class="alarme-sino"></div>
     </div>
-    <div class="alarme-sino"></div>
-    </div>`;
+    `;
 }
 
+function atualizacaoPeriodica() {
+    JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
+        obterdados(item.id)
+    });
+    setTimeout(atualizacaoPeriodica, 5000);
+}

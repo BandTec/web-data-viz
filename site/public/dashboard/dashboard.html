@@ -86,7 +86,7 @@
     window.onload = exibirAquariosDoUsuario();
 
     function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.getItem("aquarios"));
+        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
         aquarios.forEach(item => {
             document.getElementById("btnAquario").innerHTML += `
             <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
@@ -120,7 +120,7 @@
     }
 
     function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.getItem("aquarios"));
+        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
