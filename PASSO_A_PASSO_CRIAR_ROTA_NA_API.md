@@ -9,10 +9,10 @@ Para criar uma nova rota na API, siga esse caminho:
 
 ### Importando arquivo que contém as rotas
 
-Abra o arquivo app.js, que fica na raiz diretório **site** e adicione uma linha que contenha uma variável que vai receber o caminho do arquivo da rota que você irá usar! No meu caso vai ficar da seguinte forma: ****
+Abra o arquivo app.js, que fica na raiz diretório **site** e adicione uma linha que contenha uma variável que vai receber o caminho do arquivo da rota que você irá usar! No meu caso vai ficar da seguinte forma: 
 
 ```jsx
-**var** **carrosRouter = require("./src/routes/carros");**
+var carrosRouter = require("./src/routes/carros");
 ```
 
  Abaixo é como deve ficar o arquivo app.js, importando o arquivo **carros.js** da pasta **routes**:
@@ -51,20 +51,20 @@ No arquivo carros.js dentro do diretório routes.
 
 **Configuração padrão para indicar o uso da biblioteca do node para criação:**
 
-```
+```jsx
 var express = require("express");
 var router = express.Router();
 ```
 
 **Importando a controller que vai ser criada posteriormente:**
 
-```
+```jsx
 var carroController = require("../controllers/carroController");
 ```
 
 **Criando a rota que vai indicar /carros/cadastrar ao ser acessada pelo front-end. O /cadastrar é do tipo post e o /listar é do tipo get:**
 
-```
+```jsx
 router.post("/cadastrar", function (req, res) {
     // função a ser chamada quando acessar /carros/cadastrar
     carroController.cadastrar(req, res);
@@ -78,13 +78,13 @@ router.get("/listar", function (req, res) {
 
 **Sempre devemos deixar visível (exportar) para outro que assim outro arquivo consiga importar todas as nossas configurações desse arquivo:**
 
-```
+```jsx
 module.exports = router;
 ```
 
 Ao final de tudo, teremos o arquivo com essa estrutura:
 
-```
+```jsx
 var express = require("express");
 var router = express.Router();
 
@@ -109,13 +109,13 @@ Dentro de api-site -> src -> controller, crie um arquivo chamado carroController
 
 Dentro do arquivo carroController.js coloque a **carroModel** que fará a conexão com o banco:
 
-```
+```jsx
 var carroModel = require("../models/carroModel");
 ```
 
 Cria a função que vai ser chamada no passo de cima e exporta ela. No final ficará assim:
 
-```
+```jsx
 var carroModel = require("../models/carroModel");
 
 function listar(req, res) {
@@ -155,13 +155,13 @@ Dentro de api-site -> src -> models, crie um arquivo chamado carroModel.js
 
 Dentro do arquivo importamos a configuração do banco para fazer consultas futuras no banco:
 
-```
+```jsx
 var database = require("../database/config")
 ```
 
 Aqui podemos criar a função que fará a comunicação com o banco de dados, onde ela recebe o paramêtro nome e executa uma query de insert com o valor desse nome:
 
-```
+```jsx
 function listar() {
     var instrucao = `
         SELECT * FROM carro;
@@ -181,7 +181,7 @@ function cadastrar(nome) {
 
 **Sem esquecer de exportar as funções que criamos para serem vistas por outros arquivos**
 
-```
+```jsx
 module.exports = {
     cadastrar,
     listar
@@ -190,7 +190,7 @@ module.exports = {
 
 E por fim teremos o arquivo completo com isso:
 
-```
+```jsx
 var database = require("../database/config")
 
 function listar() {
