@@ -3,8 +3,8 @@ var router = express.Router();
 
 var aquarioController = require("../controllers/aquarioController");
 
-router.get("/:idUsuario", function (req, res) {
-  aquarioController.buscarAquariosPorUsuario(req, res);
+router.get("/:empresaId", function (req, res) {
+  aquarioController.buscarAquariosPorEmpresa(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {
