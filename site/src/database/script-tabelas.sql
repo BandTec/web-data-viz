@@ -55,6 +55,7 @@ create table medida (
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
+insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 
 /*
 comando para sql server - banco remoto - ambiente de produção
@@ -100,6 +101,8 @@ CREATE TABLE medida (
 	momento DATETIME,
 	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
 );
+
+insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,
