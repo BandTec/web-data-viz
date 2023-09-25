@@ -1,7 +1,14 @@
+/**
+ * Imports de dependências utilizadas pela avisoModel
+ */
 var database = require("../database/config");
 
+/**
+ * Função que lista os avisos cadastrados no banco de dados.
+ * @returns {*} - Retorna um objeto com os avisos.
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function listar() {
-    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
         SELECT 
             a.id AS idAviso,
@@ -20,8 +27,14 @@ function listar() {
     return database.executar(instrucao);
 }
 
+
+/**
+ * Função que pesquisa os avisos filtrados por texto cadastrados no banco de dados.
+ * @param {string} texto - Texto fornecido pelo cliente.
+ * @returns {*} - Retorna um objeto com os avisos.
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function pesquisarDescricao(texto) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarDescricao()");
     var instrucao = `
         SELECT 
             a.id AS idAviso,
@@ -41,8 +54,13 @@ function pesquisarDescricao(texto) {
     return database.executar(instrucao);
 }
 
+/**
+ * Função que lista os avisos cadastrados no banco de dados filtrando pelo id do usuario.
+ * @param {int} idUsuario - id do usuario que esta cadastrando o aviso 
+ * @returns {*} - Retorna um objeto com os avisos do usuario
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function listarPorUsuario(idUsuario) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
     var instrucao = `
         SELECT 
             a.id AS idAviso,
@@ -62,8 +80,15 @@ function listarPorUsuario(idUsuario) {
     return database.executar(instrucao);
 }
 
+/**
+ * Publica um aviso no banco de dados associando ao id do usuario.
+ * @param {string} titulo 
+ * @param {string} descricao 
+ * @param {int} idUsuario 
+ * @returns - Retorna um objeto com os avisos do usuario
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function publicar(titulo, descricao, idUsuario) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, descricao, idUsuario);
     var instrucao = `
         INSERT INTO aviso (titulo, descricao, fk_usuario) VALUES ('${titulo}', '${descricao}', ${idUsuario});
     `;
@@ -71,8 +96,14 @@ function publicar(titulo, descricao, idUsuario) {
     return database.executar(instrucao);
 }
 
+/**
+ * 
+ * @param {string} novaDescricao 
+ * @param {int} idAviso 
+ * @returns - Retorna o resultado da edição de um aviso
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function editar(novaDescricao, idAviso) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAviso);
     var instrucao = `
         UPDATE aviso SET descricao = '${novaDescricao}' WHERE id = ${idAviso};
     `;
@@ -80,8 +111,13 @@ function editar(novaDescricao, idAviso) {
     return database.executar(instrucao);
 }
 
+/**
+ * 
+ * @param {int} idAviso 
+ * @returns - Retorna o resultado da deleção de um aviso
+ * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
+ */
 function deletar(idAviso) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idAviso);
     var instrucao = `
         DELETE FROM aviso WHERE id = ${idAviso};
     `;

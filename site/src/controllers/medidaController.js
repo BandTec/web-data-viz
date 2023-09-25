@@ -1,14 +1,23 @@
+/**
+ * Imports de dependências utilizadas pela medidaController
+ */
 var medidaModel = require("../models/medidaModel");
 
+/**
+ * Retorna as ultimas medidas coletadas do aquario
+ * @param {*} req - requisição feita pelo cliente
+ * @param {*} res - resposta que será devolvida para o cliente 
+ */
 function buscarUltimasMedidas(req, res) {
 
-    const limite_linhas = 7;
+    const LIMITE = 7;
 
+    // Variáveis criadas através das informações recebidas do cliente.
+    // Quando utilizamos params o valor é passado na URL. Por exemplo: http://localhost:3000/medidas/ultimas/7
+    // Esse valor é capturado através do routes/medidas.js e repassado para o controller.
     var idAquario = req.params.idAquario;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(idAquario, LIMITE).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,12 +30,17 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
-
+/**
+ * Metodo que busca a última medida coletada do aquario
+ * @param {*} req - requisição feita pelo cliente
+ * @param {*} res - resposta que será devolvida para o cliente
+ */
 function buscarMedidasEmTempoReal(req, res) {
 
+    // Variáveis criadas através das informações recebidas do cliente.
+    // Quando utilizamos params o valor é passado na URL. Por exemplo: http://localhost:3000/medidas/ultimas/7
+    // Esse valor é capturado através do routes/medidas.js e repassado para o controller.
     var idAquario = req.params.idAquario;
-
-    console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
         if (resultado.length > 0) {
@@ -41,6 +55,9 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+/** Exportando as funções de medida
+ * @module src/controllers/medidaController
+ */
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal

@@ -1,10 +1,20 @@
+/**
+ * Imports de dependências utilizadas pela usuarioController
+ */
 var usuarioModel = require("../models/usuarioModel");
 var aquarioModel = require("../models/aquarioModel");
 
+/**
+ * Função responsável por retornar informações do usuário através de e-mail e senha
+ * @param {*} req requisição feita pelo cliente
+ * @param {*} res resposta que será devolvida para o cliente
+ */
 function autenticar(req, res) {
+    // Variáveis criadas através das informações recebidas do cliente
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
+    
+    // Teste lógico para verificar se as variáveis foram preenchidas
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
@@ -14,21 +24,18 @@ function autenticar(req, res) {
         usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
 
                         aquarioModel.buscarAquariosPorUsuario(resultadoAutenticar[0].id)
                             .then((resultadoAquarios) => {
                                 if (resultadoAquarios.length > 0) {
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
+                                        "id": resultadoAutenticar[0].id,
+                                        "email": resultadoAutenticar[0].email,
+                                        "nome": resultadoAutenticar[0].nome,
+                                        "senha": resultadoAutenticar[0].senha,
+                                        "aquarios": resultadoAquarios
                                     });
                                 } else {
                                     res.status(204).json({ aquarios: [] });
@@ -51,13 +58,18 @@ function autenticar(req, res) {
 
 }
 
+/**
+ * Função que cadastra um usuário no banco de dados através da model
+ * @param {*} req requisição feita pelo cliente
+ * @param {*} res resposta que será enviada para o cliente
+ */
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    // Variáveis criadas através das informações recebidas do cliente
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    // Faça as validações dos valores
+    // Teste lógico para verificar se as variáveis foram preenchidas
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
@@ -66,7 +78,6 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
@@ -85,6 +96,9 @@ function cadastrar(req, res) {
     }
 }
 
+/** Exportando as funções de usuário
+ * @module src/controllers/usuarioController
+ */
 module.exports = {
     autenticar,
     cadastrar
