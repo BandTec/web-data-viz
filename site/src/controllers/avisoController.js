@@ -1,5 +1,5 @@
 /**
- * Imports de dependências utilizadas pela avisoModel
+ * Imports de dependências utilizadas pela avisoController
  */
 var avisoModel = require("../models/avisoModel");
 

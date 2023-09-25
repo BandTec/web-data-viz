@@ -1,5 +1,5 @@
 /**
- * Imports de dependências do aquario.js.
+ * Imports de dependências do usuarios.js.
  */
 var express = require("express");
 var router = express.Router();

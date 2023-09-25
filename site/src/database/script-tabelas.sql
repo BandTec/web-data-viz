@@ -10,11 +10,19 @@ CREATE DATABASE aquatech;
 
 USE aquatech;
 
+CREATE TABLE empresa (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	razao_social VARCHAR(50),
+	cnpj VARCHAR(14)
+);
+
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
 	email VARCHAR(50),
-	senha VARCHAR(50)
+	senha VARCHAR(50),
+	fk_empresa INT,
+	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
 
 CREATE TABLE aviso (
@@ -29,8 +37,8 @@ create table aquario (
 /* em nossa regra de negócio, um aquario tem apenas um sensor */
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	descricao VARCHAR(300),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+	fk_empresa INT,
+	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
 
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
@@ -47,16 +55,24 @@ create table medida (
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
+insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 
 /*
 comando para sql server - banco remoto - ambiente de produção
 */
+
+CREATE TABLE empresa (
+	id INT PRIMARY KEY IDENTITY(1,1),
+	razao_social VARCHAR(50),
+	cnpj VARCHAR(14)
+);
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	nome VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
+	fk_empresa INT FOREIGN KEY REFERENCES empresa(id)
 );
 
 CREATE TABLE aviso (
@@ -70,7 +86,7 @@ create table aquario (
 /* em nossa regra de negócio, um aquario tem apenas um sensor */
 	id INT PRIMARY KEY IDENTITY(1,1),
 	descricao VARCHAR(300),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
+	fk_empresa INT FOREIGN KEY REFERENCES empresa(id)
 );
 
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
@@ -85,6 +101,8 @@ CREATE TABLE medida (
 	momento DATETIME,
 	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
 );
+
+insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,

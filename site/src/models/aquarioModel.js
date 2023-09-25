@@ -9,9 +9,9 @@ var database = require("../database/config");
  * @returns {*} - Retorna um objeto com os aquarios do usuario
  * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
  */
-function buscarAquariosPorUsuario(idUsuario) {
+function buscarAquariosPorEmpresa(empresaId) {
 
-  instrucaoSql = `select * from aquario a where fk_usuario = ${idUsuario}`;
+  instrucaoSql = `select * from aquario a where fk_empresa = ${empresaId}`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -24,9 +24,9 @@ function buscarAquariosPorUsuario(idUsuario) {
  * @returns {*} - Retorna um objeto com os aquarios do usuario
  * @throws - Caso apareça Error: connect ECONNREFUSED, verifique suas credenciais de acesso ao banco
  */
-function cadastrar(idUsuario, descricao) {
+function cadastrar(empresaId, descricao) {
   
-  instrucaoSql = `insert into (descricao, fk_usuario) aquario values (${descricao}, ${idUsuario})`;
+  instrucaoSql = `insert into (descricao, fk_empresa) aquario values (${descricao}, ${empresaId})`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -37,6 +37,6 @@ function cadastrar(idUsuario, descricao) {
  * @module src/models/aviso
  */
 module.exports = {
-  buscarAquariosPorUsuario,
+  buscarAquariosPorEmpresa,
   cadastrar
 }

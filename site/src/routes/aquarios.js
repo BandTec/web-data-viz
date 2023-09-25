@@ -1,5 +1,5 @@
 /**
- * Imports de dependências do aquario.js.
+ * Imports de dependências do aquarios.js.
  */
 var express = require("express");
 var router = express.Router();
@@ -12,8 +12,8 @@ var aquarioController = require("../controllers/aquarioController");
  * @param {*} router - Chamada da função que contem a lógica de execução para entregar o resultado.
  * Este comentario é válido para todos os métodos abaixo 👇.
  */
-router.get("/:idUsuario", function (req, res) {
-  aquarioController.buscarAquariosPorUsuario(req, res);
+router.get("/:empresaId", function (req, res) {
+  aquarioController.buscarAquariosPorEmpresa(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {

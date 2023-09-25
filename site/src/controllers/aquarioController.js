@@ -1,20 +1,20 @@
 /**
- * Imports de dependências utilizadas pela avisoModel
+ * Imports de dependências utilizadas pela aquarioController
  */
 var aquarioModel = require("../models/aquarioModel");
 
 
 /**
- * Função que retorna os aquarios do usuario filtrando pelo id do usuario
+ * Função que retorna os aquarios do usuario filtrando pelo id da empresa
  * @param {*} req requisicao feita pelo cliente
  * @param {*} res resposta que será devolvida para o cliente
  */
-function buscarAquariosPorUsuario(req, res) {
+function buscarAquariosPorEmpresa(req, res) {
   // Variáveis criadas através das informações recebidas do cliente.
   // Esse valor é capturado através do routes/medidas.js e repassado para o controller.
-  var idUsuario = req.params.idUsuario;
+  var empresaId = req.params.empresaId;
 
-  aquarioModel.buscarAquariosPorUsuario(idUsuario).then((resultado) => {
+  aquarioModel.buscarAquariosPorEmpresa(empresaId).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -62,6 +62,6 @@ function cadastrar(req, res) {
 
 // Exporta as funções para serem utilizadas em outros módulos
 module.exports = {
-  buscarAquariosPorUsuario,
+  buscarAquariosPorEmpresa,
   cadastrar
 }
