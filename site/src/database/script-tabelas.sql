@@ -56,6 +56,7 @@ create table medida (
 );
 
 insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
+insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
 
 /*
 comando para sql server - banco remoto - ambiente de produção
