@@ -13,7 +13,7 @@ USE aquatech;
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	razao_social VARCHAR(50),
-	cnpj VARCHAR(14)
+	cnpj CHAR(14)
 );
 
 CREATE TABLE usuario (
@@ -64,7 +64,7 @@ comando para sql server - banco remoto - ambiente de produção
 CREATE TABLE empresa (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	razao_social VARCHAR(50),
-	cnpj VARCHAR(14)
+	cnpj CHAR(14)
 );
 
 CREATE TABLE usuario (
