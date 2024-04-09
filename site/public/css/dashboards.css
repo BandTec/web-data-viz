@@ -1,8 +1,11 @@
 /* pagina mural */
 
-*,
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
-  font-family: "Exo 2", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .label-captura {
@@ -12,9 +15,8 @@ body {
 
 .dash-right .avisos {
   width: 100%;
-  /* border: 3px solid pink; */
   color: rgb(216, 216, 216);
-  font-family: "Exo 2", sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .dash-right .avisos .container {
@@ -24,25 +26,24 @@ body {
 }
 
 .dash-right .avisos .container .div-form {
-  width: 100%;
+  width: 95%;
 }
 
 .dash-right .avisos .container .div-form #form_postagem {
-  width: 100%;
+  width: 95%;
 }
 
 .dash-right .avisos .div-form label {
-  width: 100%;
+  width: 95%;
 }
 
 .dash-right .avisos .div-form input {
-  width: 100%;
+  width: 95%;
   border-radius: 5px;
 }
 
 .dash-right .avisos .div-form textarea {
-  width: 100%;
-  /* color: #E6005A; */
+  width: 95%;
   border: 3px solid #e6005a;
   background-color: white;
   border-radius: 5px;
@@ -50,7 +51,7 @@ body {
 
 .dash-right .avisos .div-form button {
   cursor: pointer;
-  font-family: "Exo 2", sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
@@ -63,7 +64,7 @@ body {
 
 .publicacao-btn-editar {
   cursor: pointer;
-  font-family: "Exo 2", sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
@@ -85,7 +86,7 @@ body {
   padding: 20px;
 }
 
-.publicacao > *:not(:last-child) {
+.publicacao>*:not(:last-child) {
   padding: 0 0 10px 0;
 }
 
@@ -104,7 +105,7 @@ body {
   justify-content: flex-end;
 }
 
-.div-buttons > * {
+.div-buttons>* {
   margin-left: 30px;
 }
 
@@ -170,28 +171,49 @@ body {
   color: white;
 }
 
-.card {
+.card-aquario {
   margin: 2%;
-  width: 40%;
+  min-width: 40%;
+  max-width: 50%;
+  width: fit-content;
   flex-wrap: wrap;
   display: flex;
-  text-align: center;
+  /* text-align: center; */
   height: 180px;
-  justify-content: right;
+  /* justify-content: right; */
   background-color: #212124;
   font-size: 20px;
 }
 
-.card p {
+.card-aquario h1 {
+  width: fit-content;
+}
+
+.card-aquario p {
   margin: 0;
   font-size: 50px;
   font-weight: lighter;
   text-align: left;
 }
 
+.desc-aquario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.desc-aquario .cor-alerta {
+  width: 30px;
+}
+
+.title-aquario {
+  width: 100%;
+}
+
+
 .cards h1 {
   font-size: 22px;
-  width: 100%;
   border-bottom: solid white 1px;
   text-align: left;
   font-weight: lighter;
@@ -218,11 +240,11 @@ body {
   justify-content: center;
   margin-top: 30px;
   flex-wrap: wrap;
-  padding: 0 30% 0 30%
+  padding: 0 30% 0 30%;
 }
 
 .graph {
-  width: 80%;
+  width: 70%;
   margin: auto;
   padding-top: 10px;
 }
@@ -234,7 +256,7 @@ body {
 }
 
 .btn-chart {
-  font-family: "Exo 2", sans-serif;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   font-weight: 600;
   font-size: 18px;
@@ -243,6 +265,7 @@ body {
   background-color: white;
   margin: 5px;
   border-radius: 3px;
+  cursor: pointer
 }
 
 .btn-pink {
@@ -275,4 +298,106 @@ body {
 canvas {
   width: 100% !important;
   height: 100% !important;
+}
+
+/* PAGINA DOS GRÁFICOS 2023 */
+
+.janela {
+  display: flex;
+  /* width: 100vw; */
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-right: 3px solid #32b9cd;
+  background-color: #212124;
+}
+
+.dash-right {
+  display: flex;
+  width: 70%;
+  height: fit-content;
+  background-color: #161618;
+  position: relative;
+  top: 0;
+  left: 25%;
+  height: 100vh;
+  overflow: auto;
+}
+
+.header-left h1 {
+  color: #32b9cd;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #e3b062;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav {
+  width: 40%;
+  color: white;
+  background-color: #e6005a;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white {
+  width: 40%;
+  background-color: white;
+  border: 3px solid #e6005a;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2% 5%;
+}
+
+.btn-nav-white h3 {
+  color: #e6005a;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-nav h3,
+.btn-logout h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.btn-logout {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #32b9cd;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
 }

@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Tempo Real</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboards.css">
+    
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -94,12 +95,16 @@
     function exibirAquarios() {
         JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
             document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card">
-                        <h1>${item.descricao}</h1>
+                    <div class="card-aquario">
+                        <div class="title-aquario">
+                            <h1>${item.descricao}</h1>
+                        </div>
+                        <div class="desc-aquario">
                         <div class="temperatura">
                             <p id="temp_aquario_${item.id}">-°C</p>
                         </div>
                         <div class="cor-alerta" id="card_${item.id}"></div>
+                    </div>
                     </div>
                     `
         });

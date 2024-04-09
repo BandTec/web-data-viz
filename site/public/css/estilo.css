@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -58,8 +60,11 @@ body {
   margin: 0;
 }
 
+/* BANNER */
+
 .banner {
   height: var(--tamanho-banner);
+  color: white;
   background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
   background-size: cover;
 }
@@ -71,14 +76,17 @@ body {
 }
 
 .banner .container p {
+  width: 50%;
+  margin: 0;
+  padding: 0;
   font-size: 36px;
-  color: white;
-  width: 280px;
 }
 
 .banner .container span {
   font-weight: 800;
 }
+
+/* MISSÃO VISÃO VALORES */
 
 .social {
   background-color: #e5e5e5;
@@ -97,20 +105,39 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 30px 0;
+}
+
+.social p {
+  text-align: center;
 }
 
 .box {
-  width: 280px;
-  height: 450px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-.box p {
+/* FOOTER */
+
+.footer {
+  background-color: #32b9cd;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+}
+
+.footer .container {
+  justify-content: center;
   text-align: center;
 }
+
+.footer .container .version {
+  font-size: 12px;
+}
+
+/* LOGIN */
 
 .login {
   height: var(--tamanho-login);
@@ -125,23 +152,16 @@ body {
 }
 
 .card {
-  width: 30%;
+  width: 50%;
   background-color: #e5e5e5;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  flex-direction: column;
   color: palevioletred;
-  row-gap: 20px;
-}
-
-.card-cadastro {
-  height: 80%;
-}
-
-.card-login {
-  height: 60%;
+  flex-direction: column;
+  height: fit-content;
+  padding: 20px 0;
 }
 
 .card h2 {
@@ -164,9 +184,9 @@ body {
 
 .formulario input {
   border: 2px solid #32b9cd;
-  height: 30px;
   text-align: center;
   border-radius: 10px;
+  margin: 0;
 }
 
 .formulario select {
@@ -176,12 +196,14 @@ body {
   height: 36px;
   text-align: center;
   border-radius: 10px;
+  margin: 0;
 }
 
 .campo {
   display: flex;
   flex-direction: column;
   justify-content: start;
+  padding: 5px 0;
 }
 
 .botao {
@@ -196,6 +218,7 @@ body {
   width: 120px;
   height: 30px;
   align-self: center;
+  margin-top: 20px;
 }
 
 .loading-div {
@@ -211,6 +234,8 @@ body {
 #div_erros_login {
   display: none
 }
+
+/* FORMULARIO */
 
 .alerta_erro{
   display: flex;
@@ -234,28 +259,50 @@ body {
   font-size: 20px;
 }
 
-.footer {
-  height: var(--tamanho-footer);
-  width: 100%;
-  background-color: #32b9cd;
-  color: #fff;
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
 }
 
-.footer h4 {
-  margin: 0;
-}
-
-.footer .container {
-  align-items: center;
-  justify-content: center;
+.formulario {
+  display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-.footer .container .version {
-  font-size: 12px;
-  font-weight: 800;
+input {
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
 }
+
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #e6005a;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
+}
+
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* SIMULADOR */
 
 .simulador {
   color: white;
@@ -265,4 +312,49 @@ body {
   flex-direction: column;
   overflow: scroll; 
   height: var(--tamanho-simulador);
+}
+
+/* ALERTA */
+
+#alerta {
+  position: absolute;
+  right: 0px;
+}
+
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.mensagem-alarme .informacao {
+  margin: 10px;
+}
+
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bell {
+  0%   {transform: rotate(25deg)}
+  25%  {transform: rotate(-25deg)}
+  50%  {transform: rotate(25deg)}
+  75%  {transform: rotate(-25deg)}
+  100% {transform: rotate(25deg)}
 }
