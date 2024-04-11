@@ -12,16 +12,16 @@ _Implementação de Referência para o seu Projeto de Primeiro Semestre_
 
 
 1. Crie, no Banco de Dados, as tabelas necessárias para o funcionamento deste projeto.
-- Siga as instruções no arquivo **/site/src/database/script-tabelas.sql**
+- Siga as instruções no arquivo **/src/database/script-tabelas.sql**
 
 
-3. Acesse o arquivo **/site/app.js** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **process.env.AMBIENTE_PROCESSO = "producao";**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **process.env.AMBIENTE_PROCESSO = "desenvolvimento";**
+3. Acesse o arquivo **.env** e parametrize o ambiente.
+- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **AMBIENTE_PROCESSO=producao**
+- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **AMBIENTE_PROCESSO=desenvolvimento**
 
-4. Adicione as credenciais de Banco de Dados no arquivo **/site/src/database/config.js**, seguindo as instruções neste.
+4. Adicione as credenciais de Banco de Dados no arquivo **.env**, seguindo as instruções neste.
 
-5. Acesse o local do diretório **/site** presente neste repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
+5. Acesse este repositório no seu terminal (GitBash ou VSCode) e execute os comandos abaixo:
 
 ```
 npm i
