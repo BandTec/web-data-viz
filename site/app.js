@@ -1,5 +1,4 @@
-process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-// process.env.AMBIENTE_PROCESSO = "producao";
+require("dotenv").config();
 
 var express = require("express");
 var cors = require("cors");
