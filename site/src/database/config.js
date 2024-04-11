@@ -14,6 +14,7 @@ var mySqlConfig_prod = {
     database: "SEU_BANCO_DE_DADOS",
     user: "SEU_USUARIO",
     password: "SUA_SENHA",
+    port: "SUA_PORTA"
 };
 
 function executar(instrucao) {
