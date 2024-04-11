@@ -3,14 +3,7 @@ require("dotenv").config();
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
-var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
-// a estrutura na linha acima é chamada de "operador ternário" e é uma maneira de fazer um if-else em apenas uma linha.
-// a estrutura é a seguinte: condição ? valor_se_verdadeiro : valor_se_falso.
-// ou seja, se a condição for verdadeira, a variável PORTA recebe 3333, se for falsa, recebe 8080.
-// no caso, a condição é se o ambiente é de desenvolvimento ou de produção.
-// se for desenvolvimento, a porta é 3333, se for produção, a porta é 8080.
-// isso é feito para que você possa rodar o servidor em ambientes diferentes, sem precisar ficar mudando a porta manualmente.
-// para mudar o ambiente, basta descomentar a linha 1 e comentar a linha 2.
+var PORTA = process.env.PORT_APP;
 
 var app = express();
 
