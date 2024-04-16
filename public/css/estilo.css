@@ -318,7 +318,8 @@ input {
 
 #alerta {
   position: absolute;
-  right: 0px;
+  right: 0;
+  bottom: 0;
 }
 
 .mensagem-alarme {
@@ -327,6 +328,7 @@ input {
   width: 300px;
   height: 80px;
   margin: 10px;
+  padding: 10px 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -338,7 +340,7 @@ input {
 }
 
 .mensagem-alarme .informacao {
-  margin: 10px;
+  width: 66%;
 }
 
 .alarme-sino {
