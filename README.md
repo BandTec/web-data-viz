@@ -15,9 +15,9 @@ _Implementação de Referência para o seu Projeto de Primeiro Semestre_
 - Siga as instruções no arquivo **/src/database/script-tabelas.sql**
 
 
-3. Acesse o arquivo **.env** e parametrize o ambiente.
-- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **AMBIENTE_PROCESSO=producao**
-- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **AMBIENTE_PROCESSO=desenvolvimento**
+3. Acesse o arquivo **app.js** e parametrize o ambiente.
+- Se você estiver utilizando o Ambiente de Produção (remoto), comente a linha 2 e deixe habilitada a linha 1 onde está o valor **var ambiente_processo = 'producao';**
+- Se você estiver utilizando o Ambiente de Desenvolvimento (local), comente a linha 1 e deixe habilitada a linha 2 onde está o valor **var ambiente_processo = 'desenvolvimento';**
 
 4. Adicione as credenciais de Banco de Dados no arquivo **.env**, seguindo as instruções neste.
 
