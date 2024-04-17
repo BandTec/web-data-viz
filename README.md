@@ -88,7 +88,9 @@ _* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
 
 Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
 
-![image](https://user-images.githubusercontent.com/46379117/201171649-e9d73663-b341-4035-83bd-885314c26ebb.png)
+
+![image](https://github.com/BandTec/web-data-viz/assets/46379117/e8d63551-6153-4632-93b9-f59a1d2afd3e)
+
 
 **Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
 - Primeiro, crie a tabela no Banco de Dados referente a este recurso. Exemplos de recursos comuns de serem adicionados ao projeto no primeiro semestre: Silo, Aquário, Sala, Andar, Endereço, Mercado, Prateleira, Unidade, Carro, Caminhão...  
