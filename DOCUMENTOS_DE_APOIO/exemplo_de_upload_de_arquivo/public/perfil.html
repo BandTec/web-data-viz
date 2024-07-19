@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="number" id="buscaInput">
+  <button onclick="buscarPeloId()">Buscar</button>
+  <div id="container">
+
+  </div>
+</body>
+
+</html>
+
+<script>
+  function buscarPeloId() {
+    fetch(`/usuarios/${buscaInput.value}`, {
+      method: "GET"
+    })
+      .then(res => {
+        res.json().then(json => {
+          const usuario = json[0];
+          container.innerHTML = `<div>
+    <h1>${usuario.nome} - ${usuario.email}</h1>
+    <img src='assets/${usuario.imagem_perfil}' alt="imagem de usuario">
+  </div>`
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+</script>

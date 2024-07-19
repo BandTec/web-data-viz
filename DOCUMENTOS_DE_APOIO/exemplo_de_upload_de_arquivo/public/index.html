@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload</title>
+</head>
+
+<body>
+
+  <div>
+    <input name="nome" id="nome" type="text" />
+    <input name="email" id="email" type="url" />
+    <input name="foto" id="foto" type="file" />
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <div id="container"></div>
+</body>
+
+</html>
+
+<script>
+  function enviar() {
+    const formData = new FormData();
+    formData.append('foto', foto.files[0])
+    formData.append('nome', nome.value)
+    formData.append('email', email.value)
+
+    fetch("/usuarios/cadastro", {
+      method: "POST",
+      body: formData
+    })
+      .then(res => {
+        window.location = "./perfil.html"
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+</script>
