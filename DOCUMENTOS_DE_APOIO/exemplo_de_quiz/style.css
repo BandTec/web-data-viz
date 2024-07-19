@@ -5,11 +5,14 @@
     --primary-brand-color: #ED145B;
     --secondary-brand-color: #0762C8;
     --success: #198754;
-    --success-light: #19875477;
-    --warning: #FFC107;
-    --warning-light: #FFC10777;
-    --danger: #DC3545;
-    --danger-light: #DC354677;
+    --success-dark: #095c36;
+    --success-light: #9dd3ba;
+    --warning: #ffc107;
+    --warning-dark: #705400;
+    --warning-light: #fdebb3;
+    --danger: #dc3545;
+    --danger-dark: #990c19;
+    --danger-light: #f0c1c6;
     --new-gray: #CCCCCC;
     --new-black: #212427;
     --new-white: #E8E8E8;
@@ -52,17 +55,17 @@ button {
 }
 
 .text-success-with-bg {
-    color: var(--success);
+    color: var(--success-dark);
     background-color: var(--success-light);
 }
 
 .text-warning-with-bg {
-    color: var(--warning);
+    color: var(--warning-dark);
     background-color: var(--warning-light);
 }
 
 .text-danger-with-bg {
-    color: var(--danger);
+    color: var(--danger-dark);
     background-color: var(--danger-light);
 }
 

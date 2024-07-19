@@ -11,7 +11,7 @@
 
 <body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
-        <button onclick="iniciarQuiz()">INICIAR QUIZ</button>
+        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
@@ -121,6 +121,7 @@
     function iniciarQuiz() {
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
+        document.getElementById('btnIniciarQuiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
@@ -255,7 +256,7 @@
     function finalizarJogo() {
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = (pontuacaoFinal / quantidadeDeQuestoes) * 100
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou..."
@@ -270,7 +271,7 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round(porcentagemFinalDeAcertos) + "% das questões"
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões"
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
