@@ -3,7 +3,7 @@ Caso você queira adicionar a funcionalidade de "upload de imagens" no seu proje
 - OPÇÃO 1 - Criar uma coluna no banco de dados com tipo VARCHAR que irá receber a URL da sua imagem, como por exemplo " http: // meusite. com/ minhaimagem .png". Assim o campo que será preenchido pelo usuário será uma input de texto.
   - Prós: Simples de implementar, uma vez que os campos de login e cadastro também são assim.
   - Contras: Seu usuário precisará ter a URL da imagem desejada.
-- OPÇÃO 2 - Possibilitar o upload das imagens a um diretório no seu próprio projeto, seguindo o exemplo: https://github.com/WilliamMN/exemplo-upload-imagem-local
+- OPÇÃO 2 - Possibilitar o upload das imagens a um diretório no seu próprio projeto, seguindo o exemplo: https://github.com/fernandacaramico/exemplo-upload-imagem-local
   - Prós: Esta implementação simula que há um diretório específico para arquivos multimídia, o que é uma prática de mercado, podendo usar já o conceito de "buckets".
   - Contras: Seu repositório pode ficar "pesado", fazendo com que seu git clone fique demorado. Arquivos de imagens e vídeos tendem a ter mais bytes de tamanho, chegando a MBs (megabytes) ou até GBs (gigabytes).
 - OPÇÃO 3 - NÃO RECOMENDADO - Criar uma coluna no banco de dados com tipo BLOB (Binary Large Object) que irá receber o arquivo de mídia
