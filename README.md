@@ -89,7 +89,8 @@ _* Você verá o verbo HTTP sendo apontado nos arquivos em /routes_
 Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exemplo, efetuar o cadastro de um usuário:
 
 
-![image](https://github.com/BandTec/web-data-viz/assets/46379117/e8d63551-6153-4632-93b9-f59a1d2afd3e)
+![image](https://github.com/user-attachments/assets/d576f178-0da6-437e-b5c9-658e3ebaf6ca)
+
 
 
 **Entendi o que é um recurso e gostaria de adicionar um novo ao meu projeto! Como faz?**  
