@@ -1,0 +1,74 @@
+:root {
+  --lime-50: #f7fee7;
+  --lime-300: #BEF264;
+  --lime-400: #A3E635;
+  --lime-500: #84CC16;
+  --lime-600: #65A30D;
+  --lime-700: #4D7C0F;
+  --lime-800: #3F6212;
+  --lime-900: #365314;
+  --lime-950: #1A2E05;
+
+  --olive-50: #FBFBF9;
+  --olive-100: #F4F4F0;
+  --olive-400: #ABAB9C;
+  --olive-900: #1D1D16;
+  --olive-950: #0C0C09;
+
+  --teal-200: #99F6E4;
+  --teal-400: #2DD4BF;
+  --teal-600: #0D9488;
+
+  --danger-base: #EF4444;
+  --danger-dark: #DC2626;
+}
+
+/* ===== CADASTRO (LAYOUT) ===== */
+.cadastro-page {
+  background: var(--lime-950);
+  /* verde escuro */
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadastro-card {
+  background: var(--olive-50);
+  padding: 32px;
+  border-radius: 20px;
+  width: 450px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.link-recuperar-senha {
+  margin-left: auto;
+}
+
+#link-criar-conta p {
+  color: var(--lime-900);
+}
+
+.cadastro-card img {
+  width: 80px;
+  margin: 0 auto;
+}
+
+.cadastro-card .input-with-label {
+  text-align: left;
+}
+
+.back i {
+  color: var(--olive-50);
+  font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
