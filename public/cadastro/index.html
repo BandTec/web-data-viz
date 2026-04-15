@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="../login/style.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <script src="../js/cadastro.js"></script>
 </head>
 
-<body>
+<body onload="getCode()">
 
   <!-- CADASTRO -->
   <main class="cadastro-page">
@@ -29,30 +30,35 @@
 
       <span class="input-with-label">
         <label for="ipt_code" class="label-input">Código de ativação</label>
-        <input type="text" placeholder="Código" id="ipt_code">
+        <input type="text" placeholder="Código" id="ipt_code" onblur="codeValidation()">
+        <span id="error_code" class="body-xs"></span>
       </span>
 
       <span class="input-with-label">
         <label class="label-input" for="ipt_username">Nome de usuário</label>
         <input type="text" placeholder="username" id="ipt_username">
+        <span id="error_name" class="body-xs"></span>
       </span>
 
       <span class="input-with-label">
         <label class="label-input" for="ipt_email">Email</label>
         <input type="email" placeholder="Email" id="ipt_email">
+        <span id="error_email" class="body-xs"></span>
       </span>
 
       <span class="input-with-label">
         <label class="label-input" class="label-input" for="ipt_password">Senha</label>
         <input type="password" placeholder="Senha" id="ipt_password">
+        <span id="error_password" class="body-xs"></span>
       </span>
 
       <span class="input-with-label">
-        <label class="label-input" for="ipt_password_confirm">Confirmar senha</label>
-        <input type="password" placeholder="Confirmar senha" id="ipt_password_confirm">
+        <label class="label-input" for="ipt_confirm_password">Confirmar senha</label>
+        <input type="password" placeholder="Confirmar senha" id="ipt_confirm_password">
+        <span id="error_confirm_password" class="body-xs"></span>
       </span>
 
-      <button class="button-primary-dark">Cadastrar</button>
+      <button class="button-primary-dark" onclick="registerUser()">Cadastrar</button>
 
       <a href="../login/index.html" id="link-criar-conta" class="link body-sm">
         <p>Já tem uma conta?</p>
@@ -61,7 +67,7 @@
     </div>
 
   </main>
-
+  <div id="popUp"></div>
 </body>
 
 </html>
