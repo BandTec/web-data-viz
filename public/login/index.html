@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
+  <title>Login</title>
 
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <script src="../js/autenticar.js"></script>
 </head>
 
 <body>
@@ -29,15 +30,17 @@
       <span class="input-with-label">
         <label for="ipt_email">Email</label>
         <input type="email" placeholder="Email" id="ipt_email">
+        <span id="error_email" class="body-xs"></span>
       </span>
 
       <span class="input-with-label">
         <label for="ipt_password">Senha</label>
         <input type="password" placeholder="Senha" id="ipt_password">
-        <a href="#" class="body-xs link link-recuperar-senha">Esqueceu a senha?</a>
+        <span id="error_password" class="body-xs"></span>
       </span>
+      <a href="#" class="body-xs link link-recuperar-senha">Esqueceu a senha?</a>
 
-      <button class="button-primary-dark">Entrar</button>
+      <button class="button-primary-dark" onclick="login()">Entrar</button>
 
       <a href="../cadastro/index.html" id="link-criar-conta" class="link body-sm">
         <p>Ainda não tem uma conta? Cadastre-se</p>
@@ -45,7 +48,7 @@
 
     </div>
   </main>
-
+  <div id="popUp"></div>
 </body>
 
 </html>

@@ -72,3 +72,43 @@
   top: 1rem;
   left: 1rem;
 }
+
+/* Tratamento de erros */
+.cadastro-card > .input-with-label:has(.error) > label, .error {
+  color: var(--danger-base) !important;
+}
+
+.cadastro-card > .input-with-label:has(.error) > input {
+  outline: var(--danger-base) 1px solid;
+}
+
+/* Pop-up */
+#popUp {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  bottom: -4rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--olive-100);
+  transition: all .5s ease-in-out;
+}
+
+#popUp:has(.error) {
+  border: 2px solid var(--danger-base);
+  color: var(--danger-base);
+}
+
+#popUp:has(.correct) {
+  border: 2px solid var(--lime-500);
+}
+
+#popUp .correct {
+  color: var(--lime-600);
+}
+
+#popUp .ph {
+  font-size: 1.8rem;
+}
