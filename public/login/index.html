@@ -1,53 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="../style.css">
+  <title>Login | CompostEco</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-    <script src="../js/autenticar.js"></script>
+    <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
 </head>
 
-<body>
+<body class="page-body">
+  <div class="login-card">
 
-  <!-- login -->
-  <main class="cadastro-page">
-    <a href="../index.html" class="back">
-      <i class="ph ph-sign-out"></i>
-    </a>
-    <div class="cadastro-card">
-
-      <img src="../assets/icon/logo.svg" alt="Logo">
-
-      <h2 class="heading-lg">Bem-Vindo de Volta</h2>
-      <p class="body-xs">Faça login para acessar a plataforma</p>
-
-      <span class="input-with-label">
-        <label for="ipt_email">Email</label>
-        <input type="email" placeholder="Email" id="ipt_email">
-        <span id="error_email" class="body-xs"></span>
-      </span>
-
-      <span class="input-with-label">
-        <label for="ipt_password">Senha</label>
-        <input type="password" placeholder="Senha" id="ipt_password">
-        <span id="error_password" class="body-xs"></span>
-      </span>
-      <a href="#" class="body-xs link link-recuperar-senha">Esqueceu a senha?</a>
-
-      <button class="button-primary-dark" onclick="login()">Entrar</button>
-
-      <a href="../cadastro/index.html" id="link-criar-conta" class="link body-sm">
-        <p>Ainda não tem uma conta? Cadastre-se</p>
-      </a>
-
+    <div class="image-panel">
+      <img src="../assets/images/field.png" alt="">
+      <div class="back-button" onclick="window.location.href='../index.html'">
+        <i class="ph ph-arrow-left"></i>
+      </div>
+      <div class="caption">
+        <i class="ph ph-info"></i>
+        <span>Acompanhe temperatura e umidade continuamente, com dados atualizados diretamente da composteira.</span>
+      </div>
     </div>
-  </main>
+
+    <div class="form-panel">
+      <img class="logo" src="../assets/icon/logo-dark.svg" alt="Logo CompostECO">
+
+      <div class="form-fields">
+        <div class="field-group">
+          <label for="inpEmail">Email:</label>
+          <input type="email" id="inpEmail" placeholder="exemplo@corp.com">
+          <span id="errEmail"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="inpPassword">Senha:</label>
+          <input type="password" id="inpPassword">
+          <span id="errPassword"></span>
+          <a class="forgot-link">Esqueceu a senha?</a>
+        </div>
+
+        <button class="submit-button">Entrar</button>
+      </div>
+
+      <a href="../cadastro/index.html" class="register">Ainda não tem uma conta? <span class="register-link">Crie aqui.</span></a>
+    </div>
+
+  </div>
   <div id="popUp"></div>
 </body>
 
