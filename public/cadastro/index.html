@@ -1,72 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
-
-  <!-- <link rel="stylesheet" href="style.css"> -->
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../login/style.css">
+  <title>Cadastro | CompostEco</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-  <script src="../js/cadastro.js"></script>
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
 </head>
 
-<body onload="getCode()">
+<body class="page-body">
+  <div class="register-card">
 
-  <!-- CADASTRO -->
-  <main class="cadastro-page">
-    <a href="../index.html" class="back">
-      <i class="ph ph-sign-out"></i>
-    </a>
-    <div class="cadastro-card">
-
-      <img src="../assets/icon/logo.svg" alt="Logo">
-
-      <h2 class="heading-lg">Cadastre-se</h2>
-      <p class="body-xs">Cadastre-se para usufruir da plataforma</p>
-
-      <span class="input-with-label">
-        <label for="ipt_code" class="label-input">Código de ativação</label>
-        <input type="text" placeholder="Código" id="ipt_code" onblur="codeValidation()">
-        <span id="error_code" class="body-xs"></span>
-      </span>
-
-      <span class="input-with-label">
-        <label class="label-input" for="ipt_username">Nome de usuário</label>
-        <input type="text" placeholder="username" id="ipt_username">
-        <span id="error_name" class="body-xs"></span>
-      </span>
-
-      <span class="input-with-label">
-        <label class="label-input" for="ipt_email">Email</label>
-        <input type="email" placeholder="Email" id="ipt_email">
-        <span id="error_email" class="body-xs"></span>
-      </span>
-
-      <span class="input-with-label">
-        <label class="label-input" class="label-input" for="ipt_password">Senha</label>
-        <input type="password" placeholder="Senha" id="ipt_password">
-        <span id="error_password" class="body-xs"></span>
-      </span>
-
-      <span class="input-with-label">
-        <label class="label-input" for="ipt_confirm_password">Confirmar senha</label>
-        <input type="password" placeholder="Confirmar senha" id="ipt_confirm_password">
-        <span id="error_confirm_password" class="body-xs"></span>
-      </span>
-
-      <button class="button-primary-dark" onclick="registerUser()">Cadastrar</button>
-
-      <a href="../login/index.html" id="link-criar-conta" class="link body-sm">
-        <p>Já tem uma conta?</p>
-      </a>
-
+    <div class="image-panel">
+      <img src="../assets/images/field2.png" alt="">
+      <div class="back-button" onclick="window.location.href='../index.html'">
+        <i class="ph ph-arrow-left"></i>
+      </div>
+      <div class="caption">
+        <i class="ph ph-info"></i>
+        <span>Tome decisões mais rápidas e precisas com base em informações confiáveis.</span>
+      </div>
     </div>
 
-  </main>
+    <div class="form-panel">
+      <img class="logo" src="../assets/icon/logo-dark.svg" alt="Logo CompostECO">
+
+      <div class="form-fields">
+        <div class="field-group">
+          <label for="inpCode">Código de ativação:</label>
+          <input type="text" id="inpCode" placeholder="ex: A1B2C3">
+          <span id="errCode"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpName">Nome:</label>
+          <input type="text" id="inpName" placeholder="ex: Maria Silva">
+          <span id="errName"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpEmail">Email:</label>
+          <input type="email" id="inpEmail" placeholder="ex: exemplo@corp.com">
+          <span id="errEmail"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpPassword">Senha:</label>
+          <input type="password" id="inpPassword">
+          <span id="errPassword"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpConfirm">Confirmar senha:</label>
+          <input type="password" id="inpConfirm">
+          <span id="errConfirm"></span>
+        </div>
+
+        <button class="submit-button">Cadastrar</button>
+      </div>
+
+      <a href="../login/index.html" class="login">Já tem uma conta? <span class="login-link">Acesse-a aqui.</span></a>
+    </div>
+
+  </div>
   <div id="popUp"></div>
 </body>
 
