@@ -22,15 +22,15 @@
       <img class="header-logo" src="./assets/icon/logo-light.svg" alt="Logo da CompostEco">
     </div>
     <nav class="header-nav">
-      <a class="nav-link" href="">Início</a>
-      <a class="nav-link" href="">Produto</a>
-      <a class="nav-link" href="">FAQ</a>
-      <a class="nav-link" href="">Contato</a>
-      <button class="button-outline nav-cta">Entrar</button>
+      <a class="nav-link" href="#hero-section">Início</a>
+      <a class="nav-link" href="#product-section">Produto</a>
+      <a class="nav-link" href="#faq-section">FAQ</a>
+      <a class="nav-link" href="#contact-form">Contato</a>
+      <button class="button-outline nav-cta" onclick="window.location.href='./login/index.html'">Entrar</button>
     </nav>
   </header>
 
-  <section class="hero-banner">
+  <section id="hero-section" class="hero-banner">
     <p class="hero-title">
       Transforme <span class="hero-highlight">resíduos</span> em <span class="hero-highlight">lucro</span> com <span
         class="hero-highlight">monitoramento inteligente.</span>
@@ -68,7 +68,7 @@
     </div>
   </section>
 
-  <section class="product-section">
+  <section id="product-section" class="product-section">
     <div class="intro">
       <h1 class="title">Controle total da sua produção, em tempo real</h1>
       <p class="subtitle">
@@ -133,7 +133,7 @@
     </div>
   </section>
 
-  <section class="section-faq">
+  <section id="faq-section" class="section-faq">
     <h1 class="section-title">Perguntas Frequentes - FAQ</h1>
     <div class="faq-list">
       <div class="faq-item">
@@ -178,7 +178,7 @@
     <h1 class="section-title">Entre em contato</h1>
     <p class="contact-intro">Se você tem alguma dúvida ou deseja mais informações sobre nossos serviços, entre em
       contato conosco. Estamos aqui para ajudar!</p>
-    <form class="contact-form">
+    <form id="contact-form" class="contact-form">
       <div class="field">
         <label for="inpName">Nome</label>
         <input class="input" type="text" id="inpName">
@@ -212,10 +212,10 @@
       </div>
       <div class="footer-nav">
         <p class="title">Navegação</p>
-        <a href="">Início</a>
-        <a href="">Produto</a>
-        <a href="">Contato</a>
-        <a href="">Dashboard</a>
+        <a href="#hero-section">Início</a>
+        <a href="#product-section">Produto</a>
+        <a href="#contact-form">Contato</a>
+        <a href="./login/index.html">Dashboard</a>
       </div>
     </div>
     <div class="footer-bottom">
