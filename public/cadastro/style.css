@@ -53,7 +53,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
   margin: 0;
 }
 
@@ -68,7 +67,7 @@ a {
   gap: 0.75rem;
   position: relative;
   box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-  height: 100%;
+  height: 90%;
 }
 
 /* Card com imagem */
@@ -176,9 +175,9 @@ a {
 
 .field-group span {
   position: absolute;
-  bottom: -2.125rem;
+  bottom: -0.55rem;
   font-size: 1rem;
-  color: var(--danger-base);
+  width: 100%;
 }
 
 .field-group .forgot-link {

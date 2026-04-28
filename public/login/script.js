@@ -1,6 +1,6 @@
 function login () {
-  const userEmail = (ipt_email.value).trim()
-  const userPassword = ipt_password.value
+  const userEmail = (inpEmail.value).trim()
+  const userPassword = inpPassword.value
   
   // executa a função de validação, se retornar false, para a execução dessa função (login), já se retornar false, a execução continua 
   if(!fieldValidation(userEmail, userPassword))
@@ -45,8 +45,8 @@ function fieldValidation (userEmail, userPassword) {
   const outputTag = ["<span class='error'>", "</span>"]
 
   // elementos de exibição de erros
-  const emailErrorElement = error_email
-  const passwordErrorElement = error_password
+  const emailErrorElement = errEmail
+  const passwordErrorElement = errPassword
 
   emailErrorElement.innerHTML = ""
   passwordErrorElement.innerHTML = ""
