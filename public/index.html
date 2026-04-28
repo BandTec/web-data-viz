@@ -4,194 +4,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>CompostECO</title>
+  <title>CompostEco</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./assets/icon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 </head>
-<script src="./js/calculator.js" defer></script>
 
-<body>
-  <!-- <p class="heading-lg text-lime-950">Título grande</p>
-  <p class="heading-md text-teal-600">Título médio</p>
-  <p class="heading-sm text-danger-base">Título pequeno</p>
-  
-  <p class="action-md">Subtítulo médio</p>
-  <p class="action-sm">Subtítulo pequeno</p>
+<body class="page-body">
 
-  <label class="input-label">Label de input</label>
-
-  <p class="body-md">Parágrafo médio</p>
-  <p class="body-sm">Parágrafo pequeno</p>
-  <p class="body-xs">Parágrafo extrapequeno</p> -->
   <header>
-    <div class="container">
-      <img src="./assets/icon/logo.svg" alt="Logo da CompostEco">
-      <nav>
-        <ul>
-          <a class="body-md" href="#hero-section">Início</a>
-          <a class="body-md" href="#about-section">Sobre Nós</a>
-          <a class="body-md" href="#services-section">Nossos Serviços</a>
-        </ul>
-      </nav>
-      <button onclick="window.location.href = './login/index.html'" class="button-primary-light">
-        Login
-      </button>
+    <div class="header-brand">
+      <img class="header-logo" src="./assets/icon/logo-light.svg" alt="Logo da CompostEco">
     </div>
+    <nav class="header-nav">
+      <a class="nav-link" href="">Início</a>
+      <a class="nav-link" href="">Produto</a>
+      <a class="nav-link" href="">FAQ</a>
+      <a class="nav-link" href="">Contato</a>
+      <button class="button-outline nav-cta">Entrar</button>
+    </nav>
   </header>
 
-  <section class="hero" id="hero-section">
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <h1>Compost<span>Eco</span></h1>
-      <p>
-        Desenvolvemos tecnologia de monitoramento para agricultores garantirem compostagem de qualidade e economizarem em adubos
-      </p>
-    </div>
+  <section class="hero-banner">
+    <p class="hero-title">
+      Transforme <span class="hero-highlight">resíduos</span> em <span class="hero-highlight">lucro</span> com <span
+        class="hero-highlight">monitoramento inteligente.</span>
+    </p>
+    <p class="hero-subtitle">
+      Controle temperatura e umidade da sua composteira em tempo real e aumente a eficiência da produção de adubo
+      orgânico.
+    </p>
+    <button class="button-outline hero-cta">Começar agora</button>
   </section>
 
-  <section id="services-section">
-    <div class="services">
-      <div class="container-servicos">
-        <div class="block-title">
-          <h2 class="heading-lg">Nossos serviços</h2>
-          <h3 class="heading-sm">Tecnologia e monitoramente inteligente para compostagem de qualidade</h3>
-        </div>
-        <div class="block">
-          <h2 class="heading-md">Sistema de monitoramento inteligente</h2>
-          <div class="minor-block">
-            <span class="body-md">Nossa solução principal para agricultores de pequeno porte: sensores IoT que monitoram
-              <br> temperatura e umidade em tempo real, garantindo um monitoramento sob a decomposição</span>
-          </div>
-          <div class="minor-block-collective">
-            <div class="minor-block-text">
-              <span class="body-md"><i class="ph ph-check-circle"></i> Monitoramento 24/7 de temperatura e
-                umidade</span>
-              <span class="body-md"><i class="ph ph-check-circle"></i>Alertas automáticos quando fora da faixa
-                ideal</span>
-              <span class="body-md"><i class="ph ph-check-circle"></i>Dashboard web e mobile para acompanhamento</span>
-              <span class="body-md"><i class="ph ph-check-circle"></i>Histórico completo para análise de
-                resultados</span>
-            </div>
-            <div class="img"></div>
-          </div>
-        </div>
-        <div class="block">
-          <h2 class="heading-md">Instalação</h2>
-          <div class="minor-block">
-            <span class="body-md">Cuidamos de todo o processo de instalação dos sensores e oferecemos manutenção
-              preventiva semestral</span>
-          </div>
-          <div class="minor-block-collective">
-            <div class="minor-block-text">
-              <span class="body-md"><i class="ph ph-check-circle"></i>Instalação completa dos equipamentos</span>
-              <span class="body-md"><i class="ph ph-check-circle"></i>Calibração e testes de funcionamento</span>
-              <span class="body-md"><i class="ph ph-check-circle"></i>Manutenção preventiva semestral</span>
-            </div>
-            <div class="img2"></div>
-          </div>
-        </div>
+  <section class="problem-section">
+    <h1 class="section-title">Você está perdendo produtividade sem perceber!</h1>
+    <div class="cards">
+      <div class="card card-1">
+        <span class="heading">
+          <i class="ph ph-thermometer-simple icon"></i>Temperatura e umidade instáveis
+        </span>
+        <p class="detail">Pequenas variações podem comprometer todo o processo biológico, afetando diretamente a
+          qualidade do adubo.</p>
+      </div>
+      <div class="card card-2">
+        <span class="heading">
+          <i class="ph ph-warning icon"></i>Morte dos organismos
+        </span>
+        <p class="detail">Condições inadequadas podem levar à morte das minhocas, interrompendo completamente a
+          produção.</p>
+      </div>
+      <div class="card card-3">
+        <span class="heading">
+          <i class="ph ph-money icon"></i>Perdas silenciosas
+        </span>
+        <p class="detail">Sem controle adequado, o produtor perde tempo, recursos e dinheiro sem perceber.</p>
       </div>
     </div>
   </section>
-  <section class="container-sobre" id="about-section">
-    <div class="coluna-texto">
-      <h2 class="titulo-sobre">Sobre nós</h2>
-      <p>
-        A CompostECO é uma iniciativa voltada ao desenvolvimento de soluções tecnológicas para tornar a produção
-        agrícola mais sustentável e eficiente. Nosso projeto nasce da necessidade de melhorar o processo de
-        vermicompostagem, uma técnica amplamente utilizada na produção de adubo orgânico a partir de resíduos naturais.
-        No entanto, a falta de monitoramento adequado de fatores essenciais, como temperatura e umidade, pode
-        comprometer a qualidade do composto e reduzir a eficiência do processo.
-      </p>
-      <p>
-        Pensando nesse desafio, desenvolvemos um sistema inteligente de monitoramento que utiliza sensores integrados a
-        uma plataforma web para acompanhar, em tempo real, as condições das composteiras. Dessa forma, auxiliamos
-        pequenos produtores a manterem o processo de compostagem dentro dos parâmetros ideais, aumentando a qualidade do
-        adubo produzido, reduzindo desperdícios e diminuindo os custos com fertilizantes comerciais.
+
+  <section class="product-section">
+    <div class="intro">
+      <h1 class="title">Controle total da sua produção, em tempo real</h1>
+      <p class="subtitle">
+        CompostEco utiliza sensores e uma plataforma web para monitorar temperatura e umidade em tempo real, garantindo
+        condições ideais para a produção de adubo orgânico.
       </p>
     </div>
 
-    <div class="coluna-imagem">
-      <img src="./assets/img/composteira.png" alt="Ilustração de uma composteira" class="imagem-composteira">
+    <div class="features">
+      <div class="feature feature-bordered">
+        <i class="ph-fill ph-rss-simple icon"></i>
+        <h1 class="title">Monitoramento em tempo real</h1>
+        <p class="desc">Acompanhe temperatura e umidade continuamente, com dados atualizados diretamente da
+          composteira.</p>
+      </div>
+      <div class="feature feature-bordered">
+        <i class="ph-fill ph-warning icon"></i>
+        <h1 class="title">Alertas inteligentes</h1>
+        <p class="desc">Receba avisos quando as condições saírem do ideal e evite prejuízos antes que eles
+          aconteçam.</p>
+      </div>
+      <div class="feature feature-bordered">
+        <i class="ph-fill ph-chart-bar icon"></i>
+        <h1 class="title">Dashboard intuitiva</h1>
+        <p class="desc">Visualize gráficos simples e claros para entender o comportamento da sua produção.</p>
+      </div>
+      <div class="feature">
+        <i class="ph-fill ph-hand-coins icon"></i>
+        <h1 class="title">Decisão baseada em dados</h1>
+        <p class="desc">Tome decisões mais rápidas e precisas com base em informações confiáveis.</p>
+      </div>
+    </div>
+
+
+    <div class="browser-outer">
+      <div class="browser-inner">
+        <div class="browser-bar">
+          <div class="bar-left">
+            <i class="ph-fill ph-dots-three-outline icon-dots"></i>
+            <div class="pill">
+              <i class="ph-fill ph-sidebar sidebar-icon"></i>
+              <i class="ph-bold ph-arrow-down arrow-down-icon"></i>
+            </div>
+            <div class="pill">
+              <i class="ph-fill ph-arrow-circle-left arrow-left-icon"></i>
+              <i class="ph-fill ph-arrow-circle-right arrow-right-icon"></i>
+            </div>
+          </div>
+          <div class="bar-url">
+            <i class="ph-fill ph-lock lock-icon"></i>
+            <p class="url-text">app.composteco.com</p>
+            <i class="ph-bold ph-arrow-clockwise reload-icon"></i>
+          </div>
+          <div class="bar-right">
+            <i class="ph-bold ph-export"></i>
+            <i class="ph-bold ph-plus-circle"></i>
+            <i class="ph-bold ph-copy"></i>
+          </div>
+        </div>
+        <img class="browser-screenshot" src="./assets/images/dashboard-mock.png" alt="Imagem ilustrativa da dashboard">
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="container-calculator">
-          <div class="container">
-              <div>
-                  <h1>Quanto você perde?</h1>
-              </div>
-              <div class="container-span">
-                  <span>
-                      O monitoramento constante da temperatura e da umidade se torna essencial dentro da vermicompostagem. Caso não tenha um cuidado diário dentro da composteira,  atrasos na produção do humus podem ocorrer e até mesmo a morte das minhocas.
-                  </span>
-              </div>
-              <div class="container-span">
-                  <span>
-                      Analisando as possibilidades desse cenário desenvolvemos por meio de pesquisas, uma calculadora para mensurar perdas e gastos, caso as condições na composteira não sejam ideais para o desenvolvimento da minhoca.
-                  </span>
-              </div>
-          </div>
-          <div class="container-linha">
-          </div>
-          <div class="container">
-              <div>
-                  <h1>Calculadora financeira</h1>
-              </div>
-              <div class="container-form">
-                  <diV class="form">
-                      <p>Área total:</p>
-                      <span class="input-with-label">
-                          <input class="body-sm" id="inp1" type="text">
-                      </span>
-                  </diV>
-                  <div class="form">
-                      <p>Quantidade de caixas:</p>
-                      <span class="input-with-label">
-                          <input class="body-sm" id="inp2" type="text">
-                      </span>
-                  </div>
-                  <div>
-                      <button class="button-primary-dark" onclick="calcular()">Calcular</button>
-                  </div>
-                  <p id="pp"></p>
-              </div>
-          </div>
+  <section class="section-faq">
+    <h1 class="section-title">Perguntas Frequentes - FAQ</h1>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h1 class="question">Preciso ter conhecimento técnico para usar o sistema?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Não. O CompostEco foi
+          desenvolvido para ser simples e intuitivo. A plataforma apresenta os dados de forma clara, permitindo que
+          qualquer produtor acompanhe e tome decisões facilmente.</p>
+      </div>
+      <div class="faq-item">
+        <h1 class="question">O sistema funciona offline?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Não totalmente. O sistema
+          depende de conexão com a internet para enviar os dados do Arduino para a plataforma e permitir o monitoramento
+          em tempo real.</p>
+      </div>
+      <div class="faq-item">
+        <h1 class="question">Como recebo os alertas?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Os alertas são exibidos
+          diretamente na dashboard quando a temperatura ou umidade saem da faixa ideal, permitindo uma ação rápida do
+          usuário</p>
+      </div>
+      <div class="faq-item">
+        <h1 class="question">O sistema toma alguma ação automaticamente?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Não. O CompostEco é um
+          sistema de monitoramento passivo. Ele fornece dados e alertas, mas as decisões e ações são de responsabilidade
+          do usuário.</p>
+      </div>
+      <div class="faq-item">
+        <h1 class="question">Quais dados são monitorados?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Atualmente, o sistema
+          monitora temperatura e umidade da composteira, que são os principais fatores para o bom funcionamento da
+          vermicompostagem.</p>
+      </div>
+      <div class="faq-item">
+        <h1 class="question">O sistema garante que as minhocas não morrerão?</h1>
+        <p class="answer"><i class="ph ph-arrow-bend-down-right awnser-arrow-icon"></i>Não. O sistema auxilia no
+          monitoramento, mas não garante a sobrevivência das minhocas. A responsabilidade pelo manejo é do usuário.</p>
+      </div>
     </div>
   </section>
+
+  <section class="section-contact">
+    <h1 class="section-title">Entre em contato</h1>
+    <p class="contact-intro">Se você tem alguma dúvida ou deseja mais informações sobre nossos serviços, entre em
+      contato conosco. Estamos aqui para ajudar!</p>
+    <form class="contact-form">
+      <div class="field">
+        <label for="inpName">Nome</label>
+        <input class="input" type="text" id="inpName">
+        <span class="hidden">erro</span>
+      </div>
+      <div class="field">
+        <label for="inpEmail">E-mail</label>
+        <input class="input" type="text" id="inpEmail">
+        <span class="hidden">erro</span>
+      </div>
+      <div class="field">
+        <label for="inpSubject">Assunto</label>
+        <input class="input" type="text" id="inpSubject">
+        <span class="hidden">erro</span>
+      </div>
+      <div class="field">
+        <label for="inpMessage">Mensagem</label>
+        <textarea class="input" id="inpMessage"></textarea>
+        <span class="hidden">erro</span>
+      </div>
+      <button class="button-outline">Enviar</button>
+    </form>
+  </section>
+
   <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h1 class="heading-lg">CompostEco</h1>
-        <p class="body-sm">Transformando resíduos orgânicos em soluções sustentáveis para um futuro mais verde.</p>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <img class="logo" src="./assets/icon/logo-light.svg" alt="Logo da CompostEco">
+        <p>CompostEco, sistema de monitoramento inteligente de temperatura e umidade de composteiras de
+          vermicompostagem.</p>
       </div>
-      <div class="footer-section"></div>
-      <div class="footer-section">
-        <div class="">
-          <h1 class="heading-lg">Navegação</h1>
-          <div class="body-sm list">
-            <a href="#hero-section">Início</a>
-            <a href="#about-section">Sobre nós</a>
-            <a href="#services-section">Nossos serviços</a>
-            <a href="./login/index.html">Dashbord</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-section">
-        <h1 class="heading-lg">Nossas redes</h1>
-        <div class="body-sm list">
-          <span><i class="ph ph-instagram-logo"></i><a>Instagram</a></span>
-          <span><i class="ph ph-whatsapp-logo"></i><a>Whatsapp</a></span>
-          <span><i class="ph ph-facebook-logo"></i><a>Facebook</a></span>
-          <span><i class="ph ph-telegram-logo"></i><a>Telegram</a></span>
-        </div>
+      <div class="footer-nav">
+        <p class="title">Navegação</p>
+        <a href="">Início</a>
+        <a href="">Produto</a>
+        <a href="">Contato</a>
+        <a href="">Dashboard</a>
       </div>
     </div>
-    <div class="copyright">Copyright © 2026 CompostEco Corp.</div>
+    <div class="footer-bottom">
+      <p>© 2026 <a class="link" href="index.html">CompostEco Corp.</a> Todos os direitos reservados.</p>
+      <span class="icons">
+        <a target="_blank" href="index.html">
+          <i class="ph ph-linkedin-logo icon"></i>
+        </a>
+        <a target="_blank" href="https://github.com/CompostECO">
+          <i class="ph ph-github-logo icon"></i>
+        </a>
+      </span>
+    </div>
   </footer>
+
 </body>
 
 </html>
