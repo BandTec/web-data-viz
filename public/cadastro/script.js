@@ -1,9 +1,9 @@
 function registerUser () {
-  const producerCode = (ipt_code.value).trim().toUpperCase()
-  const userName = (ipt_username.value).trim()
-  const userEmail = (ipt_email.value).trim()
-  const userPassword = ipt_password.value
-  const userConfirmPassword = ipt_confirm_password.value
+  const producerCode = (inpCode.value).trim().toUpperCase()
+  const userName = (inpName.value).trim()
+  const userEmail = (inpEmail.value).trim()
+  const userPassword = inpPassword.value
+  const userConfirmPassword = inpConfirm.value
 
   // executa a função de validação, se retornar false, para a execução dessa função (registerUser), já se retornar false, a execução continua 
   if(!fieldValidation(producerCode, userName, userEmail, userPassword, userConfirmPassword))
@@ -67,11 +67,11 @@ function fieldValidation (producerCode, userName, userEmail, userPassword, userC
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
   const outputTag = ["<span class='error'>", "</span>"]
 
-  const codeErrorElement = error_code
-  const nameErrorElement = error_name
-  const emailErrorElement = error_email
-  const passwordErrorElement = error_password
-  const confirmPasswordErrorElement = error_confirm_password
+  const codeErrorElement = errCode
+  const nameErrorElement = errName
+  const emailErrorElement = errEmail
+  const passwordErrorElement = errPassword
+  const confirmPasswordErrorElement = errConfirm
 
   // elementos de exibição de erros
   codeErrorElement.innerHTML = ""
