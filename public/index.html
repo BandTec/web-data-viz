@@ -13,6 +13,7 @@
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <script src="../scriptCalculator.js" defer></script>
 </head>
 
 <body class="page-body">
@@ -131,6 +132,65 @@
         <img class="browser-screenshot" src="./assets/images/dashboard-mock.png" alt="Imagem ilustrativa da dashboard">
       </div>
     </div>
+  </section>
+
+  <section id="calculator" class="calculator-section">
+     <div class="container-calculator">
+      <div class="container">
+        <div>
+          <h1>Por que desse monitoramento?</h1>
+        </div>
+        <div class="container-span">
+          <span>
+            As minhocas são seres vivos que como qualquer outro, estão sujeitas a mudanças na temperatura e na umidade no ambiente em que vivem. 
+            Manter uma temperatura dentro da faixa ideal de 20° a 25° é essencial para que as minhocas dentro da composteira vivam e se reproduzam de maneira saudavel.
+            Manter a umidade dentro da faixa ideal de 70% a 80% também é um fator importante para manter as minhocas vivas. Esses 2 fatores são de suma importância para que
+            composto final seja de extrema qualidade.
+          </span>
+        </div>
+        <div>
+          <h1>O que eu perco sem o monitoramento?</h1>
+        </div>
+        <div class="container-span">
+          <span>
+            É uma questão complicada, mas não sem resposta e para ajudar com essa pergunta, nós da CompostECO desenvolvemos um simulador ficanceiro (calculadora) para você microprodutor.
+             Para o funcionamento correto da calculadora, consideramos alguns pontos como verdade. O primeiro deles é que você utiliza 16g de adubo por m², o segundo ponto é que o preço do adubo que você utiliza 
+             é de 4,8 R$ cada 100 gramas (faixa ideal para o mercado), o terceiro é que uma vermicomposteira de 45 litros produz cerca de 12 quilos de adubo e o quarto é que com o monitoramento o valor do adubo 
+             aumenta em cerca de 50%.
+          </span>
+        </div>
+      </div>
+      <div class="container2">
+        <div>
+          <h1>Simulador financeiro</h1>
+        </div>
+        <div class="container-form">
+         
+          <div class="container-form">
+            <diV class="form">
+              <p>Área do seu plantio em m²:</p>
+              <span class="input-with-label">
+                <input class="body-sm" id="inp1" type="text">
+              </span>
+            </diV>
+
+            <div class="form">
+              <p>Quantidade de caixas:</p>
+              <span class="input-with-label">
+                <input class="body-sm" id="inp2" type="text">
+              </span>
+            </div>
+
+            <div>
+              <button class="button-primary-dark" onclick="funcao()">Calcular</button>
+            </div>
+
+            <div class="container-result">
+              <div id="output"></div>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <section id="faq-section" class="section-faq">
