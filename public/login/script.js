@@ -27,7 +27,7 @@ function login () {
         // sessionStorage.COMPOSTEIRAS = JSON.stringify(json.composteiras) // está comentada pois ainda não foi feita essa parte da api
         showPopUp("Login realizado com sucesso, redirecionando para o painel...", true)
         setTimeout(() => { // após 3s, o usuário é redirecionado para a página de dashboard
-          window.location = "./dashboard/cards.html"
+          window.location = "../dashboard/index.html"
         }, 3000);
       })
     }
