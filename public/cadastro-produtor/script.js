@@ -131,3 +131,13 @@ function showPopUp (message, situation) { // message: string; situation: true ou
     popUp.style.bottom = "-4rem"
   }, 3000);
 }
+
+let key = false
+function moveImage () {
+  key = !key
+  if (key) {
+    imagePanel.style.transform = 'translateX(96%)'
+  } else {
+    imagePanel.style.transform = 'translateX(0%)'
+  }
+}

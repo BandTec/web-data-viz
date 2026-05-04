@@ -36,6 +36,7 @@
 
 body {
   font-family: var(--font-family-default);
+  overflow: auto;
 }
 
 a {
@@ -48,8 +49,7 @@ a {
   background-color: var(--olive-800);
   color: var(--olive-950);
   width: 100dvw;
-  height: 100dvh;
-  overflow: hidden;
+  /* height: 120dvh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,22 +60,26 @@ a {
 .register-card {
   background-color: var(--olive-200);
   border-radius: 0.75rem;
-  max-width: 72rem;
+  width: 72rem;
   padding: 0.75rem;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   gap: 0.75rem;
   position: relative;
   box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-  height: 90%;
+  /* height: 90%; */
 }
 
 /* Card com imagem */
 .image-panel {
   border-radius: 0.5rem;
   width: 50%;
+  height: 97%;
+  top: 0.85rem;
+  transition: all 1s cubic-bezier(0.68, -0.15, 0.265, 1.15);
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  z-index: 1;
 }
 
 .image-panel img {
@@ -136,8 +140,8 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  width: 50%;
+  /* justify-content: space-evenly; */
+  width: 36rem;
   padding: 2.5rem;
 }
 
@@ -202,9 +206,7 @@ a {
   border-radius: 9999px;
   width: 10rem;
   padding: 0.75rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1rem;
+  margin: 1rem auto;
   cursor: pointer;
   border: none;
   font-family: inherit;
