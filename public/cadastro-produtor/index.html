@@ -34,43 +34,63 @@
         <div class="field-group">
           <label for="inpCode">Código de ativação:</label>
           <input type="text" id="inpCode" placeholder="ex: A1B2C3">
-          <span id="errCode"></span>
+          <span id="errCode_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpName">Nome:</label>
-          <input type="text" id="inpName" placeholder="ex: Maria Silva">
-          <span id="errName"></span>
+          <input type="text" id="inpName_CPF" placeholder="ex: Maria Silva">
+          <span id="errName_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpCpf">CPF:</label>
           <input type="text" id="inpCpf"  placeholder="000.000.000-00">
-          <span id="errCpf"></span>
+          <span id="errCpf_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">Telefone:</label>
-          <input type="text" id="inpTelefone"  placeholder="(11) 99999-9999">
-          <span id="errCpf"></span>
+          <input type="text" id="inpTelefone_CPF"  placeholder="(11) 99999-9999">
+          <span id="errTel_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">CEP:</label>
-          <input type="text" id="inpTelefone"  placeholder="ex: Rua Pedro Flores">
-          <span id="errCpf"></span>
+          <input type="text" id="inpCEP_CPF"  placeholder="ex: 00000-000">
+          <span id="errCep_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">Número:</label>
-          <input type="text" id="inpTelefone"  placeholder="ex: 99">
-          <span id="errCpf"></span>
+          <input type="text" id="inpNumero_CPF"  placeholder="ex: 99">
+          <span id="errNum_CPF"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">Complemento:</label>
-          <input type="text" id="inpTelefone"  placeholder="">
-          <span id="errCpf"></span>
+          <input type="text" id="inpComplemento_CPF"  placeholder="ex: Bloco 2b">
+          <span id="errCom_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Logradouro:</label>
+          <input type="text" id="inpLogradouro_CPF"  placeholder="ex: Rua Vasconcelos">
+          <span id="errLog_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Bairro:</label>
+          <input type="text" id="inpBairro_CPF"  placeholder="ex: Vila Alpina">
+          <span id="errBair_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Cidade:</label>
+          <input type="text" id="inpCidade_CPF"  placeholder="ex: São Paulo">
+          <span id="errCid_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Estado:</label>
+          <input type="text" id="inpEstado_CPF"  placeholder="ex: SP">
+          <span id="errEst_CPF"></span>
         </div>
 
-        <button class="submit-button" onclick="registerUser()">Cadastrar</button>
+        <button class="submit-button" onclick="registerPerson()">Cadastrar</button>
       </div>
 
-      <p class="login">Deseja casdastrar por Pessoa Jurídica? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
+      <p class="login">Deseja cadastrar como Pessoa Jurídica? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
     </div>
 
       <div class="form-panel">
@@ -79,8 +99,8 @@
         <div class="form-fields">
           <div class="field-group">
             <label for="inpCode">Código de ativação:</label>
-            <input type="text" id="inpCode" placeholder="ex: A1B2C3">
-            <span id="errCode"></span>
+            <input type="text" id="inpCode_CNPJ" placeholder="ex: A1B2C3">
+            <span id="errCode_CNPJ"></span>
           </div>
           <div class="field-group">
             <label for="inpCnpj">CNPJ:</label>
@@ -89,39 +109,59 @@
           </div>
           <div class="field-group">
             <label for="inpRazaoSocial">Razão Social:</label>
-            <input type="text" id="inpRazaoSocial"  placeholder="Ex: Empresa XYZ LTDA">
-            <span id="errRazaoSocial"></span>
+            <input type="text" id="inpRazaoSocial_CNPJ"  placeholder="Ex: Empresa XYZ LTDA">
+            <span id="errRazaoSocial_CNPJ"></span>
           </div>
           <div class="field-group">
             <label for="inpNomeFantasia">Nome Fantasia:</label>
-            <input type="text" id="inpNomeFantasia" placeholder="Ex: Fazendinha">
-            <span id="errNomeFantasia"></span>
+            <input type="text" id="inpNomeFantasia_CNPJ" placeholder="Ex: Fazendinha">
+            <span id="errNomeFantasia_CNPJ"></span>
           </div>
           <div class="field-group">
           <label for="inpTelefone">Telefone:</label>
-          <input type="text" id="inpTelefone"  placeholder="(11) 99999-9999">
-          <span id="errCpf"></span>
+          <input type="text" id="inpTelefone_CNPJ"  placeholder="(11) 99999-9999">
+          <span id="errTel_CNPJ"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">CEP:</label>
-          <input type="text" id="inpTelefone"  placeholder="ex: Rua Pedro Flores">
-          <span id="errCpf"></span>
+          <input type="text" id="inpCEP_CNPJ"  placeholder="ex: Rua Pedro Flores">
+          <span id="errCep_CNPJ"></span> 
         </div>
         <div class="field-group">
           <label for="inpTelefone">Número:</label>
-          <input type="text" id="inpTelefone"  placeholder="ex: 99">
-          <span id="errCpf"></span>
+          <input type="text" id="inpNumero_CNPJ"  placeholder="ex: 99">
+          <span id="errNum_CNPJ"></span>
         </div>
         <div class="field-group">
           <label for="inpTelefone">Complemento:</label>
-          <input type="text" id="inpTelefone"  placeholder="">
-          <span id="errCpf"></span>
+          <input type="text" id="inpComplemento_CNPJ"  placeholder="">
+          <span id="errCom_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Logradouro:</label>
+          <input type="text" id="inpLogradouro_CNPJ"  placeholder="ex: Rua Vasconcelos">
+          <span id="errLog_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Bairro:</label>
+          <input type="text" id="inpBairro_CNPJ"  placeholder="ex: Vila Alpina">
+          <span id="errBair_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Cidade:</label>
+          <input type="text" id="inpCidade_CNPJ"  placeholder="ex: São Paulo">
+          <span id="errCid_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Estado:</label>
+          <input type="text" id="inpEstado_CNPJ"  placeholder="ex: SP">
+          <span id="errEst_CNPJ"></span>
         </div>
 
-          <button class="submit-button" onclick="registerUser()">Cadastrar</button>
+          <button class="submit-button" onclick="registerCompany()">Cadastrar</button>
         </div>
 
-        <p class="login">Deseja casdastrar por Pessoa Física? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
+        <p class="login">Deseja cadastrar como Pessoa Física? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
       </div>
     </div>
   </div>
