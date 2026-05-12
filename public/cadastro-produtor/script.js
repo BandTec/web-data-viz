@@ -19,16 +19,22 @@ function registerPerson () {
      return
 
    // faz a requisição para a rota de cadastro
-   fetch ("/usuarios/cadastrar", {
+   fetch ("/usuarios/cadastrarPerson", {
      method: "POST",
      headers: {
         "Content-Type": "application/json"
      },
      body: JSON.stringify({
         nomeServer: userName,
-        emailServer: userEmail,
-        senhaServer: userPassword,
-        cpfServer: "",
+        cpfServer: userCPF,
+        telephoneServer: userTelephone,
+        cepServer: userCEP,
+        numberServer: userNumber,
+        complementServer: userComplement,
+        logradouroServer: userLogradouro,
+        bairroServer: userBairro,
+        cidadeServer: userCidade,
+        estadoServer: userEstado
         
      })
    })
@@ -64,22 +70,28 @@ function registerCompany() {
      return
 
    // faz a requisição para a rota de cadastro
-   fetch ("/usuarios/cadastrar", {
+   fetch ("/usuarios/cadastrarEmpresa", {
      method: "POST",
      headers: {
         "Content-Type": "application/json"
      },
      body: JSON.stringify({
-        nomeServer: userName,
-        emailServer: userEmail,
-        senhaServer: userPassword,
-        idProdutorVincularServer: ""
+            cnpjServer: userCNPJ,
+            razaoServer: razaoSocial,
+            fantasiaServer: nomeFantasia,
+            cepServer: userCEP,
+            numberServer: userNumber,
+            complementServer: userComplement,
+            logradouroServer: userLogradouro,
+            bairroServer: userBairro,
+            cidadeServer: userCidade,
+            estadoServer: userEstado
      })
    })
    .then((res) => {
      if (res.ok) {
         res.json().then(json => {
-          showPopUp("Cadastro realizado com sucesso, redirecionando para o login...", true)
+          showPopUp("Cadastro de empresa realizado com sucesso, redirecionando para o login...", true)
           setTimeout(() => {
              window.location = "../login/index.html"
           }, 3000);
