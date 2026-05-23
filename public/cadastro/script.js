@@ -19,7 +19,7 @@ function registerUser () {
       nomeServer: userName,
       emailServer: userEmail,
       senhaServer: userPassword,
-      idProdutorVincularServer: ""
+      codigoAtivacaoServer:producerCode
     })
   })
   .then((res) => {
