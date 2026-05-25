@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var codigoModel = require("../models/codigoAtivacaoModel")
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -55,12 +56,12 @@ function autenticar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+async function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkProdutor = req.body.idProdutorVincularServer;
+    var codigoAtivacao = req.body.codigoAtivacaoServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -69,12 +70,13 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkProdutor == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (codigoAtivacao == undefined) {
+        res.status(400).send("Seu código de ativação a vincular está undefined!");
     } else {
-
+        var fkProdutor = await codigoModel.buscarProdutorPorCodigo(codigoAtivacao) 
+        console.log(fkProdutor)
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkProdutor)
+        usuarioModel.cadastrar(nome, email, senha, fkProdutor[0].produtor_id)
             .then(
                 function (resultado) {
                     res.json(resultado);

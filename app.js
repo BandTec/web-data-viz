@@ -21,6 +21,7 @@ var alertaRouter = require("./src/routes/alerta");
 var medidasRouter = require("./src/routes/medidas");
 var empresasRouter = require("./src/routes/empresas");
 var composteiraRouter = require("./src/routes/composteira")
+var sensorRouter = require("./src/routes/sensor")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/alertas", alertaRouter);
 app.use("/medidas", medidasRouter);
 app.use("/empresas", empresasRouter);
 app.use("/composteira", composteiraRouter);
+app.use("/sensor", sensorRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
