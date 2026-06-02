@@ -62,8 +62,8 @@ body {
   top: 0;
   left: 0;
   width: 20rem;
-  background-color: var(--olive-800);
-  color: var(--olive-100);
+  background-color: var(--olive-700);
+  color: var(--olive-50);
   padding: 1rem;
   gap: 0.5rem;
   display: flex;
@@ -72,11 +72,12 @@ body {
   height: 100dvh;
   z-index: 40;
   overflow-y: auto;
+  border-radius: 0 1rem 1rem 0;
 }
 
 .sidebar .label {
   font-size: 0.875rem;
-  color: rgba(244, 244, 240, 0.5);
+  color: rgba(244, 244, 240, 0.7);
 }
 
 .sidebar .group {
