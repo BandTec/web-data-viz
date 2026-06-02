@@ -30,6 +30,9 @@
   --danger-base: #EF4444;
   --danger-dark: #7F1D1D;
 
+  --warning-base: #EAB308;
+  --warning-dark: #A16207;
+
   --font-family-default: "Poppins", sans-serif;
 }
 
@@ -62,8 +65,8 @@ body {
   top: 0;
   left: 0;
   width: 20rem;
-  background-color: var(--olive-800);
-  color: var(--olive-100);
+  background-color: var(--olive-700);
+  color: var(--olive-50);
   padding: 1rem;
   gap: 0.5rem;
   display: flex;
@@ -72,11 +75,12 @@ body {
   height: 100dvh;
   z-index: 40;
   overflow-y: auto;
+  border-radius: 0 1rem 1rem 0;
 }
 
 .sidebar .label {
   font-size: 0.875rem;
-  color: rgba(244, 244, 240, 0.5);
+  color: rgba(244, 244, 240, 0.7);
 }
 
 .sidebar .group {
@@ -267,6 +271,12 @@ body {
   color: var(--olive-800);
 }
 
+.page-subgreeting {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--olive-600);
+}
+
 /* Composteira */
 .composter-section {
   display: flex;
@@ -275,7 +285,7 @@ body {
   gap: 0.75rem;
 }
 
-.composter-section .title {
+.title {
   font-weight: 600;
   font-size: 1.875rem;
 }
@@ -297,19 +307,38 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: var(--olive-200);
+  color: var(--olive-950);
+  background-color: var(--olive-200);
+  border: var(--olive-900) 3px solid;
 }
 
-.composter-section .cards .danger {
-  background-color: var(--danger-base);
-  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.5),
-    0 4px 6px -4px rgba(239, 68, 68, 0.5);
+.composter-section .cards .card .value {
+  font-size: 2.2rem;
 }
 
-.composter-section .cards .success {
-  background-color: var(--lime-500);
-  box-shadow: 0 10px 15px -3px rgba(132, 204, 22, 0.5),
-    0 4px 6px -4px rgba(132, 204, 22, 0.5);
+.composter-section .cards .card .danger {
+  color: var(--danger-dark);
+}
+
+.composter-section .cards .card .success {
+  color: var(--lime-600);
+}
+
+.composter-section .cards .card .warning {
+  color: var(--warning-dark);
+}
+
+
+.composter-section .cards > .danger {
+  border: var(--danger-dark) 3px solid;
+}
+
+.composter-section .cards > .success {
+  border: var(--lime-600) 3px solid;
+}
+
+.composter-section .cards > .warning {
+  border: var(--warning-dark) 3px solid;
 }
 
 .composter-section .cards .heading {
@@ -324,66 +353,12 @@ body {
   font-size: 1.5rem;
 }
 
-.composter-section .cards .badge {
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  background-color: rgba(12, 12, 9, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.composter-section .cards .badge .icon-red {
-  color: var(--danger-base);
-}
-
-.composter-section .cards .badge .icon-lime {
-  color: var(--lime-500);
-}
-
-.composter-section .cards .badge .text {
-  font-size: 0.75rem;
-  color: var(--olive-100);
-}
-
-.composter-section .cards .value {
-  font-size: 1.875rem;
-  font-weight: 700;
-}
-
-.composter-section .cards .danger {
-  color: var(--danger-dark);
-}
-
-.composter-section .cards .success {
-  color: var(--lime-900);
-}
-
-.composter-section .cards .desc {
-  font-size: 0.875rem;
-}
-
-.composter-section .cards .desc .danger {
-  font-weight: 600;
-  color: var(--danger-dark);
-}
-
-.composter-section .cards .desc .success {
-  font-weight: 600;
-  color: var(--lime-900);
-}
-
 .composter-section .chart-painel-outter {
   min-height: 22rem;
   width: 100%;
   background-color: var(--olive-200);
   border-radius: 0.75rem;
   padding: 2rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   z-index: 0;
@@ -400,4 +375,67 @@ body {
   max-width: 48%;
   flex: 1;
   border-radius: 0.5rem;
+}
+
+.composter-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
+.composter-container > .composter-title {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 600;
+  background-color: var(--olive-300) !important;
+  padding: 1rem;
+  border-radius: 1rem 1rem 0 0 ;
+}
+
+.composter-container > .composter:first-child {
+  cursor: initial;
+}
+
+.composter-container > .composter {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+.composter-container > .composter:nth-child(even) {
+  background-color: var(--olive-200);
+}
+
+.composter-container > .composter:last-child {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.composter-container > .composter > p {
+  width: 100%;
+  text-align: center;
+}
+
+.composter-container > .composter:has(.urgênte) > p {
+  color: var(--danger-dark);
+}
+
+.composter-container > .composter:has(.risco-alto) > p {
+  color: var(--danger-base);
+}
+
+.composter-container > .composter:has(.risco-moderado) > p {
+  color: var(--warning-dark);
+}
+
+.composter-container > .composter:has(.risco-baixo) > p {
+  color: var(--warning-base);
+}
+
+.composter-container > .composter:has(.normal) > p {
+  color: var(--lime-600);
 }

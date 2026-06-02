@@ -39,28 +39,13 @@
           <i class="ph ph-warning icon"></i>
           <p>Alertas</p>
         </div>
-        <div class="item" onclick="window.location.href='historico/index.html'">
-          <i class="ph ph-clock-counter-clockwise icon"></i>
-          <p>Histórico</p>
-        </div>
       </div>
     </div>
 
     <div class="group">
       <p class="label">Composteiras</p>
-      <div class="nav">
-        <div class="item" onclick="window.location.href='composteira/index.html'">
-          <i class="ph ph-cube icon"></i>
-          <p>Composteira 1</p>
-        </div>
-        <div class="item">
-          <i class="ph ph-cube icon"></i>
-          <p>Composteira 2</p>
-        </div>
-        <div class="item">
-          <i class="ph ph-cube icon"></i>
-          <p>Composteira 3</p>
-        </div>
+      <div class="nav" id="composterContainer">
+        
       </div>
     </div>
 
@@ -69,7 +54,7 @@
       <div class="nav">
         <div class="item">
           <i class="ph ph-headset icon"></i>
-          <p class="text">Suporte</p>
+          <p class="text">Atendimento ao Cliente</p>
         </div>
       </div>
     </div>
@@ -119,164 +104,58 @@
       </p>
     </div>
 
-    <h1 class="page-greeting">Olá, Júlia Lima!</h1>
- 
-      <div class="composter-section">
-      <h1 class="title">Composteira 1</h1>
-      <div class="cards">
- 
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-72%</p>
-          </div>
-          <h2 class="danger">Em risco</h2>
-          <p class="desc">Indica <span class="danger">risco elevado </span> para a
-            atividade biológica. A qualidade do ambiente piorou em 72% em relação aos últimos 7 dias.</p>
-        </div>
- 
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-60%</p>
-          </div>
-          <h2 class="danger">Baixa eficiência</h2>
-          <p class="desc">A produção estimada de húmus caiu em <span
-              class="danger">60%</span> em relação à média dos últimos 7 dias.</p>
-        </div>
- 
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-14%</p>
-          </div>
-          <h2 class="danger">Instável</h2>
-          <p class="desc">A variação aumentou em <span class="danger">14%</span> em
-            relação aos últimos 3 dias.</p>
-        </div>
- 
-      </div>
-      <div class="chart-painel-outter">
-        <div class="chart-painel-inner">
-          <canvas id="compTem1" class="chart-canvas"></canvas>
-          <canvas id="compHum1" class="chart-canvas"></canvas>
-        </div>
-      </div>
+    <div class="">
+      <h1 class="page-greeting">Olá, Júlia Lima!</h1>
+      <h1 class="page-subgreeting">Seja bem-vindo ao seu dashboard.</h1>
     </div>
  
     <div class="composter-section">
-      <h1 class="title">Composteira 2</h1>
       <div class="cards">
  
-        <div class="card success">
+        <div class="card">
           <h1 class="heading">
-            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
+            <i class="ph-bold ph-pulse icon"></i>Composteiras ativas
           </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-3.2%</p>
-          </div>
-          <h2 class="success">Saudável</h2>
-          <p class="desc">Indica <span class="success">ser apropriado </span> para a
-            atividade biológica. A qualidade do ambiente piorou em 3.2% em relação aos últimos 7 dias.</p>
+          <h2 class="value" id="activeValue">3</h2>
+          <p class="desc" id="activeDescription">3 caixas de vermicompostagem estão sendo monitoradas.</p>
         </div>
  
-        <div class="card success">
+        <div class="card warning">
           <h1 class="heading">
-            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
+            <i class="ph-bold ph-warning icon"></i>Composteiras em alerta
           </h1>
-          <div class="badge">
-            <i class="ph ph-trend-up icon icon-lime"></i>
-            <p class="text">+15%</p>
-          </div>
-          <h2 class="success">Alta eficiência</h2>
-          <p class="desc">A produção estimada de húmus aumentou em <span
-              class="success">15%</span> em relação à média dos últimos 7 dias.</p>
+          <h2 class="value warning" id="alertValue">1</h2>
+          <p class="desc" id="alertDescription">1 composteira está <span class="warning">fora</span> das condições ideais.</p>
         </div>
  
-        <div class="card success">
+        <div class="card danger">
           <h1 class="heading">
-            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
+            <i class="ph-bold ph-scales icon"></i>Taxa de estabilidade
           </h1>
-          <div class="badge">
-            <i class="ph ph-trend-up icon icon-lime"></i>
-            <p class="text">+4.1%</p>
-          </div>
-          <h2 class="success">Estável</h2>
-          <p class="desc">A variação reduziu em <span class="success">4.1%</span> em
-            relação aos últimos 3 dias.</p>
+          <h2 class="value danger" id="stableValue">54%</h2>
+          <p class="desc" id="stableDescription">Suas composteiras passam <span class="danger">54% do tempo fora</span> das condições ideais.</p>
         </div>
- 
       </div>
       <div class="chart-painel-outter">
         <div class="chart-painel-inner">
-          <canvas id="compTem2" class="chart-canvas"></canvas>
-          <canvas id="compHum2" class="chart-canvas"></canvas>
-        </div>
-      </div>
-    </div>
- 
-    <div class="composter-section">
-      <h1 class="title">Composteira 3</h1>
-      <div class="cards">
- 
-        <div class="card success">
-          <h1 class="heading">
-            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-9%</p>
-          </div>
-          <h2 class="success">Saudável</h2>
-          <p class="desc">Indica <span class="success">ser apropriado </span> para a
-            atividade biológica. A qualidade do ambiente piorou em 9% em relação aos últimos 7 dias</p>
-        </div>
- 
-        <div class="card success">
-          <h1 class="heading">
-            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-up icon icon-lime"></i>
-            <p class="text">+9%</p>
-          </div>
-          <h2 class="success">Alta eficiência</h2>
-          <p class="desc">A produção estimada de húmus aumentou em <span
-              class="success">9%</span> em relação à média dos últimos 7 dias.</p>
-        </div>
- 
-        <div class="card success">
-          <h1 class="heading">
-            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-up icon icon-lime"></i>
-            <p class="text">+3.5%</p>
-          </div>
-          <h2 class="success">Estável</h2>
-          <p class="desc">A variação reduziu em <span class="success">3.5%</span> em
-            relação aos últimos 3 dias.</p>
-        </div>
- 
-      </div>
-      <div class="chart-painel-outter">
-        <div class="chart-painel-inner">
-          <canvas id="compTem3" class="chart-canvas"></canvas>
-          <canvas id="compHum3" class="chart-canvas"></canvas>
+          <canvas id="chartTemperature" class="chart-canvas"></canvas>
+          <canvas id="chartHumidity" class="chart-canvas"></canvas>
         </div>
       </div>
     </div>
 
+    <div class="">
+      <h1 class="title">Resumo</h1>
+      <div class="composter-container" id="composterSummary">
+        <div class="composter composter-title">
+          <p>Composteira</p>
+          <p>Temperatura</p>
+          <p>Umidade</p>
+          <p>Estado</p>
+          <p>Última detecção</p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="script.js"></script>
