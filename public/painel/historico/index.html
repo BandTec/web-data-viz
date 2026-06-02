@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico | CompostEco</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+</head>
+
+<body onload="loadHistory()" class="page-body">
+
+  <aside class="sidebar">
+
+    <div class="group">
+      <p class="label">Produtor</p>
+      <div class="item">
+        <i class="ph ph-farm icon"></i>
+        <p class="medium">Fazendinha LTDA</p>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Dashboard</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../index.html'">
+          <i class="ph ph-chart-line icon"></i>
+          <p>Visão Geral</p>
+        </div>
+        <div class="item" onclick="window.location.href='../alertas/index.html'">
+          <i class="ph ph-warning icon"></i>
+          <p>Alertas</p>
+        </div>
+        <div class="item active">
+          <i class="ph ph-clock-counter-clockwise icon"></i>
+          <p>Histórico</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Composteiras</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../composteira/index.html'">
+          <i class="ph ph-cube icon"></i>
+          <p>Composteira 1</p>
+        </div>
+        <div class="item">
+          <i class="ph ph-cube icon"></i>
+          <p>Composteira 2</p>
+        </div>
+        <div class="item">
+          <i class="ph ph-cube icon"></i>
+          <p>Composteira 3</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Suporte</p>
+      <div class="nav">
+        <div class="item">
+          <i class="ph ph-headset icon"></i>
+          <p class="text">Suporte</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="avatar">JL</div>
+      <span>Júlia Lima</span>
+      <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
+    </div>
+
+  </aside>
+
+  <main class="main-content">
+
+    <div onclick="toggleShowInfo()" class="info-toggle">
+      <i class="ph-bold ph-question-mark info-toggle-icon"></i>
+    </div>
+
+    <div id="infoCard" class="info-card">
+      <i class="ph-bold ph-x close-icon" onclick="toggleShowInfo()"></i>
+      <h1 class="heading">
+        <i class="ph-bold ph-thermometer icon"></i>Temperatura
+      </h1>
+      <p class="text">
+        A temperatura interna afeta diretamente o metabolismo e a reprodução das minhocas.
+        <span class="text-ideal">Ideal (Zona de Conforto): 20°C a 25°C.</span>
+        É nesta faixa que as minhocas processam o resíduo com máxima eficiência.
+        <span class="text-alert">Alerta: 26°C a 30°C.</span>
+        O metabolismo acelera demais, e o oxigênio diminui. Recomenda-se aumentar a ventilação ou sombrear o local.
+        <span class="text-critical">Crítico: Abaixo de 19°C ou acima de 35°C.</span>
+        Risco iminente de morte da colônia. Temperaturas altas superaquecem as minhocas, e, temperaturas baixas as
+        tornam inativas.
+      </p>
+      <h1 class="heading spaced">
+        <i class="ph-bold ph-drop icon"></i>Umidade
+      </h1>
+      <p class="text">
+        A umidade é vital, pois, as minhocas respiram através da pele, que precisa estar sempre úmida.
+        <span class="text-ideal">Ideal (Zona de Conforto): 70% a 85%.</span>
+        O material deve parecer uma esponja espremida, úmido ao toque, mas, sem escorrer água livremente.
+        <span class="text-alert">Alerta: 60% (Seco) ou 90% (Encharcado).</span>
+        Se estiver seco, as minhocas sofrem estresse hídrico, se estiver muito úmido, falta oxigênio, e, surge mau
+        cheiro.
+        <span class="text-critical">Crítico: Abaixo de 50% ou Saturação Total.</span>
+        A falta de umidade resseca a pele das minhocas, impedindo a respiração. O excesso total causa anaerobiose (falta
+        de ar).
+      </p>
+    </div>
+
+    <h1 class="title-page">Histórico de detecções</h1>
+    <section class="history-section">
+      <select id="selectCompost" onchange="loadHistory()">
+        <option selected value="Composteira">Todas as Composteiras</option>
+        <option value="Composteira 1">Composteira 1</option>
+        <option value="Composteira 2">Composteira 2</option>
+        <option value="Composteira 3">Composteira 3</option>
+      </select>
+    </section>
+    <section id="output" class="history-section">
+      
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
