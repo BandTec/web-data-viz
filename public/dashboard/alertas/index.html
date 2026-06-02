@@ -14,6 +14,7 @@
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <script src="../../js/sessao.js"></script>
 </head>
 
 <body onload="loadAlerts()" class="page-body">
@@ -77,7 +78,7 @@
     <div class="sidebar-user">
       <div class="avatar">JL</div>
       <span>Júlia Lima</span>
-      <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
+      <i class="ph ph-sign-out signout-icon" onclick="limparSessao()"></i>
     </div>
 
   </aside>
@@ -121,127 +122,8 @@
 
     <h1 class="title-page">Alertas</h1>
 
-    <section class="alerts-section">
-
-      <div class="alert urgent">
-        <div class="heading">
-          <i class="ph-bold ph-warning-octagon icon"></i>
-          <h1 class="title">Composteira 2 com alta temperatura</h1>
-          <p class="date">5 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 37°C às 14:10 do dia 01/05/2026 na Composteira 2. A temperatura está em nível crítico, com risco
-          iminente de morte das minhocas.
-        </p>
-      </div>
-
-      <div class="alert urgent">
-        <div class="heading">
-          <i class="ph-bold ph-warning-octagon icon"></i>
-          <h1 class="title">Composteira 3 com baixa umidade</h1>
-          <p class="date">10 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 48% de umidade às 14:00 do dia 01/05/2026 na Composteira 3. A umidade está crítica, podendo
-          impedir a respiração das minhocas.
-        </p>
-      </div>
-
-      <div class="alert danger">
-        <div class="heading">
-          <i class="ph-bold ph-warning icon"></i>
-          <h1 class="title">Composteira 1 com alta temperatura</h1>
-          <p class="date">20 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 29°C às 13:50 do dia 01/05/2026 na Composteira 1. A temperatura está acima do ideal e pode
-          reduzir o oxigênio disponível.
-        </p>
-      </div>
-
-      <div class="alert danger">
-        <div class="heading">
-          <i class="ph-bold ph-warning icon"></i>
-          <h1 class="title">Composteira 1 com alta umidade</h1>
-          <p class="date">30 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 91% de umidade às 13:40 do dia 01/05/2026 na Composteira 1. O excesso de água pode causar falta
-          de oxigenação e mau cheiro.
-        </p>
-      </div>
-
-      <div class="alert danger">
-        <div class="heading">
-          <i class="ph-bold ph-warning icon"></i>
-          <h1 class="title">Composteira 2 com alta umidade e temperatura</h1>
-          <p class="date">45 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 31°C e 90% de umidade às 13:25 do dia 01/05/2026 na Composteira 2. As condições favorecem
-          superaquecimento e falta de oxigênio.
-        </p>
-      </div>
-
-      <div class="alert moderate">
-        <div class="heading">
-          <i class="ph-bold ph-warning-diamond icon"></i>
-          <h1 class="title">Composteira 2 com baixa temperatura</h1>
-          <p class="date">1 hora atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 18°C às 13:00 do dia 01/05/2026 na Composteira 2. A atividade das minhocas pode estar reduzida.
-        </p>
-      </div>
-
-      <div class="alert moderate">
-        <div class="heading">
-          <i class="ph-bold ph-warning-diamond icon"></i>
-          <h1 class="title">Composteira 3 com baixa umidade</h1>
-          <p class="date">1 hora e 20 minutos atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 60% de umidade às 12:40 do dia 01/05/2026 na Composteira 3. O material está seco e pode causar
-          estresse hídrico nas minhocas.
-        </p>
-      </div>
-
-      <div class="alert moderate">
-        <div class="heading">
-          <i class="ph-bold ph-warning-diamond icon"></i>
-          <h1 class="title">Composteira 1 com alta temperatura</h1>
-          <p class="date">2 horas atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 27°C às 12:10 do dia 01/05/2026 na Composteira 1. A temperatura está em nível de alerta,
-          exigindo atenção.
-        </p>
-      </div>
-
-      <div class="alert normal">
-        <div class="heading">
-          <i class="ph-bold ph-info icon"></i>
-          <h1 class="title">Composteira 2 próxima do limite ideal</h1>
-          <p class="date">3 horas atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 25°C e 85% de umidade às 11:00 do dia 01/05/2026 na Composteira 2. Os valores estão no limite
-          superior da zona ideal.
-        </p>
-      </div>
-
-      <div class="alert normal">
-        <div class="heading">
-          <i class="ph-bold ph-info icon"></i>
-          <h1 class="title">Composteira 3 em condição estável</h1>
-          <p class="date">4 horas atrás</p>
-        </div>
-        <p class="desc">
-          Foi detectado 22°C e 75% de umidade às 10:00 do dia 01/05/2026 na Composteira 3. As condições estão ideais
-          para a atividade das minhocas.
-        </p>
-      </div>
-
+    <section class="alerts-section" id="alertaSection">
+      
     </section>
   </main>
 

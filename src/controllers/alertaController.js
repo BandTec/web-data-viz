@@ -13,7 +13,7 @@ function listarPorComposteira(req, res) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
-                res.status(204).send("Nenhum alerta encontrado!");
+                res.status(204).json("Nenhum alerta encontrado!");
             }
         })
         .catch(function (erro) {
@@ -35,7 +35,7 @@ function listarPorProdutor(req, res) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {
-                res.status(204).send("Nenhum alerta encontrado!");
+                res.status(204).json("Nenhum alerta encontrado!");
             }
         })
         .catch(function (erro) {

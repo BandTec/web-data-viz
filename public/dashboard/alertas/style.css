@@ -27,8 +27,8 @@
   --teal-400: #2DD4BF;
   --teal-600: #0D9488;
 
-  --danger-base: #EF4444;
-  --danger-dark: #470606;
+  --danger-base:  #8e1818;
+  --danger-dark: #d52f2f;
 
   --font-family-default: "Poppins", sans-serif;
 }
@@ -309,30 +309,58 @@ body {
   font-size: 0.925rem;
 }
 
-.alerts-section .urgent {
-  background: var(--danger-dark);
+/* .alerts-section .urgent {
+  background: var(--olive-300);
   color: var(--danger-base);
-  box-shadow: 0 10px 15px -3px rgba(71, 6, 6, 0.7),
-    0 4px 6px -4px rgba(71, 6, 6, 0.7);
+  box-shadow: 0 10px 15px -3px rgba(45, 45, 34, 0.1),
+    0 4px 6px -4px rgba(45, 45, 34, 0.1);
+} */
+.alerts-section .urgent {
+  background: var(--olive-200);
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--danger-base);
+  color: var(--olive-950);
 }
 
-.alerts-section .danger {
-  background: var(--danger-base);
+.alerts-section .urgent strong {
+  color: var(--danger-base);
+} 
+.alerts-section .danger strong {
   color: var(--danger-dark);
-  box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.5),
-    0 4px 6px -4px rgba(239, 68, 68, 0.5);
+} 
+.alerts-section .moderate strong {
+  color: rgb(216, 216, 10);
+} 
+.alerts-section .normal strong {
+  color: var(--lime-500);
+} 
+
+.alerts-section .danger {
+  background: var(--olive-200);
+   border-width: 3px;
+    border-style: solid;
+    border-color: var(--danger-dark);
+  /* color: var(--danger-dark); */
+   color: var(--olive-950);
+ 
 }
 
 .alerts-section .moderate {
-  background: #CA8A04;
-  color: var(--olive-50);
-  box-shadow: 0 10px 15px -3px rgba(202, 139, 4, 0.5),
-    0 4px 6px -4px rgba(202, 139, 4, 0.5);
+  background: var(--olive-200);
+   border-width: 3px;
+    border-style: solid;
+    border-color: rgb(216, 216, 10);
+  /* color: var(--olive-50); */
+   color: var(--olive-950);
 }
 
 .alerts-section .normal {
-  background: var(--olive-300);
+  background: var(--olive-200);
+     border-width: 3px;
+    border-style: solid;
+    border-color: var(--lime-500);
   color: var(--olive-950);
-  box-shadow: 0 10px 15px -3px rgba(45, 45, 34, 0.1),
-    0 4px 6px -4px rgba(45, 45, 34, 0.1);
+  /* box-shadow: 0 10px 15px -3px rgba(45, 45, 34, 0.1),
+    0 4px 6px -4px rgba(45, 45, 34, 0.1); */
 }

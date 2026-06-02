@@ -19,11 +19,12 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        res.json({
-                              id: resultadoAutenticar.id,
-                              email: resultadoAutenticar.email,
-                              nome: resultadoAutenticar.nome,
-                          });
+                        res.status(200).json(resultadoAutenticar);
+                        // res.json({
+                        //       id: resultadoAutenticar.id,
+                        //       email: resultadoAutenticar.email,
+                        //       nome: resultadoAutenticar.nome,
+                        //   });
 
                         // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                         //     .then((resultadoAquarios) => {
@@ -74,7 +75,7 @@ async function cadastrar(req, res) {
         res.status(400).send("Seu código de ativação a vincular está undefined!");
     } else {
         var fkProdutor = await codigoModel.buscarProdutorPorCodigo(codigoAtivacao) 
-        console.log(fkProdutor)
+        console.log(fkProdutor, "aaaaaaaaa")
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha, fkProdutor[0].produtor_id)
             .then(
