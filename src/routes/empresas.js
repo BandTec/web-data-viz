@@ -10,14 +10,16 @@ router.post("/cadastrar", function (req, res) {
 
 router.get("/buscar", function (req, res) {
     empresaController.buscarPorCnpj(req, res);
+  });
+  
+  router.get("/buscarNomesProdutor", function (req, res) {
+  empresaController.buscarPorId(req, res);     //DEIXA AQUI
 });
 
-router.get("/buscar/:id", function (req, res) {
-  empresaController.buscarPorId(req, res);
-});
 
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });
+
 
 module.exports = router;
