@@ -163,7 +163,6 @@ function getComposters() {
 
 
 function pegausuario(){
-
   return fetch(`/empresas/buscarNomesProdutor`, {
     method: "GET",
     headers: {
@@ -176,6 +175,7 @@ function pegausuario(){
     json => json
 
   ))}
+
 
   async function atualizarOptions(){
     const produtoresElemento = document.getElementById('produtores')
@@ -202,7 +202,7 @@ function selecionar(){
     section.classList.remove("hidden");
   }
 
-  fetch(`/empresas/buscarPorIdComposteira/${produtores.value}`, {
+  fetch(`/composteira/buscarPorIdComposteira/${produtores.value}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   })
@@ -244,7 +244,7 @@ function selecionar(){
 
 async function desativarComposteira(id) {
   try {
-    const response = await fetch(`/empresas/desativarComposteira/${id}`, {
+    const response = await fetch(`/composteira/desativarComposteira/${id}`, {
       method: "PUT" 
     });
 
@@ -269,14 +269,14 @@ async function cadastrarNovaComposteira() {
         alert("Modelo e capacidade são necessarios para o cadastro");
         return;
     }
-    
+
     const body = { 
         modelo: modelo, 
         descricao: descricao, 
         capacidade_kg: capacidade, 
         produtor_id: produtor_id 
     };
-    const res = await fetch("/empresas/cadastrarComposteira", {
+    const res = await fetch("/composteira/cadastrarComposteira", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -297,7 +297,6 @@ async function alterarDados(indice){
   let cap = document.getElementById("capAtual-"+indice).value;
   let id_composteira = indice;
 
-
     if (mod=='' || cap=='' || desc==''|| id_composteira=='') {
         alert("Não pode deixar em branco!");
         window.location.reload()
@@ -311,14 +310,11 @@ async function alterarDados(indice){
       id: id_composteira
     }
 
-
-    fetch("/empresas/alterarDados", {
+    fetch("/composteira/alterarDados", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
     });
-
-
   }
 
 
