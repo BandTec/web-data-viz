@@ -1,6 +1,7 @@
 function login () {
   const userEmail = (inpEmail.value).trim()
   const userPassword = inpPassword.value
+
   
   // executa a função de validação, se retornar false, para a execução dessa função (login), já se retornar false, a execução continua 
   if(!fieldValidation(userEmail, userPassword))
@@ -21,9 +22,9 @@ function login () {
     // se o status do retorno da api for ok, ele transforma o retorno em json e armazena os dados contidos no localStorage
     if (res.ok) {
       res.json().then(json => { 
-        sessionStorage.EMAIL_USUARIO = json.email
-        sessionStorage.NOME_USUARIO = json.nome
-        sessionStorage.ID_USUARIO = json.id
+        sessionStorage.EMAIL_USUARIO = json[0].email
+        sessionStorage.NOME_USUARIO = json[0].nome
+        sessionStorage.ID_USUARIO = json[0].id
         // sessionStorage.COMPOSTEIRAS = JSON.stringify(json.composteiras) // está comentada pois ainda não foi feita essa parte da api
         showPopUp("Login realizado com sucesso, redirecionando para o painel...", true)
         setTimeout(() => { // após 3s, o usuário é redirecionado para a página de dashboard

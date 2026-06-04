@@ -6,7 +6,7 @@ function buscarUltimos50DoProdutor(idProdutor) {
             a.id as alerta_id,
             a.tipo,
             a.prioridade,
-            a.enviado_em,
+            a.enviado_em AS enviado_em,
             c.id as composteira_id,
             c.modelo,
             c.descricao
