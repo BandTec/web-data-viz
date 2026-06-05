@@ -9,6 +9,7 @@ const limitParameters = {
   }
 }
 
+// fonte: https://stackoverflow.com/questions/74935293/chartjs-updating-values-in-beforedraw
 const temperatureBackgroundZonesPlugin = {
   id: 'temperatureBackgroundZones',
   beforeDraw: (chart) => {

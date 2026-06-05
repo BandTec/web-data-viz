@@ -47,7 +47,7 @@
     <div class="group">
       <p class="label">Composteiras</p>
       <div class="nav" id="composterContainer">
-        
+
       </div>
     </div>
 
@@ -106,111 +106,54 @@
       </p>
     </div>
 
-    <h1 class="page-title">Composteira 1</h1>
+    <h1 class="page-title" id="composterModel">Composteira 1 - 46kg</h1>
+    <h2 class="page-desc" id="composterDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas officia doloremque facilis!</h2>
 
     <div class="composter-section">
-      <div class="cards">
-
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-72%</p>
-          </div>
-          <h2 class="danger">Em risco</h2>
-          <p class="desc">Indica <span class="danger">risco elevado </span> para a
-            atividade biológica. A qualidade do ambiente piorou em 72% em relação aos últimos 7 dias.</p>
+      <div class="cards-container">
+        <div class="cards" id="cardsContainer1">
         </div>
-
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-60%</p>
-          </div>
-          <h2 class="danger">Baixa eficiência</h2>
-          <p class="desc">A produção estimada de húmus caiu em <span class="danger">60%</span> em relação à média dos
-            últimos 7 dias.</p>
+        <div class="cards" id="cardsContainer2">
         </div>
-
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-14%</p>
+        <div class="cards">
+          <div class="alerts">
+            <h1 class="heading">
+              <i class="ph-bold ph-warning icon"></i>Últimos alertas
+            </h1>
+            <div id="alertsContainer">
+            </div>
           </div>
-          <h2 class="danger">Instável</h2>
-          <p class="desc">A variação aumentou em <span class="danger">14%</span> em
-            relação aos últimos 3 dias.</p>
         </div>
-
-      </div>
-      <div class="cards">
-
-        <div class="card success">
-          <h1 class="heading">
-            <i class="ph-bold ph-thermometer icon"></i>Temperatura atual
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-up icon icon-lime"></i>
-            <p class="text">+22%</p>
-          </div>
-          <h2 class="success">22°C</h2>
-          <p class="desc">A temperatura da composteira está <span class="success">dentro da faixa ideial </span> para a
-            atividade biológica. A temperatura <span class="success">aumentou em 22%</span> em relação à última hora.</p>
-        </div>
-
-        <div class="card success">
-          <h1 class="heading">
-            <i class="ph-bold ph-drop icon"></i>Umidade atual
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-lime"></i>
-            <p class="text">-11%</p>
-          </div>
-          <h2 class="success">78%</h2>
-          <p class="desc">A umidade da composteira está <span class="success">dentro da faixa ideial </span> para a
-            atividade biológica. A umidade <span class="success">diminuiu em 11%</span> em relação à última hora.</p>
-        </div>
-
-        <div class="card danger">
-          <h1 class="heading">
-            <i class="ph-bold ph-clock icon"></i>Tempo dentro da faixa ideal
-          </h1>
-          <div class="badge">
-            <i class="ph ph-trend-down icon icon-red"></i>
-            <p class="text">-20%</p>
-          </div>
-          <h2 class="danger">11%</h2>
-          <p class="desc">Em <span class="danger">9 horas</span> de detecção apenas <span class="danger">1 hora </span> foi registrada na condições ideais para a atividade biológica. Sendo <span class="danger">20% a menos</span> que no dia anterior.</p>
-        </div>
-
       </div>
       <div class="chart-painel-outter">
-        <h1 class="title">Dados capturados hoje</h1>
+        <span>
+          <button class="button-primary-dark" id='btnHoje' onclick="changeChart('hoje')">Hoje</button>
+          <button class="button-primary-dark less" id='btnTempoReal' onclick="changeChart('tempoReal')">Tempo real</button>
+          <button class="button-primary-dark less" id='btnSeteDias' onclick="changeChart('seteDias')">Últimos 7 dias</button>
+          <button class="button-primary-dark less" id='btnMensal' onclick="changeChart('mensal')">Mensal</button>
+        </span>
         <div class="chart-painel-inner">
           <canvas id="compTem" class="chart-canvas"></canvas>
           <canvas id="compHum" class="chart-canvas"></canvas>
         </div>
       </div>
-      <div class="chart-painel-outter">
-        <h1 class="title">Média dos últimos 15 dias</h1>
-        <div class="chart-painel-inner">
-          <canvas id="twoWeeksCompTem" class="chart-canvas"></canvas>
-          <canvas id="twoWeeksCompHum" class="chart-canvas"></canvas>
-        </div>
+    </div>
+    <div class="historic-section">
+      <h1>Histórico de detecções</h1>
+      <div class="search-section">
+        <label for="inpFromDate">De: </label>
+        <input type="date" id="inpFromDate">
+        <input type="time" id="inpFromTime">
+        <label for="inpToDate">Até: </label>
+        <input type="date" id="inpToDate">
+        <input type="time" id="inpToTime">
+        <button class="button-primary-dark" onclick="loadHistoric()">Buscar</button>
       </div>
-      <div class="chart-painel-outter">
-        <h1 class="title">Média Mensal</h1>
-        <div class="chart-painel-inner">
-          <canvas id="monthsCompTem" class="chart-canvas"></canvas>
-          <canvas id="monthsCompHum" class="chart-canvas"></canvas>
+      <div class="historic-container" id="historicContainer">
+        <div class="detection">
+          <p>Temperatura</p>
+          <p>Umidade</p>
+          <p>Data</p>
         </div>
       </div>
     </div>

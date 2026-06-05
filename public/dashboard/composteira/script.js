@@ -1,3 +1,5 @@
+const composterId = window.location.href.split("=")[1]
+
 const limitParameters = {
   temperature: {
     min: 0,
@@ -9,6 +11,9 @@ const limitParameters = {
   }
 }
 
+let tempChart, humChart
+
+// fonte: https://stackoverflow.com/questions/74935293/chartjs-updating-values-in-beforedraw
 const temperatureBackgroundZonesPlugin = {
   id: 'temperatureBackgroundZones',
   beforeDraw: (chart) => {
@@ -20,7 +25,7 @@ const temperatureBackgroundZonesPlugin = {
     ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
     ctx.fillRect(
       left,
-      yScale.getPixelForValue(30), 
+      yScale.getPixelForValue(30),
       right - left,
       yScale.getPixelForValue(limitParameters.temperature.max) - yScale.getPixelForValue(30)
     )
@@ -52,7 +57,7 @@ const temperatureBackgroundZonesPlugin = {
     ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
     ctx.fillRect(
       left,
-      yScale.getPixelForValue(limitParameters.temperature.min), 
+      yScale.getPixelForValue(limitParameters.temperature.min),
       right - left,
       yScale.getPixelForValue(15) - yScale.getPixelForValue(limitParameters.temperature.min)
     )
@@ -72,7 +77,7 @@ const humidityBackgroundZonesPlugin = {
     ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
     ctx.fillRect(
       left,
-      yScale.getPixelForValue(90), 
+      yScale.getPixelForValue(90),
       right - left,
       yScale.getPixelForValue(limitParameters.humidity.max) - yScale.getPixelForValue(90)
     )
@@ -104,13 +109,29 @@ const humidityBackgroundZonesPlugin = {
     ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
     ctx.fillRect(
       left,
-      yScale.getPixelForValue(limitParameters.temperature.min), 
+      yScale.getPixelForValue(limitParameters.temperature.min),
       right - left,
       yScale.getPixelForValue(60) - yScale.getPixelForValue(limitParameters.humidity.min)
     )
 
     ctx.restore()
   }
+}
+
+function addDefaultValues() {
+  const fromDate = document.getElementById("inpFromDate")
+  const fromTime = document.getElementById("inpFromTime")
+  const toDate = document.getElementById("inpToDate")
+  const toTime = document.getElementById("inpToTime")
+
+  const date = new Date()
+  const yesterday = new Date(date.getTime() - 24 * 60 * 60 * 1000)
+
+  fromDate.value = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1 < 10 ? "0" : ""}${yesterday.getMonth() + 1}-${yesterday.getDate() < 10 ? "0" : ""}${yesterday.getDate()}`
+  toDate.value = `${date.getFullYear()}-${date.getMonth() + 1 < 10 ? "0" : ""}${date.getMonth() + 1}-${date.getDate() < 10 ? "0" : ""}${date.getDate()}`
+
+  fromTime.value = "00:00"
+  toTime.value = "23:59"
 }
 
 let showInfo = false
@@ -120,248 +141,49 @@ function toggleShowInfo() {
   infoCard.style.display = showInfo ? 'flex' : 'none'
 }
 
-function getComposter() {
-  return [
-    {
-      chartElements: {
-        chartTemperature: { element: document.getElementById('compTem'), type: 'line' },
-        chartHumidity: { element: document.getElementById('compHum'), type: 'line' },
-        chartTemperatureTwoWeeks: { element: document.getElementById('twoWeeksCompTem'), type: 'line' },
-        chartHumidityTwoWeeks: { element: document.getElementById('twoWeeksCompHum'), type: 'line' },
-        chartTemperatureMonths: { element:  document.getElementById('monthsCompTem'), type: 'line' },
-        chartHumidityMonths: { element: document.getElementById('monthsCompHum'), type: 'line' }
-      },
-      data: {
-        time: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00'],
-        temperature: [14, 13, 12, 11, 11.5, 12, 13, 15, 18, 22],
-        humidity: [89, 90, 91, 92, 90, 89, 86, 83, 80, 78],
-        chartTemperatureTwoWeeks: [],
-        chartHumidityTwoWeeks: [],
-        chartTemperatureMonths: [],
-        chartHumidityMonths: [],
-        chartTemperatureTwoWeeksDates: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01', '07/01', '08/01', '09/01', '10/01', '11/01', '12/01', '13/01', '14/01'],
-        chartHumidityTwoWeeksDates: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01', '07/01', '08/01', '09/01', '10/01', '11/01', '12/01', '13/01', '14/01'],
-        chartTemperatureTwoWeeksData: [18.5, 19.2, 20.1, 19.8, 21.3, 22.1, 21.5, 20.8, 19.9, 20.5, 21.2, 22.0, 21.8, 20.9],
-        chartHumidityTwoWeeksData: [75, 76, 78, 80, 79, 77, 75, 74, 76, 78, 80, 79, 77, 75],
-        chartTemperatureMonthsLabels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        chartHumidityMonthsLabels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        chartTemperatureMonthsData: [18.3, 19.5, 20.2, 21.1, 20.8],
-        chartHumidityMonthsData: [76.2, 75.8, 77.1, 78.5, 76.9]
-      }
+async function getComposter() {
+  const apiResponse = await fetch(`/composteira/dashboard/${composterId}`)
+  .then(res => res.json())
+  .catch(err => console.error(err))
+
+  const chartData = await fetch(`/composteira/grafico/${composterId}?tipo=hoje`)
+  .then(res => res.json())
+  .catch(err => console.error(err))
+  
+  console.log(chartData)
+
+  return {
+    apiResponse,
+    data: {
+      time: chartData.hora_registro.reverse(),
+      temperature: chartData.temperatura.reverse(),
+      humidity: chartData.umidade.reverse(),
     }
-  ]
-} 
-
-function loadCharts () {
-  const composter = getComposter()
-
-  for (let i = 0; i < composter.length; i++) {
-    new Chart(composter[i].chartElements.chartTemperature.element, {
-      type: composter[i].chartElements.chartTemperature.type,
-      data: {
-        labels: composter[i].data.time,
-        datasets: [
-          {
-            label: 'Temperatura (°C)',
-            data: composter[i].data.temperature,
-            borderWidth: 3,
-            backgroundColor: '#f87171',
-            borderColor: '#7f1d1d'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.temperature.min,
-            max: limitParameters.temperature.max
-          },
-        },
-      },
-      plugins: [temperatureBackgroundZonesPlugin]
-    })
-    new Chart(composter[i].chartElements.chartHumidity.element, {
-      type: composter[i].chartElements.chartHumidity.type,
-      data: {
-        labels: composter[i].data.time,
-        datasets: [
-          {
-            label: 'Umidade (%)',
-            data: composter[i].data.humidity,
-            borderWidth: 3,
-            backgroundColor: '#38bdf8',
-            borderColor: '#0c4a6e'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.humidity.min,
-            max: limitParameters.humidity.max
-          }
-        },
-      },
-      plugins: [humidityBackgroundZonesPlugin]
-    })
-    new Chart(composter[i].chartElements.chartTemperatureTwoWeeks.element, {
-      type: composter[i].chartElements.chartTemperatureTwoWeeks.type,
-      data: {
-        labels: composter[i].data.chartTemperatureTwoWeeksDates,
-        datasets: [
-          {
-            label: 'Temperatura (°C)',
-            data: composter[i].data.chartTemperatureTwoWeeksData,
-            borderWidth: 3,
-            backgroundColor: '#f87171',
-            borderColor: '#7f1d1d'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.temperature.min,
-            max: limitParameters.temperature.max
-          },
-        },
-      },
-      plugins: [temperatureBackgroundZonesPlugin]
-    })
-    new Chart(composter[i].chartElements.chartHumidityTwoWeeks.element, {
-      type: 'line',
-      data: {
-        labels: composter[i].data.chartHumidityTwoWeeksDates,
-        datasets: [
-          {
-            label: 'Umidade (%)',
-            data: composter[i].data.chartHumidityTwoWeeksData,
-            borderWidth: 3,
-            backgroundColor: '#38bdf8',
-            borderColor: '#0c4a6e'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.humidity.min,
-            max: limitParameters.humidity.max
-          }
-        },
-      },
-      plugins: [humidityBackgroundZonesPlugin]
-    })
-    new Chart(composter[i].chartElements.chartTemperatureMonths.element, {
-      type: composter[i].chartElements.chartTemperatureMonths.type,
-      data: {
-        labels: composter[i].data.chartTemperatureMonthsLabels,
-        datasets: [
-          {
-            label: 'Temperatura (°C)',
-            data: composter[i].data.chartTemperatureMonthsData,
-            borderWidth: 3,
-            backgroundColor: '#f87171',
-            borderColor: '#7f1d1d'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.temperature.min,
-            max: limitParameters.temperature.max
-          },
-        },
-      },
-      plugins: [temperatureBackgroundZonesPlugin]
-    })
-    new Chart(composter[i].chartElements.chartHumidityMonths.element, {
-      type: composter[i].chartElements.chartHumidityMonths.type,
-      data: {
-        labels: composter[i].data.chartHumidityMonthsLabels,
-        datasets: [
-          {
-            label: 'Umidade (%)',
-            data: composter[i].data.chartHumidityMonthsData,
-            borderWidth: 3,
-            backgroundColor: '#38bdf8',
-            borderColor: '#0c4a6e'
-          },
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animations: {
-          tension: {
-            duration: 2000,
-            easing: 'easeOutCubic',
-            from: 1,
-            to: 0,
-          }
-        },
-        scales: {
-          y: {
-            min: limitParameters.humidity.min,
-            max: limitParameters.humidity.max
-          }
-        },
-      },
-      plugins: [humidityBackgroundZonesPlugin]
-    })
   }
 }
+
+async function loadCharts() {
+  const composter = await getComposter()
+
+  console.log(composter)
+  const { apiResponse } = composter
+  console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
+  composterModel.innerHTML = `${apiResponse.dados.modelo} - ${apiResponse.dados.capacidade_kg}kg`
+  composterDescription.innerHTML = `${apiResponse.dados.descricao}`
+
+  loadKpis({ 
+    temperature: apiResponse.ultimaDeteccao.temperatura,
+    humidity: apiResponse.ultimaDeteccao.umidade,
+    healthIndex: apiResponse.indiceSaude,
+    stableIndex: apiResponse.taxaEstabilidade,
+  })
+  loadAlerts()
+  addDefaultValues()
+  loadHistoric()
+
+  setTimeout(() => loadCharts(), 2000)
+}
+
 function getComposters() {
   return {
     kpis: {
@@ -374,7 +196,7 @@ function getComposters() {
         id: 1,
         nome: "Composteira 1",
         dados: {
-          hora: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00'],
+          hora: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00'],
           temperatura: [14, 13, 12, 11, 11.5, 12, 13, 15, 18, 22],
           umidade: [89, 90, 91, 92, 90, 89, 86, 83, 80, 78],
           ultimaDeteccao: {
@@ -389,7 +211,7 @@ function getComposters() {
         id: 2,
         nome: "Composteira 2",
         dados: {
-          hora: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00'],
+          hora: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00'],
           temperatura: [20, 19.5, 19, 18.5, 18, 18.5, 19, 20, 22, 24],
           umidade: [82, 83, 84, 85, 84, 83, 82, 80, 78, 77],
           ultimaDeteccao: {
@@ -404,7 +226,7 @@ function getComposters() {
         id: 3,
         nome: "Composteira 3",
         dados: {
-          hora: ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00'],
+          hora: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00'],
           temperatura: [22, 21.5, 21, 20.5, 20, 21, 23, 25, 27, 29],
           umidade: [75, 76, 77, 78, 79, 78, 76, 74, 72, 70],
           ultimaDeteccao: {
@@ -417,8 +239,9 @@ function getComposters() {
       },
     ]
   }
-} 
-function loadCompostersSidebar (composters) {
+}
+
+function loadCompostersSidebar(composters) {
   const composterContainerElement = document.getElementById("composterContainer")
 
   composterContainerElement.innerHTML = ""
@@ -433,3 +256,311 @@ function loadCompostersSidebar (composters) {
 }
 
 loadCompostersSidebar(getComposters().composteiras)
+
+const priorities = {
+  0: {
+    class: "normal",
+    word: "normal",
+    icon: "info",
+    temperature: "dentro da faixa ideal",
+    humidity: "dentro da faixa ideal",
+    stableIndex: ", "
+  },
+  1: {
+    class: "moderate",
+    word: "moderada",
+    icon: "warning-diamond",
+    temperature: "levemente fora da faixa ideal",
+    humidity: "levemente fora da faixa ideal",
+    stableIndex: ", "
+  },
+  2: {
+    class: "danger",
+    word: "alta",
+    icon: "warning",
+    temperature: "fora da faixa ideal",
+    humidity: "fora da faixa ideal",
+    stableIndex: " apenas "
+  },
+  3: {
+    class: "urgent",
+    word: "urgênte",
+    icon: "warning-octagon",
+    temperature: "totalmente fora da faixa ideal",
+    humidity: "totalmente fora da faixa ideal",
+    stableIndex: " apenas "
+  },
+}
+
+async function loadAlerts() {
+  const alertContainerElement = document.getElementById("alertsContainer")
+  const alerts = await fetch(`/alertas/listar-composteira/${composterId}`, {
+    method: "GET",
+  })
+    .then(res => res.json())
+
+  let html = ""
+
+  alerts.forEach(alert => {
+    const date = new Date(alert.enviado_em)
+
+    html += `
+      <div class="alert ${priorities[alert.prioridade].class}">
+        <i class='ph-bold ph-${priorities[alert.prioridade].icon} color-${priorities[alert.prioridade].class}'></i><p class="alert-title">Foi detectado <span class='color-${priorities[alert.prioridade].class}'>${alert.tipo.toLowerCase()}</span> com prioridade <span class='color-${priorities[alert.prioridade].class}'>${priorities[alert.prioridade].word}</span>  nesta composteira, no dia <span>${date.getDate() < 10 ? "0" : ""}${date.getDate()}/${date.getMonth() + 1 < 10 ? "0" : ""}${date.getMonth() + 1}/${date.getFullYear()}</span> às <span>${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()}</span>.</p>
+      </div>
+    `
+  })
+
+  alertContainerElement.innerHTML = html
+}
+
+async function loadHistoric() {
+  const fromDate = document.getElementById("inpFromDate").value
+  const fromTime = document.getElementById("inpFromTime").value
+  const toDate = document.getElementById("inpToDate").value
+  const toTime = document.getElementById("inpToTime").value
+  const conteinerElement = document.getElementById("historicContainer")
+
+  if (!fromDate || !fromTime || !toDate || !toTime)
+    return alert("Preencha todos os campos para o histórico ser mostrado")
+
+  const query = `dtInicio=${fromDate}&tmpInicio=${fromTime}&dtFim=${toDate}&tmpFim=${toTime}`
+  const detections = await fetch(`/composteira/historico/${composterId}?${query}`)
+    .then(res => res.json())
+    .catch(error => console.error(error))
+
+  let html = conteinerElement.innerHTML.split("</div>")[0] + "</div>"
+  if (detections.length === 0)
+    return conteinerElement.innerHTML = html + "<div style='text-align: center; padding: 1rem; font-weight: 600'>Sem registros no período</div>"
+
+  detections.forEach(detection => {
+    const date = new Date(detection.criado_em)
+    const dateFormated = `${date.getDate() < 10 ? "0" : ""}${date.getDate()}/${date.getMonth() + 1 < 10 ? "0" : ""}${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours() < 10 ? "0" : ""}${date.getHours()}:${date.getMinutes() < 10 ? "0" : ""}${date.getMinutes()}:${date.getSeconds() < 10 ? "0" : ""}${date.getSeconds()}`
+
+    let classTempeture = "", classHumidity = ""
+    if (detection.temperatura < 20 || detection.temperatura > 25) {
+      classTempeture = "error"
+    }
+    if (detection.umidade < 70 || detection.umidade > 85) {
+      classHumidity = "error"
+    }
+
+    html += `
+      <div class="detection">
+        <p class="${classTempeture}">${detection.temperatura}°C</p>
+        <p class="${classHumidity}">${detection.umidade}%</p>
+        <p>${dateFormated}</p>
+      </div>
+    `
+  })
+
+  conteinerElement.innerHTML = html
+}
+
+function loadKpis (data) {
+  const { temperature, humidity, healthIndex, stableIndex } = data
+
+  const cardContainerSt = document.getElementById("cardsContainer1")
+  const cardContainerNd = document.getElementById("cardsContainer2")
+
+  cardContainerSt.innerHTML = `
+    <div class="card" id='healthIndexCard'>
+      <h1 class="heading">
+        <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
+      </h1>
+      <h2 class="${getStatus("healthIndex", healthIndex).class}">${healthIndex}</h2>
+      <p class="desc">Indica <span class=""> risco elevado </span> para a
+        atividade biológica.</p>
+    </div>
+    <div class="card" id='stableIndexCard'>
+      <h1 class="heading">
+        <i class="ph-bold ph-clock icon"></i>Tempo dentro da faixa ideal
+      </h1>
+      <h2 class="${getStatus("stableIndex", stableIndex.taxa).class}">${stableIndex.taxa}%</h2>
+      <p class="desc">De <span class="">${stableIndex.total} detecções</span>${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> registradas nas últimas 24 horas estão em condições ideais para a atividade biológica.</p>
+    </div>
+  `
+console.log(`${getStatus("stableIndex", stableIndex).stableIndex}`)
+  cardContainerNd.innerHTML = `
+    <div class="card" id='temperatureCard'>
+      <h1 class="heading">
+        <i class="ph-bold ph-thermometer icon"></i>Temperatura atual
+      </h1>
+      <h2 class="${getStatus("temperature", temperature).class}">${temperature}°C</h2>
+      <p class="desc">A temperatura da composteira está <span class="">${getStatus("temperature", temperature).temperature}</span> para
+        a
+        atividade biológica.
+      </p>
+    </div>
+    <div class="card" id='humidityCard'>
+      <h1 class="heading">
+        <i class="ph-bold ph-drop icon"></i>Umidade atual
+      </h1>
+      <h2 class="${getStatus("humidity", humidity).class}">${humidity}%</h2>
+      <p class="desc">A umidade da composteira está <span class="">${getStatus("humidity", humidity).humidity}</span> para a
+        atividade biológica.</p>
+    </div>
+  `
+  console.log(`<h2 class="${getStatus("humidity", humidity).class}">${humidity}%</h2>`)
+}
+
+function getStatus (parameter, data) {
+  console.log(parameter, data)
+  if ((parameter === "temperature") && (Number(data) >= 20 && Number(data) <= 25))
+    return priorities[0]
+  if ((parameter === "temperature") && (Number(data) > 25 && Number(data) <= 30))
+    return priorities[1]
+  if ((parameter === "temperature") && (Number(data) >= 15 && Number(data) <= 35))
+    return priorities[2]
+  if (parameter === "temperature")
+    return priorities[3]
+
+  if (parameter === "humidity" && Number(data) >= 70 && Number(data) <= 85)
+    return priorities[0]
+  if (parameter === "humidity" && Number(data) >= 60 && Number(data) <= 90)
+    return priorities[1]
+  if (parameter === "humidity")
+    return priorities[3]
+
+  if (parameter === "stableIndex" && Number(data) >= 90)
+    return priorities[0]
+  if (parameter === "stableIndex" && Number(data) >= 60)
+    return priorities[1]
+  if (parameter === "stableIndex" && Number(data) >= 50)
+    return priorities[2]
+  if (parameter === "stableIndex")
+    return priorities[3]
+
+  if (parameter === "healthIndex" && data === "")
+    return priorities[0]
+  if (parameter === "healthIndex" && data === "")
+    return priorities[1]
+  if (parameter === "healthIndex" && data === "")
+    return priorities[2]
+  if (parameter === "healthIndex" && data === "Em risco")
+    return priorities[3]
+}
+
+function resetButtons (type) {
+  const buttons = [ 
+    document.getElementById('btnHoje'),
+    document.getElementById('btnTempoReal'),
+    document.getElementById('btnSeteDias'),
+    document.getElementById('btnMensal')
+  ]
+
+  const btnTypes = {
+    'hoje': buttons[0],
+    'tempoReal': buttons[1],
+    'seteDias': buttons[2],
+    'mensal': buttons[3]
+  }
+
+  buttons.forEach(btn => console.log(btn))
+  buttons.forEach(btn => btn.classList.add("less"))
+
+  btnTypes[type].classList.remove("less")
+}
+
+async function changeChart (type) {
+  localStorage.setItem("type", type)
+  
+  resetButtons(type)
+  const chartData = await fetch(`/composteira/grafico/${composterId}?tipo=${type}`)
+  .then(res => res.json())
+  .catch(err => console.error(err))
+  console.log(chartData)
+
+  let time = chartData.hora_registro.reverse()
+  if (type === "hoje") {
+    time = time.map(t => t + "h")
+  }
+
+  if (type === "mensal") {
+    const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+    time = time.map(month => months[month -1])
+  }
+
+  if (type === "seteDias") {
+    const days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+    time = time.map(day => {
+      const date = new Date(day).getDay()
+      return days[date]
+    })
+  }
+
+  const temperature = chartData.temperatura.reverse()
+  const humidity = chartData.umidade.reverse()
+  const temperatureChartElement = document.getElementById('compTem')
+  const humidityChartElement = document.getElementById('compHum')
+  
+  if (tempChart) 
+    tempChart.destroy()
+
+  if (humChart) 
+    humChart.destroy()
+
+  tempChart = new Chart(temperatureChartElement, {
+    type: "line",
+    data: {
+      labels: time,
+      datasets: [
+        {
+          label: 'Temperatura (°C)',
+          data: temperature,
+          borderWidth: 3,
+          backgroundColor: '#f87171',
+          borderColor: '#7f1d1d',
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 0
+      },
+      scales: {
+        y: {
+          min: limitParameters.temperature.min,
+          max: limitParameters.temperature.max
+        },
+      },
+    },
+    plugins: [temperatureBackgroundZonesPlugin]
+  })
+
+  humChart = new Chart(humidityChartElement, {
+    type: "line",
+    data: {
+      labels: time,
+      datasets: [
+        {
+          label: 'Umidade (%)',
+          data: humidity,
+          borderWidth: 3,
+          backgroundColor: '#38bdf8',
+          borderColor: '#0c4a6e'
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 0
+      },
+      scales: {
+        y: {
+          min: limitParameters.humidity.min,
+          max: limitParameters.humidity.max
+        }
+      },
+    },
+    plugins: [humidityBackgroundZonesPlugin]
+  })
+
+  setTimeout(() => changeChart(localStorage.getItem("type")), 5000)
+}
+
+changeChart("hoje")
