@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | CompostEco</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  <script src="../js/pegarDados.js"></script>
+</head>
+
+<body onload="loadCharts()" class="page-body">
+
+  <aside class="sidebar">
+
+    <div class="group">
+      <p class="label">Produtor</p>
+      <div class="item">
+        <i class="ph ph-farm icon"></i>
+        <p class="medium">Fazendinha LTDA</p>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Dashboard</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../index.html'">
+          <i class="ph ph-chart-line icon"></i>
+          <p>Visão Geral</p>
+        </div>
+        <div class="item" onclick="window.location.href='../alertas/index.html'">
+          <i class="ph ph-warning icon"></i>
+          <p>Alertas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Composteiras</p>
+      <div class="nav" id="composterContainer">
+
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Suporte</p>
+      <div class="nav">
+        <div class="item">
+          <i class="ph ph-headset icon"></i>
+          <p class="text">Atendimento ao Cliente</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="avatar">JL</div>
+      <span>Júlia Lima</span>
+      <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
+    </div>
+
+  </aside>
+
+  <main class="main-content">
+    <div class="titulo-support">
+      <h1>Contate-nos:</h1>
+    </div>
+    <div class="button-support">
+    <button onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/436499c6-6262-4a7c-a9e7-1a150690102c'">
+    Incidente
+    </button>
+      <button onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/cdb4c1ae-b55d-46f1-bac3-c1b93210b95a'">
+      Requisição
+      </button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
