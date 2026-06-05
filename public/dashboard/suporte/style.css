@@ -165,19 +165,7 @@ body {
   background-color: white;
   flex-direction: column;
 }
-.main-content button{
-  padding: 50px;
-  border-radius: 20px;
-  height: 50px;
-  display: flex;
-  width: 400px;
-  align-items: center;
-  font-size: x-large;
-  justify-content: center;
-  background-color: var(--lime-700);
-  color: white;
-  
-}
+
 .main-content .info-toggle {
   position: fixed;
   width: 3rem;
@@ -423,21 +411,29 @@ body {
   border-radius: 0.5rem;
 }
 
-.button-support{
-  display: flex;
-  justify-content: space-between;
-  width: 750px;
-  gap: 100px;
-  font-size: 30px;
-}
-.button-support :hover{
-  background-color: var(--lime-600);
+.button-support button {
+  background-color: var(--olive-600);
+  color: var(--olive-100);
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 3rem;
+  border: none;
   cursor: pointer;
+  transition: all 150ms;
+  border: 2px solid var(--olive-600);
 }
-.titulo-support{
+
+.button-support button:hover {
+  background-color: var(--olive-500);
+  color: var(--olive-50);
+  border: 2px solid var(--olive-500);
+}
+
+.titulo-support {
   display: flex;
   flex-direction: column;
   margin-top: -80px;
   margin-bottom: 60px;
-  font-size: x-large;
+  font-size: 1rem;
 }
