@@ -178,11 +178,11 @@ async function loadCharts() {
     stableIndex: apiResponse.taxaEstabilidade,
   })
   loadAlerts()
-  addDefaultValues()
-  loadHistoric()
 
   setTimeout(() => loadCharts(), 2000)
 }
+addDefaultValues()
+loadHistoric()
 
 function getComposters() {
   return {
@@ -377,7 +377,7 @@ function loadKpis (data) {
         <i class="ph-bold ph-clock icon"></i>Tempo dentro da faixa ideal
       </h1>
       <h2 class="${getStatus("stableIndex", stableIndex.taxa).class}">${stableIndex.taxa}%</h2>
-      <p class="desc">De <span class="">${stableIndex.total} detecções</span>${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> registradas nas últimas 24 horas estão em condições ideais para a atividade biológica.</p>
+      <p class="desc">De <span class="">${stableIndex.total}</span> detecções registradas nas últimas 24 horas${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> estão em condições ideais para a atividade biológica.</p>
     </div>
   `
 console.log(`${getStatus("stableIndex", stableIndex).stableIndex}`)
@@ -511,6 +511,8 @@ async function changeChart (type) {
           borderWidth: 3,
           backgroundColor: '#f87171',
           borderColor: '#7f1d1d',
+          tension: 0.4,
+          fill: false
         },
       ]
     },
@@ -540,7 +542,9 @@ async function changeChart (type) {
           data: humidity,
           borderWidth: 3,
           backgroundColor: '#38bdf8',
-          borderColor: '#0c4a6e'
+          borderColor: '#0c4a6e',
+          tension: 0.4,
+          fill: false
         },
       ]
     },
