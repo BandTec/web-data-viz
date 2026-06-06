@@ -178,11 +178,11 @@ async function loadCharts() {
     stableIndex: apiResponse.taxaEstabilidade,
   })
   loadAlerts()
-  addDefaultValues()
-  loadHistoric()
 
   setTimeout(() => loadCharts(), 2000)
 }
+addDefaultValues()
+loadHistoric()
 
 function getComposters() {
   return {
@@ -511,6 +511,8 @@ async function changeChart (type) {
           borderWidth: 3,
           backgroundColor: '#f87171',
           borderColor: '#7f1d1d',
+          tension: 0.4,
+          fill: false
         },
       ]
     },
@@ -540,7 +542,9 @@ async function changeChart (type) {
           data: humidity,
           borderWidth: 3,
           backgroundColor: '#38bdf8',
-          borderColor: '#0c4a6e'
+          borderColor: '#0c4a6e',
+          tension: 0.4,
+          fill: false
         },
       ]
     },
