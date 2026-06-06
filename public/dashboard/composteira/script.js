@@ -377,7 +377,7 @@ function loadKpis (data) {
         <i class="ph-bold ph-clock icon"></i>Tempo dentro da faixa ideal
       </h1>
       <h2 class="${getStatus("stableIndex", stableIndex.taxa).class}">${stableIndex.taxa}%</h2>
-      <p class="desc">De <span class="">${stableIndex.total} detecções</span>${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> registradas nas últimas 24 horas estão em condições ideais para a atividade biológica.</p>
+      <p class="desc">De <span class="">${stableIndex.total}</span> detecções registradas nas últimas 24 horas${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> estão em condições ideais para a atividade biológica.</p>
     </div>
   `
 console.log(`${getStatus("stableIndex", stableIndex).stableIndex}`)
