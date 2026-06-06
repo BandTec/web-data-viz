@@ -1,126 +1,330 @@
-function registerUser () {
-  const producerCode = (inpCode.value).trim().toUpperCase()
-  const userName = (inpName.value).trim()
-  const userEmail = (inpEmail.value).trim()
-  const userPassword = inpPassword.value
-  const userConfirmPassword = inpConfirm.value
+function registerPerson () {
+   const producerCode = (inpCode.value).trim().toUpperCase()
+   const userName = (inpName_CPF.value).trim()
+   const userCPF = inpCpf.value
+   const userTelephone = inpTelefone_CPF.value
+   const userCEP = inpCEP_CPF.value
+   const userNumber = inpNumero_CPF.value
+   const userComplement = inpComplemento_CPF.value
+   const userLogradouro = inpLogradouro_CPF.value
+   const userBairro = inpBairro_CPF.value
+   const userCidade = inpCidade_CPF.value
+   const userEstado = inpEstado_CPF.value
 
-  // executa a função de validação, se retornar false, para a execução dessa função (registerUser), já se retornar false, a execução continua 
-  if(!fieldValidation(producerCode, userName, userEmail, userPassword, userConfirmPassword))
-    return
+  
 
-  // faz a requisição para a rota de cadastro
-  fetch ("/usuarios/cadastrar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      nomeServer: userName,
-      emailServer: userEmail,
-      senhaServer: userPassword,
-      idProdutorVincularServer: ""
-    })
-  })
-  .then((res) => {
-    if (res.ok) {
-      res.json().then(json => {
-        showPopUp("Cadastro realizado com sucesso, redirecionando para o login...", true)
-        setTimeout(() => {
-          window.location = "../login/index.html"
-        }, 3000);
-      })
-    }
-    else
-      showPopUp("Erro inesperado. Tente novamente mais tarde", false)
-  })
-  .catch(() => showPopUp("Erro inesperado. Tente novamente mais tarde", false))
+   // executa a função de validação, se retornar false, para a execução dessa função (registerUser), já se retornar false, a execução continua 
+  // CORREÇÃO AQUI: Você estava passando userCEP duas vezes, o que deslocava todos os parâmetros seguintes.
+   if(!fieldValidationPerson(producerCode, userName, userCPF, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado))
+     return
+
+   // faz a requisição para a rota de cadastro
+   fetch ("/usuarios/cadastrarPerson", {
+     method: "POST",
+     headers: {
+        "Content-Type": "application/json"
+     },
+     body: JSON.stringify({
+        nomeServer: userName,
+        cpfServer: userCPF,
+        telephoneServer: userTelephone,
+        cepServer: userCEP,
+        numberServer: userNumber,
+        complementServer: userComplement,
+        logradouroServer: userLogradouro,
+        bairroServer: userBairro,
+        cidadeServer: userCidade,
+        estadoServer: userEstado
+        
+     })
+   })
+   .then((res) => {
+     if (res.ok) {
+        res.json().then(json => {
+          showPopUp("Cadastro realizado com sucesso, redirecionando para o login...", true)
+          setTimeout(() => {
+             window.location = "../login/index.html"
+          }, 3000);
+        })
+     }
+     else
+        showPopUp("Erro inesperado. Tente novamente mais tarde", false)
+   })
+   .catch(() => showPopUp("Erro inesperado. Tente novamente mais tarde", false))
 }
+function registerCompany() {
+  const producerCode = (inpCode_CNPJ.value).trim().toUpperCase()
+  const userCNPJ = inpCnpj.value
+  const razaoSocial = (inpRazaoSocial_CNPJ.value).trim()
+  const nomeFantasia = (inpNomeFantasia_CNPJ.value).trim()
+  const userTelephone = inpTelefone_CNPJ.value
+  const userCEP = inpCEP_CNPJ.value
+  const userNumber = inpNumero_CNPJ.value
+  const userComplement = inpComplemento_CNPJ.value
+  const userLogradouro = inpLogradouro_CNPJ.value
+  const userBairro = inpBairro_CNPJ.value
+  const userCidade = inpCidade_CNPJ.value
+  const userEstado = inpEstado_CNPJ.value
+
+     if(!fieldValidationCompany(producerCode, userCNPJ, razaoSocial, nomeFantasia, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado))
+     return
+
+   // faz a requisição para a rota de cadastro
+   fetch ("/usuarios/cadastrarEmpresa", {
+     method: "POST",
+     headers: {
+        "Content-Type": "application/json"
+     },
+     body: JSON.stringify({
+            cnpjServer: userCNPJ,
+            razaoServer: razaoSocial,
+            fantasiaServer: nomeFantasia,
+            cepServer: userCEP,
+            numberServer: userNumber,
+            complementServer: userComplement,
+            logradouroServer: userLogradouro,
+            bairroServer: userBairro,
+            cidadeServer: userCidade,
+            estadoServer: userEstado
+     })
+   })
+   .then((res) => {
+     if (res.ok) {
+        res.json().then(json => {
+          showPopUp("Cadastro de empresa realizado com sucesso, redirecionando para o login...", true)
+          setTimeout(() => {
+             window.location = "../login/index.html"
+          }, 3000);
+        })
+     }
+     else
+        showPopUp("Erro inesperado. Tente novamente mais tarde", false)
+   })
+   .catch(() => showPopUp("Erro inesperado. Tente novamente mais tarde", false))
+}
+
+
+
+
 
 // função para pegar os códigos da api (está incompleto)
 function getCode() {
-  return ""
+   return ""
 }
 
 function codeValidation (producerCode) {
-  const letterRegex = /[A-Z]/
-  let key = true
+   const letterRegex = /[A-Z]/
+   let key = true
 
-  if (producerCode.length != 6) // o código deve ter 6 caracteres
-    return !key
+   if (producerCode.length != 6) // o código deve ter 6 caracteres
+     return !key
   
-  for (let i = 0; i < producerCode.length; i++) { // se as posições impares (1, 3, 5) forem números e posições pares (0, 2, 4) forem letras, retorna true
-    if (letterRegex.test(producerCode[i]) && i % 2 == 0)
-      continue
-    else if (!isNaN(producerCode[i]) && i % 2 == 1)
-      continue
-    else {
-      key = false
-      break
-    }
-  }
+   for (let i = 0; i < producerCode.length; i++) { // se as posições impares (1, 3, 5) forem números e posições pares (0, 2, 4) forem letras, retorna true
+     if (letterRegex.test(producerCode[i]) && i % 2 == 0)
+        continue
+     else if (!isNaN(producerCode[i]) && i % 2 == 1)
+        continue
+     else {
+        key = false
+        break
+     }
+   }
 
-  return key
+   return key
 }
 
-function fieldValidation (producerCode, userName, userEmail, userPassword, userConfirmPassword) {
+function fieldValidationPerson (producerCode, userName, userCPF, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado) {
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
   const outputTag = ["<span class='error'>", "</span>"]
 
-  const codeErrorElement = errCode
-  const nameErrorElement = errName
-  const emailErrorElement = errEmail
-  const passwordErrorElement = errPassword
-  const confirmPasswordErrorElement = errConfirm
+  const CodeErrorElement = errCode_CPF
+  const NameErrorElement = errName_CPF
+  const CpfErrorElement = errCpf_CPF
+  const TelephoneErrorElement = errTel_CPF
+  const CepErrorElement = errCep_CPF
+  const NumberErrorElement = errNum_CPF
+  const ComplementoErrorElement = errCom_CPF
+  const LogradouroErrorElement = errLog_CPF
+  const BairroErrorElement = errBair_CPF
+  const CidadeErrorElement = errCid_CPF
+  const EstadoErrorElement = errEst_CPF
 
   // elementos de exibição de erros
-  codeErrorElement.innerHTML = ""
-  nameErrorElement.innerHTML = ""
-  emailErrorElement.innerHTML = ""
-  passwordErrorElement.innerHTML = ""
-  confirmPasswordErrorElement.innerHTML = ""
+  CodeErrorElement.innerHTML = ""
+  NameErrorElement.innerHTML = ""
+  CpfErrorElement.innerHTML = ""
+  TelephoneErrorElement.innerHTML = ""
+  CepErrorElement.innerHTML = ""
+  NumberErrorElement.innerHTML = ""
+  ComplementoErrorElement.innerHTML = ""
+  LogradouroErrorElement.innerHTML = ""
+  BairroErrorElement.innerHTML = ""
+  CidadeErrorElement.innerHTML = ""
+  EstadoErrorElement.innerHTML = ""
 
   let errorQnt = 0
 
-  if (!userEmail) {
-    emailErrorElement.innerHTML = outputTag[0] + "Preencha o seu email" + outputTag[1]
-    errorQnt++
-  } else if (!emailRegex.test(userEmail)) { // testa se o email é válido, esta função (test) retorna true ou false
-    emailErrorElement.innerHTML = outputTag[0] + "Email inválido" + outputTag[1]
-    errorQnt++
-  }
+
+
+
+
   if (!producerCode) {
-    codeErrorElement.innerHTML = outputTag[0] + "Preencha o código de validação" + outputTag[1]
-    errorQnt++
+   CodeErrorElement.innerHTML = outputTag[0] + "Preencha o código de validação" + outputTag[1]
+   errorQnt++
   } else if (!codeValidation(producerCode)) {
-    codeErrorElement.innerHTML = outputTag[0] + "Código inválido" + outputTag[1]
-    errorQnt++
+   CodeErrorElement.innerHTML = outputTag[0] + "Código inválido" + outputTag[1]
+   errorQnt++
   }
   if (!userName) {
-    nameErrorElement.innerHTML = outputTag[0] + "Preencha o seu nome" + outputTag[1]
-    errorQnt++
+   NameErrorElement.innerHTML = outputTag[0] + "Preencha o seu nome" + outputTag[1]
+   errorQnt++
   } else if (userName.length < 3) {
-    nameErrorElement.innerHTML = outputTag[0] + "O nome deve ter, no mínimo, 3 caracteres" + outputTag[1]
-    errorQnt++
+   NameErrorElement.innerHTML = outputTag[0] + "O nome deve ter, no mínimo, 3 caracteres" + outputTag[1]
+   errorQnt++
   }
-  if (!userPassword) {
-    passwordErrorElement.innerHTML = outputTag[0] + "Preencha a sua senha" + outputTag[1]
-    errorQnt++
-  } else if (userPassword.length < 6) {
-    passwordErrorElement.innerHTML = outputTag[0] + "A senha deve ter, no mínimo, 6 caracteres" + outputTag[1]
-    errorQnt++
+  if (!userCPF) {
+   CpfErrorElement.innerHTML = outputTag[0] + "Preencha o seu CPF" + outputTag[1]
+   errorQnt++
+  } else if (userCPF.length!==11) {
+   CpfErrorElement.innerHTML = outputTag[0] + "O CPF deve ter 11 caracteres" + outputTag[1]
+   errorQnt++
   }
-  if (!userConfirmPassword) {
-    confirmPasswordErrorElement.innerHTML = outputTag[0] + "Preencha a confirmação de senha" + outputTag[1]
-    errorQnt++
-  } else if (userPassword !== userConfirmPassword) {
-    passwordErrorElement.innerHTML = outputTag[0] + "As senhas não correspondem" + outputTag[1]
-    confirmPasswordErrorElement.innerHTML = outputTag[0] + "As senhas não correspondem" + outputTag[1]
-    errorQnt++
+  if (!userTelephone) {
+   TelephoneErrorElement.innerHTML = outputTag[0] + "Preencha com seu número de telefone" + outputTag[1]
+   errorQnt++
+  } else if (isNaN(Number(userTelephone))) {
+   TelephoneErrorElement.innerHTML = outputTag[0] + "Telefone não pode conter letras" + outputTag[1]
+   errorQnt++
   }
-
+  if(!userCEP){
+   CepErrorElement.innerHTML= outputTag[0] + "Preencha com seu CEP" + outputTag[1]
+     errorQnt++
+  } else if (userCEP.length!==8 && userCEP.length!==9){
+   CepErrorElement.innerHTML=outputTag[0] + "CEP preenchido incorretamente" + outputTag[1]
+     errorQnt++
+  }
+  if(!userNumber){
+   NumberErrorElement.innerHTML=outputTag[0] + "Preencha com seu número" + outputTag[1]
+     errorQnt++
+  } else if (isNaN(Number(userNumber))){
+   NumberErrorElement.innerHTML=outputTag[0] + "Número não pode conter letras" + outputTag[1]
+     errorQnt++
+  }
+  if(!userLogradouro){
+   LogradouroErrorElement.innerHTML = outputTag[0] + "Preencha com seu logradouro" + outputTag[1]
+     errorQnt++
+  }
+  if(!userBairro){
+   BairroErrorElement.innerHTML = outputTag[0] + "Preencha com seu bairro" + outputTag[1]
+     errorQnt++
+  } 
+  if(!userCidade){
+   CidadeErrorElement.innerHTML = outputTag[0] + "Preencha com sua Cidade" + outputTag[1]
+     errorQnt++
+  }
+  if(!userEstado){
+   EstadoErrorElement.innerHTML = outputTag[0] + "Preencha com seu Estado" + outputTag[1]
+     errorQnt++
+  } 
   return errorQnt === 0 // se quantidade de erros for igual a 0, retorna true, se for maior, retorna false
 }
+
+function fieldValidationCompany (producerCode, userCNPJ, razaoSocial, nomeFantasia, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado) {
+   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/
+   const outputTag = ["<span class='error'>", "</span>"]
+
+   const CodeErrorElement = errCode_CNPJ
+   const CnpjErrorElement = errCnpj
+   const RazaoErrorElement = errRazaoSocial_CNPJ
+   const FantasiaErrorElement = errNomeFantasia_CNPJ
+   const TelephoneErrorElement = errTel_CNPJ
+   const CepErrorElement = errCep_CNPJ
+   const NumberErrorElement = errNum_CNPJ
+   const ComplementoErrorElement = errCom_CNPJ
+   const LogradouroErrorElement = errLog_CNPJ
+   const BairroErrorElement = errBair_CNPJ
+   const CidadeErrorElement = errCid_CNPJ
+   const EstadoErrorElement = errEst_CNPJ
+
+   // elementos de exibição de erros
+   CodeErrorElement.innerHTML = ""
+   CnpjErrorElement.innerHTML = ""
+   RazaoErrorElement.innerHTML = ""
+   FantasiaErrorElement.innerHTML = ""
+   TelephoneErrorElement.innerHTML = ""
+   CepErrorElement.innerHTML = ""
+   NumberErrorElement.innerHTML = ""
+   ComplementoErrorElement.innerHTML = ""
+   LogradouroErrorElement.innerHTML = ""
+   BairroErrorElement.innerHTML = ""
+   CidadeErrorElement.innerHTML = ""
+   EstadoErrorElement.innerHTML = ""
+   
+   let errorQnt = 0
+   console.log(userCEP)
+
+
+   
+   
+   if (!producerCode) {
+     CodeErrorElement.innerHTML = outputTag[0] + "Preencha o código de validação" + outputTag[1]
+     errorQnt++
+   } else if (!codeValidation(producerCode)) {
+     CodeErrorElement.innerHTML = outputTag[0] + "Código inválido" + outputTag[1]
+     errorQnt++
+   }
+   if (!userCNPJ) {
+     CnpjErrorElement.innerHTML = outputTag[0] + "Preencha o CNPJ" + outputTag[1]
+     errorQnt++
+   } else if (userCNPJ.length !== 17 && userCNPJ.length !== 14 ) {
+     CnpjErrorElement.innerHTML = outputTag[0] + "CNPJ inválido" + outputTag[1]
+     errorQnt++
+    }
+    if (!razaoSocial) {
+     RazaoErrorElement.innerHTML = outputTag[0] + "Preencha a Razão Social" + outputTag[1]
+     errorQnt++
+    }
+   if (!nomeFantasia) {
+     FantasiaErrorElement.innerHTML = outputTag[0] + "Preencha o Nome Fantasia" + outputTag[1]
+     errorQnt++
+   }
+   if (!userTelephone) {
+     TelephoneErrorElement.innerHTML = outputTag[0] + "Preencha com seu número de telefone" + outputTag[1]
+     errorQnt++
+    } 
+  if(!userCEP){
+   CepErrorElement.innerHTML= outputTag[0] + "Preencha com seu CEP" + outputTag[1]
+   errorQnt++
+  } else if (userCEP.length!==8 && userCEP.length!==9){
+   CepErrorElement.innerHTML=outputTag[0] + "CEP preenchido incorretamente" + outputTag[1]
+     errorQnt++
+  }
+   if(!userNumber){
+     NumberErrorElement.innerHTML=outputTag[0] + "Preencha com seu número" + outputTag[1]
+    errorQnt++
+   } else if (isNaN(Number(userNumber))){
+     NumberErrorElement.innerHTML=outputTag[0] + "Número não pode conter letras" + outputTag[1]
+    errorQnt++
+   }
+   if(!userLogradouro){
+     LogradouroErrorElement.innerHTML = outputTag[0] + "Preencha com seu logradouro" + outputTag[1]
+    errorQnt++
+   }
+   if(!userBairro){
+     BairroErrorElement.innerHTML = outputTag[0] + "Preencha com seu bairro" + outputTag[1]
+    errorQnt++
+   }  
+   if(!userCidade){
+     CidadeErrorElement.innerHTML = outputTag[0] + "Preencha com sua Cidade" + outputTag[1]
+    errorQnt++
+   }
+   if(!userEstado){
+     EstadoErrorElement.innerHTML = outputTag[0] + "Preencha com seu Estado" + outputTag[1]
+    errorQnt++
+   }  
+   return errorQnt === 0 // se quantidade de erros for igual a 0, retorna true, se for maior, retorna false
+}
+
 
 function showPopUp (message, situation) { // message: string; situation: true ou false (true: pop up de sucesso, false: pop up de erro)
   const outputMessage = `<i class="ph ph-${situation ? 'user-check correct' : 'shield-warning error'}"></i><span class='${situation ? 'correct' : 'error'}'>${message}</span>`

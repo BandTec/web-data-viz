@@ -36,13 +36,18 @@
 
 body {
   font-family: var(--font-family-default);
-  overflow: auto;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4rem;
+
 }
 
 a {
   color: inherit;
-  text-decoration: inherit;
+  text-decoration: none;
 }
+
 
 /* Body */
 .page-body {
@@ -246,12 +251,12 @@ a {
 
 /* Pop-up */
 #popUp {
-  position: absolute;
+  position: fixed;
   display: flex;
   gap: 8px;
   align-items: center;
-  bottom: -4rem;
-  right: 1rem;
+  bottom: -2rem;
+  right: 6rem;
   padding: 1rem;
   border-radius: 1rem;
   background-color: var(--olive-100);
