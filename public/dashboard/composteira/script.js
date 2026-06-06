@@ -145,10 +145,11 @@ async function getComposter() {
   const apiResponse = await fetch(`/composteira/dashboard/${composterId}`)
   .then(res => res.json())
   .catch(err => console.error(err))
-
+ 
   const chartData = await fetch(`/composteira/grafico/${composterId}?tipo=hoje`)
   .then(res => res.json())
   .catch(err => console.error(err))
+  
   
   console.log(chartData)
 
@@ -164,12 +165,16 @@ async function getComposter() {
 
 async function loadCharts() {
   const composter = await getComposter()
+  const inputModelo = document.getElementById('composterModel')
+  const inputCapacidade = document.getElementById('composterCapacity')
+  const inputDescription = document.getElementById('composterDescription')
 
   console.log(composter)
   const { apiResponse } = composter
   console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
-  composterModel.innerHTML = `${apiResponse.dados.modelo} - ${apiResponse.dados.capacidade_kg}kg`
-  composterDescription.innerHTML = `${apiResponse.dados.descricao}`
+  inputModelo.value = `${apiResponse.dados.modelo}`
+  inputCapacidade.value = `${apiResponse.dados.capacidade_kg}`
+  inputDescription.value = `${apiResponse.dados.descricao}`
 
   loadKpis({ 
     temperature: apiResponse.ultimaDeteccao.temperatura,
@@ -564,7 +569,34 @@ async function changeChart (type) {
     plugins: [humidityBackgroundZonesPlugin]
   })
 
-  setTimeout(() => changeChart(localStorage.getItem("type")), 5000)
+  setTimeout(() => changeChart(localStorage.getItem("type")), 50000)
 }
+
+async function alterarDados(){
+  let mod = document.getElementById("composterModel").value;
+  let desc = document.getElementById("composterDescription").value;
+  let cap = document.getElementById("composterCapacity").value;
+  let id_composteira = composterId
+
+    if (mod=='' || cap=='' || desc=='') {
+        alert("Não pode deixar em branco!");
+        window.location.reload()
+        return;
+    }
+
+    const body = {
+      modelo: mod,
+      descricao: desc,
+      capacidade: cap,
+      id: id_composteira
+    }
+
+    fetch("/composteira/alterarDadosUsuarioComum", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    }).then(res => console.log("Resposta do servidor:", res.status))
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  }
 
 changeChart("hoje")

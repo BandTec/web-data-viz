@@ -14,7 +14,6 @@ function registerPerson () {
   
 
    // executa a função de validação, se retornar false, para a execução dessa função (registerUser), já se retornar false, a execução continua 
-  // CORREÇÃO AQUI: Você estava passando userCEP duas vezes, o que deslocava todos os parâmetros seguintes.
    if(!fieldValidationPerson(producerCode, userName, userCPF, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado))
      return
 

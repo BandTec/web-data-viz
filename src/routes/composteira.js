@@ -19,6 +19,10 @@ router.put("/alterarDados", function (req, res) {
   composteiraController.alterarDados(req, res);
 })
 
+router.put("/alterarDadosUsuarioComum", function (req, res){
+  composteiraController.alterarDadosUsuarioComum(req, res)
+} )
+
 router.get("/dashboard/:id", function (req, res) {
   composteiraController.buscarDadosDashboard(req, res);
 })

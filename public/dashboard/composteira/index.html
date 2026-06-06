@@ -106,9 +106,16 @@
       </p>
     </div>
 
-    <h1 class="page-title" id="composterModel">Composteira 1 - 46kg</h1>
-    <h2 class="page-desc" id="composterDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero quas officia doloremque facilis!</h2>
-
+    <h1 class="page-title">
+      <label for="composterModel">Modelo:</label>
+      <input type="text" id="composterModel" value="" onblur="alterarDados()"> 
+      <label for="composterCapacity">Capacidade:</label>
+      <input type="number" id="composterCapacity" value="" onblur="alterarDados()">kg
+    </h1>
+    <h2 class="page-desc">
+      <label for="composterDescription"></label>  
+      <input type="text" id="composterDescription" onblur="alterarDados()">
+    </h2>
     <div class="composter-section">
       <div class="cards-container">
         <div class="cards" id="cardsContainer1">

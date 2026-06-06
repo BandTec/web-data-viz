@@ -249,7 +249,7 @@ async function desativarComposteira(id) {
     });
 
     if (response.ok) {
-      selecionar(); 
+      selecionar();   
     } else {
       console.error("Deu erro dog");
     }
@@ -316,5 +316,7 @@ async function alterarDados(indice){
         body: JSON.stringify(body)
     });
   }
+
+
 
 

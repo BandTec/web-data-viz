@@ -15,6 +15,12 @@ function cadastrarComposteira(modelo, descricao, capacidade, produtor_id) {
   return database.executar(instrucaoSql)
 }
 
+function alterarDadosUsuarioComum(modelo, descricao, capacidade, id) {
+  var instrucaoSql = `UPDATE composteira SET modelo='${modelo}', descricao='${descricao}', capacidade_kg='${capacidade}', atualizado_em=CURRENT_TIMESTAMP WHERE id=${id};`
+
+  return database.executar(instrucaoSql);
+}
+
 function alterarDados(modelo, descricao, capacidade, id) {
   var instrucaoSql = `UPDATE composteira SET modelo='${modelo}', descricao='${descricao}', capacidade_kg='${capacidade}', atualizado_em=CURRENT_TIMESTAMP WHERE id=${id};`
 
@@ -105,6 +111,8 @@ module.exports = {
   desativarComposteira,
   cadastrarComposteira,
   alterarDados,
+  alterarDadosUsuarioComum,
+
   buscarUltimaDeteccao,
   buscarHistorico,
   buscarTaxaEstabilidade,

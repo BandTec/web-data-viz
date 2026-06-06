@@ -34,6 +34,27 @@ function cadastrarComposteira(req, res) {
       });
   }
 }
+function alterarDadosUsuarioComum(req, res){
+  console.log(req.body)
+  const modelo = req.body.modelo;
+  const descricao = req.body.descricao;
+  const capacidade = req.body.capacidade;
+  const id = req.body.id
+
+  if (modelo == undefined || capacidade == undefined || descricao == undefined || id == undefined) {
+    res.status(400).send("Tá faltando coisa");
+  } else {
+    composteiraModel.alterarDadosUsuarioComum(modelo, descricao, capacidade, id)
+      .then(function (resultado) {
+        res.status(201).json(resultado);
+      })
+      .catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+
 
 function alterarDados(req, res) {
   const modelo = req.body.modelo;
@@ -136,7 +157,7 @@ module.exports = {
   buscarPorIdComposteira,
   desativarComposteira,
   cadastrarComposteira,
-  alterarDados,
+  alterarDados, alterarDadosUsuarioComum,
   buscarDadosDashboard,
   buscarHistorico,
   buscarDadosAtualizados
