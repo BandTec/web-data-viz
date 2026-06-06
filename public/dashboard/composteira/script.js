@@ -163,18 +163,26 @@ async function getComposter() {
   }
 }
 
-async function loadCharts() {
-  const composter = await getComposter()
+let key = false
+async function load (apiResponse) {
+  key = true
   const inputModelo = document.getElementById('composterModel')
   const inputCapacidade = document.getElementById('composterCapacity')
   const inputDescription = document.getElementById('composterDescription')
 
-  console.log(composter)
-  const { apiResponse } = composter
-  console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
   inputModelo.value = `${apiResponse.dados.modelo}`
   inputCapacidade.value = `${apiResponse.dados.capacidade_kg}`
   inputDescription.value = `${apiResponse.dados.descricao}`
+}
+
+async function loadCharts() {
+  const composter = await getComposter()
+
+  console.log(composter)
+  const { apiResponse } = composter
+  console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
+
+  if (!key) load(apiResponse)
 
   loadKpis({ 
     temperature: apiResponse.ultimaDeteccao.temperatura,
