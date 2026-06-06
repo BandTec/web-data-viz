@@ -26,9 +26,18 @@ function buscarProdutorPorCodigo(codigo){
 
 }
 
+function buscarProdutorPorIdCodigo(id){
+
+    var comando = `SELECT codigo from codigo_ativacao where id = ${id} and desativado_em is null`
+
+    return database.executar(comando)
+
+}
+
 module.exports = {
   gerarCodigo,
   buscarCodigos,
   desativarCodigo,
-  buscarProdutorPorCodigo
+  buscarProdutorPorCodigo,
+  buscarProdutorPorIdCodigo
 }

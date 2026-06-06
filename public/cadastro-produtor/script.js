@@ -14,7 +14,6 @@ function registerPerson () {
   
 
    // executa a função de validação, se retornar false, para a execução dessa função (registerUser), já se retornar false, a execução continua 
-  // CORREÇÃO AQUI: Você estava passando userCEP duas vezes, o que deslocava todos os parâmetros seguintes.
    if(!fieldValidationPerson(producerCode, userName, userCPF, userTelephone, userCEP, userNumber, userComplement, userLogradouro, userBairro, userCidade, userEstado))
      return
 
@@ -34,17 +33,33 @@ function registerPerson () {
         logradouroServer: userLogradouro,
         bairroServer: userBairro,
         cidadeServer: userCidade,
-        estadoServer: userEstado
-        
+        estadoServer: userEstado,
+        codigoServer: producerCode
      })
    })
    .then((res) => {
      if (res.ok) {
-        res.json().then(json => {
-          showPopUp("Cadastro realizado com sucesso, redirecionando para o login...", true)
-          setTimeout(() => {
-             window.location = "../login/index.html"
-          }, 3000);
+        res.json().then(async json => {
+          showPopUp("Cadastro realizado com sucesso", true)
+
+          const response = await fetch("/codigo/gerar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ produtorId: json.insertId })
+          }).then(res => res.json()).catch(err => console.error(err))
+
+          const code = await fetch(`/codigo/buscarPorId/${response.insertId}`)
+          .then(res => res.json())
+          .catch(err => console.error(err))
+          
+          const codeContainerElement = document.getElementById("codeContainer")
+          const codeElement = document.getElementById("code")
+          
+          localStorage.setItem("code", code[0].codigo)
+          console.log(json, response, code)
+          codeElement.innerHTML = code[0].codigo
+
+          codeContainerElement.classList.remove("hidden")
         })
      }
      else
@@ -85,16 +100,33 @@ function registerCompany() {
             logradouroServer: userLogradouro,
             bairroServer: userBairro,
             cidadeServer: userCidade,
-            estadoServer: userEstado
+            estadoServer: userEstado,
+            codigoServer: producerCode
      })
    })
    .then((res) => {
      if (res.ok) {
-        res.json().then(json => {
-          showPopUp("Cadastro de empresa realizado com sucesso, redirecionando para o login...", true)
-          setTimeout(() => {
-             window.location = "../login/index.html"
-          }, 3000);
+        res.json().then(async json => {
+          showPopUp("Cadastro realizado com sucesso", true)
+
+          const response = await fetch("/codigo/gerar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ produtorId: json.insertId })
+          }).then(res => res.json()).catch(err => console.error(err))
+
+          const code = await fetch(`/codigo/buscarPorId/${response.insertId}`)
+          .then(res => res.json())
+          .catch(err => console.error(err))
+          
+          const codeContainerElement = document.getElementById("codeContainer")
+          const codeElement = document.getElementById("code")
+          
+          localStorage.setItem("code", code[0].codigo)
+          console.log(json, response, code)
+          codeElement.innerHTML = code[0].codigo
+
+          codeContainerElement.classList.remove("hidden")
         })
      }
      else

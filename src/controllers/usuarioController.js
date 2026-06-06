@@ -150,6 +150,7 @@ async function cadastrarPerson(req, res) {
       })
       .then(async function (resultadoProdutor) {
         await codigoModel.desativarCodigo(resCodigo[0].id)
+
         res.status(201).json(resultadoProdutor);
       })
       .catch(function (erro) {
@@ -191,6 +192,7 @@ async function cadastrarEmpresa(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
+
 module.exports = {
   autenticar,
   cadastrar,
