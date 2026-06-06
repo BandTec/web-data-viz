@@ -131,3 +131,10 @@ function showPopUp (message, situation) { // message: string; situation: true ou
     popUp.style.bottom = "-4rem"
   }, 3000);
 }
+
+function getCode() {
+  const code = localStorage.getItem("code")
+  if (!code) return
+
+  document.getElementById("inpCode").value = code
+}

@@ -42,8 +42,21 @@ async function desativarCodigo (req, res) {
   res.status(200).json(result)
 }
 
+async function buscarProdutorPorIdCodigo(req, res) {
+  const { id } = req.params
+
+  if (!id)
+    res.status(400).send("Código Id inválido")
+
+  const result = await codigoModel.buscarProdutorPorIdCodigo(id)
+  .catch(erro => res.status(400).send(erro))
+
+  res.status(200).json(result)
+}
+
 module.exports = {
   gerarCodigo,
   buscarCodigos,
-  desativarCodigo
+  desativarCodigo,
+  buscarProdutorPorIdCodigo
 }
