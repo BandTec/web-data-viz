@@ -124,7 +124,7 @@ async function dadosGraficoController(req, res) {
     // console.log(composteiraAlerta)
     let jsonFront = {
         kpis: {
-            qtdComposteira: quantidadeComposteira,
+            qntComposteira: quantidadeComposteira,
             qntComposteirasAlerta: composteiraAlerta,
             taxaEstabilidade: taxa,
         },
