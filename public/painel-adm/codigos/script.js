@@ -48,5 +48,5 @@ async function carregarCodigos() {
   })
 
   containerElemento.innerHTML = html
-  setTimeout(() => carregarCodigos(), 2000)
+  setTimeout(() => carregarCodigos(), 5000)
 }
