@@ -1,4 +1,4 @@
- function calcular (){
+function funcao(){
     let area = Number(inp1.value)
     let caixas = Number(inp2.value)
 
@@ -11,7 +11,7 @@
 
     //DAdos da https://agronomiacomgismonti.blogspot.com/2018/07/calculo-de-adubacao-em-gmetro-linear.html
     //Estimam 15,75 gramas por metro quadrado. Vamos arredondar para 16
-    let custoAdubacao = area * (16 * precoAdubo);
+    let custoAdubacao = area * (16 * (precoAdubo * 0.1));
 
 
     //Uma composteira de 45 litros produz cerca de 12 kilos de humus
@@ -27,12 +27,49 @@
 
     let ganhoExtra = producaoMonitorada - producaoAtual;
 
-    pp.innerHTML =
-        "Área: " + area + " m² <br>" +
-        "Custo para adubar esta área caso você compre o adubo: R$" + custoAdubacao.toFixed(2) + "<br><br>" +
+    // pp.innerHTML =
+    //     "- O valor gasto para adubar a área que você informou é de R$" + custoAdubacao.toFixed(2) + ". Considerando o preço do adubo de R$ 4,8 a cada 100 gramas." + "<br><br>" + 
 
-        "O preço em adubo que você produz R$" + producaoAtual.toFixed(2) + "<br>" +
-        "Produção de adubo monitorada com CompostEco: R$" + producaoMonitorada.toFixed(2) + "<br><br>" +
+    //     "- Utilizando a área informada, você produz de adubo o equivalente a R$" + producaoAtual.toFixed(2) + ". <br><br>" +
+    //     "- O monitoramento garante uma boa qualidade de adubo, com o monitoramento ideal o valor aumenta cerca de 50%. O valor do adubo com o monitoramento é de R$" + producaoMonitorada.toFixed(2) + ". <br><br>" +
 
-        "Ganho extra com monitoramento: R$" + ganhoExtra.toFixed(2);
+    //     "- Você perde cerda de R$" + ganhoExtra.toFixed(2)+ " reais por ciclo de vermicompostagem sem um monitoramento ideal.";
+    output.innerHTML = `
+    <div class="result-card">
+        
+            <span>
+            💰 Custo de Adubação: 
+            <strong>R$ 
+            ${custoAdubacao.toFixed(2)}
+            </strong> 
+            R$ 4,80 a cada 100g
+            </span>
+            
+            <span>
+            🌱 Produção Atual:
+            <strong class="strong-green">
+            R$ ${producaoAtual.toFixed(2)}
+            </strong>
+            </span>
+                   
+            <span>
+            📈 Com Monitoramento (Ideal):
+            <strong class="strong-green">
+            R$ ${producaoMonitorada.toFixed(2)}
+            </strong>
+            Aumento de 50% na qualidade
+            </span>
+       
+            <span>
+            ⚠️ Oportunidade Perdida:
+            <strong class="strong-red">R$ 
+            ${ganhoExtra.toFixed(2)}
+            </strong>
+            Valor perdido por ciclo sem o monitoramento ideal.
+            </span>
+            
+           
+      
+    </div>
+`;
 }

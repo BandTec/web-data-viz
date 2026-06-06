@@ -607,11 +607,11 @@ color: rgb(158, 19, 19);
 }
 
 .calculator-section .container-calculator .container2 .container-form .container-result {
-  width: 50rem;
+  /* width: 50rem; */
 }
 
 .calculator-section .container-calculator .container2 .container-form .form {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
