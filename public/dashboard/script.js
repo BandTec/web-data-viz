@@ -239,17 +239,18 @@ function loadKPIs (kpis) {
     alert: ['<p class="desc" id="alertDescription">', ' composteira(s) está <span class="warning">fora</span> das condições ideais.</p>'],
     stable: ['<p class="desc" id="stableDescription">Suas composteiras passam <span class="danger">', '% do tempo fora</span> das condições ideais.</p>'],
   }
+  console.log(kpis, "asdasdsea")
   const {
-    qntComposteiras,
+    qntComposteira,
     qntComposteirasAlerta,
     taxaEstabilidade
   } = kpis
 
-  activeValueElement.innerText = qntComposteiras
+  activeValueElement.innerText = qntComposteira
   alertValueElement.innerText = qntComposteirasAlerta
   stableValueElement.innerText = taxaEstabilidade + "%"
 
-  activeDescElement.innerHTML = descriptionTexts.active[0] + qntComposteiras + descriptionTexts.active[1]
+  activeDescElement.innerHTML = descriptionTexts.active[0] + qntComposteira + descriptionTexts.active[1]
   alertDescElement.innerHTML = descriptionTexts.alert[0] + qntComposteirasAlerta + descriptionTexts.alert[1]
   stableDescElement.innerHTML = descriptionTexts.stable[0] + (100 - taxaEstabilidade) + descriptionTexts.stable[1]
 }
