@@ -24,4 +24,10 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar};
+function buscarPorUsuario(id) {
+  var instrucaoSql = `SELECT p.id as id FROM produtor p JOIN usuario u ON u.produtor_id = p.id WHERE u.id = ${id}`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, buscarPorUsuario};

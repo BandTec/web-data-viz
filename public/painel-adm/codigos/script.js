@@ -14,12 +14,12 @@ async function desativarCodigo(id) {
     console.error("deu erro bixo:", error);
   }
 }
-
+const userId = sessionStorage.getItem('ID_USUARIO')
 async function gerarCodigo() {
   const res = await fetch("/codigo/gerar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({produtorId: 1})
+      body: JSON.stringify({userId: userId})
   });
 
   if (res.ok) {
@@ -31,7 +31,7 @@ async function gerarCodigo() {
 
 async function carregarCodigos() {
   const containerElemento = document.getElementById("containerCards")
-  const codigos = await fetch('/codigo/buscar/1').then(res => res.json()).catch(err => console.error(err))
+  const codigos = await fetch(`/codigo/buscar/${userId}`).then(res => res.json()).catch(err => console.error(err))
 
   let html = ""
   codigos.forEach(codigo => {

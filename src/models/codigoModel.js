@@ -7,7 +7,7 @@ function gerarCodigo (produtorId, codigo) {
 }
 
 function buscarCodigos (userId) {
-  const instrucaoSql = `select c.id, codigo from codigo_ativacao c join produtor p on c.produtor_id = p.id join usuario u on u.produtor_id = p.id where p.id = 1 and u.id = ${userId} and c.desativado_em is null`
+  const instrucaoSql = `select c.id, codigo from codigo_ativacao c join produtor p on c.produtor_id = p.id join usuario u on u.produtor_id = p.id where u.id = ${userId} and c.desativado_em is null`
 
   return database.executar(instrucaoSql)
 }
