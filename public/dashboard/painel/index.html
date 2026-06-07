@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | CompostEco</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+</head>
+
+<body onload="loadCharts()" class="page-body">
+
+   <aside class="sidebar">
+
+    <div class="group">
+      <p class="label">Produtor</p>
+      <div class="item">
+        <i class="ph ph-farm icon"></i>
+        <p class="medium" id="nomeEmpresaId"></p>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Dashboard</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../index.html'">
+          <i class="ph ph-chart-line icon"></i>
+          <p>Visão Geral</p>
+        </div>
+        <div class="item" onclick="window.location.href='../alertas/index.html'">
+          <i class="ph ph-warning icon"></i>
+          <p>Alertas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Composteiras</p>
+      <div class="nav" id="composterContainer">
+
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Suporte</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../suporte/index.html'">
+          <i class="ph ph-headset icon"></i>
+          <p class="text">Atendimento ao Cliente</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="avatar">JL</div>
+      <span id="nomeUsuarioId"></span>
+      <i class="ph ph-sign-out signout-icon" onclick="limparSessao()"></i>
+    </div>
+
+  </aside>
+
+  <main class="main-content">
+
+    <div onclick="toggleShowInfo()" class="info-toggle">
+      <i class="ph-bold ph-question-mark info-toggle-icon"></i>
+    </div>
+
+    <div id="infoCard" class="info-card">
+      <i class="ph-bold ph-x close-icon" onclick="toggleShowInfo()"></i>
+      <h1 class="heading">
+        <i class="ph-bold ph-thermometer icon"></i>Temperatura
+      </h1>
+      <p class="text">
+        A temperatura interna afeta diretamente o metabolismo e a reprodução das minhocas.
+        <span class="text-ideal">Ideal (Zona de Conforto): 20°C a 25°C.</span>
+        É nesta faixa que as minhocas processam o resíduo com máxima eficiência.
+        <span class="text-alert">Alerta: 26°C a 30°C.</span>
+        O metabolismo acelera demais, e o oxigênio diminui. Recomenda-se aumentar a ventilação ou sombrear o local.
+        <span class="text-critical">Crítico: Abaixo de 19°C ou acima de 35°C.</span>
+        Risco iminente de morte da colônia. Temperaturas altas superaquecem as minhocas, e, temperaturas baixas as
+        tornam inativas.
+      </p>
+      <h1 class="heading spaced">
+        <i class="ph-bold ph-drop icon"></i>Umidade
+      </h1>
+      <p class="text">
+        A umidade é vital, pois, as minhocas respiram através da pele, que precisa estar sempre úmida.
+        <span class="text-ideal">Ideal (Zona de Conforto): 70% a 85%.</span>
+        O material deve parecer uma esponja espremida, úmido ao toque, mas, sem escorrer água livremente.
+        <span class="text-alert">Alerta: 60% (Seco) ou 90% (Encharcado).</span>
+        Se estiver seco, as minhocas sofrem estresse hídrico, se estiver muito úmido, falta oxigênio, e, surge mau
+        cheiro.
+        <span class="text-critical">Crítico: Abaixo de 50% ou Saturação Total.</span>
+        A falta de umidade resseca a pele das minhocas, impedindo a respiração. O excesso total causa anaerobiose (falta
+        de ar).
+      </p>
+    </div>
+
+    <h1 class="page-greeting">Olá, Júlia Lima!</h1>
+ 
+      <div class="composter-section">
+      <h1 class="title">Composteira 1</h1>
+      <div class="cards">
+ 
+        <div class="card danger">
+          <h1 class="heading">
+            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-down icon icon-red"></i>
+            <p class="text">-72%</p>
+          </div>
+          <h2 class="danger">Em risco</h2>
+          <p class="desc">Indica <span class="danger">risco elevado </span> para a
+            atividade biológica. A qualidade do ambiente piorou em 72% em relação aos últimos 7 dias.</p>
+        </div>
+ 
+        <div class="card danger">
+          <h1 class="heading">
+            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-down icon icon-red"></i>
+            <p class="text">-60%</p>
+          </div>
+          <h2 class="danger">Baixa eficiência</h2>
+          <p class="desc">A produção estimada de húmus caiu em <span
+              class="danger">60%</span> em relação à média dos últimos 7 dias.</p>
+        </div>
+ 
+        <div class="card danger">
+          <h1 class="heading">
+            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-down icon icon-red"></i>
+            <p class="text">-14%</p>
+          </div>
+          <h2 class="danger">Instável</h2>
+          <p class="desc">A variação aumentou em <span class="danger">14%</span> em
+            relação aos últimos 3 dias.</p>
+        </div>
+ 
+      </div>
+      <div class="chart-painel-outter">
+        <div class="chart-painel-inner">
+          <canvas id="compTem1" class="chart-canvas"></canvas>
+          <canvas id="compHum1" class="chart-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="composter-section">
+      <h1 class="title">Composteira 2</h1>
+      <div class="cards">
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-down icon icon-red"></i>
+            <p class="text">-3.2%</p>
+          </div>
+          <h2 class="success">Saudável</h2>
+          <p class="desc">Indica <span class="success">ser apropriado </span> para a
+            atividade biológica. A qualidade do ambiente piorou em 3.2% em relação aos últimos 7 dias.</p>
+        </div>
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-up icon icon-lime"></i>
+            <p class="text">+15%</p>
+          </div>
+          <h2 class="success">Alta eficiência</h2>
+          <p class="desc">A produção estimada de húmus aumentou em <span
+              class="success">15%</span> em relação à média dos últimos 7 dias.</p>
+        </div>
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-up icon icon-lime"></i>
+            <p class="text">+4.1%</p>
+          </div>
+          <h2 class="success">Estável</h2>
+          <p class="desc">A variação reduziu em <span class="success">4.1%</span> em
+            relação aos últimos 3 dias.</p>
+        </div>
+ 
+      </div>
+      <div class="chart-painel-outter">
+        <div class="chart-painel-inner">
+          <canvas id="compTem2" class="chart-canvas"></canvas>
+          <canvas id="compHum2" class="chart-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="composter-section">
+      <h1 class="title">Composteira 3</h1>
+      <div class="cards">
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-down icon icon-red"></i>
+            <p class="text">-9%</p>
+          </div>
+          <h2 class="success">Saudável</h2>
+          <p class="desc">Indica <span class="success">ser apropriado </span> para a
+            atividade biológica. A qualidade do ambiente piorou em 9% em relação aos últimos 7 dias</p>
+        </div>
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-lightning icon"></i>Eficiência da produção
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-up icon icon-lime"></i>
+            <p class="text">+9%</p>
+          </div>
+          <h2 class="success">Alta eficiência</h2>
+          <p class="desc">A produção estimada de húmus aumentou em <span
+              class="success">9%</span> em relação à média dos últimos 7 dias.</p>
+        </div>
+ 
+        <div class="card success">
+          <h1 class="heading">
+            <i class="ph-bold ph-scales icon"></i>Estabilidade do ambiente
+          </h1>
+          <div class="badge">
+            <i class="ph ph-trend-up icon icon-lime"></i>
+            <p class="text">+3.5%</p>
+          </div>
+          <h2 class="success">Estável</h2>
+          <p class="desc">A variação reduziu em <span class="success">3.5%</span> em
+            relação aos últimos 3 dias.</p>
+        </div>
+ 
+      </div>
+      <div class="chart-painel-outter">
+        <div class="chart-painel-inner">
+          <canvas id="compTem3" class="chart-canvas"></canvas>
+          <canvas id="compHum3" class="chart-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+  
+</body>
+
+</html>

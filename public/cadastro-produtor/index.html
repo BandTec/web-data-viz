@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Produtor| CompostEco</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <script src="script.js"></script>
+</head>
+
+<body class="page-body">
+  <div class="register-card">
+
+    <div class="image-panel" id="imagePanel">
+      <img src="../assets/images/field3.png" alt="">
+      <div class="back-button" onclick="window.location.href='../index.html'">
+        <i class="ph ph-arrow-left"></i>
+      </div>
+      <div class="caption">
+        <i class="ph ph-info"></i>
+        <span>Tome decisões mais rápidas e precisas com base em informações confiáveis.</span>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <img class="logo" src="../assets/icon/logo-dark.svg" alt="Logo CompostECO">
+
+      <div class="form-fields">
+        <div class="field-group">
+          <label for="inpCode">Código de ativação:</label>
+          <input type="text" id="inpCode" placeholder="ex: A1B2C3">
+          <span id="errCode_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpName">Nome:</label>
+          <input type="text" id="inpName_CPF" placeholder="ex: Maria Silva">
+          <span id="errName_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpCpf">CPF:</label>
+          <input type="text" id="inpCpf"  placeholder="000.000.000-00">
+          <span id="errCpf_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Telefone:</label>
+          <input type="text" id="inpTelefone_CPF"  placeholder="(11) 99999-9999">
+          <span id="errTel_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">CEP:</label>
+          <input type="text" id="inpCEP_CPF"  placeholder="ex: 00000-000">
+          <span id="errCep_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Número:</label>
+          <input type="text" id="inpNumero_CPF"  placeholder="ex: 99">
+          <span id="errNum_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Complemento:</label>
+          <input type="text" id="inpComplemento_CPF"  placeholder="ex: Bloco 2b">
+          <span id="errCom_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Logradouro:</label>
+          <input type="text" id="inpLogradouro_CPF"  placeholder="ex: Rua Vasconcelos">
+          <span id="errLog_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Bairro:</label>
+          <input type="text" id="inpBairro_CPF"  placeholder="ex: Vila Alpina">
+          <span id="errBair_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Cidade:</label>
+          <input type="text" id="inpCidade_CPF"  placeholder="ex: São Paulo">
+          <span id="errCid_CPF"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Estado:</label>
+          <input type="text" id="inpEstado_CPF"  placeholder="ex: SP">
+          <span id="errEst_CPF"></span>
+        </div>
+
+        <button class="submit-button" onclick="registerPerson()">Cadastrar</button>
+      </div>
+
+      <p class="login">Deseja cadastrar como Pessoa Jurídica? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
+    </div>
+
+      <div class="form-panel">
+        <img class="logo" src="../assets/icon/logo-dark.svg" alt="Logo CompostECO">
+
+        <div class="form-fields">
+          <div class="field-group">
+            <label for="inpCode">Código de ativação:</label>
+            <input type="text" id="inpCode_CNPJ" placeholder="ex: A1B2C3">
+            <span id="errCode_CNPJ"></span>
+          </div>
+          <div class="field-group">
+            <label for="inpCnpj">CNPJ:</label>
+            <input type="text" id="inpCnpj"  placeholder="00.000.000/0000-00">
+            <span id="errCnpj"></span>
+          </div>
+          <div class="field-group">
+            <label for="inpRazaoSocial">Razão Social:</label>
+            <input type="text" id="inpRazaoSocial_CNPJ"  placeholder="Ex: Empresa XYZ LTDA">
+            <span id="errRazaoSocial_CNPJ"></span>
+          </div>
+          <div class="field-group">
+            <label for="inpNomeFantasia">Nome Fantasia:</label>
+            <input type="text" id="inpNomeFantasia_CNPJ" placeholder="Ex: Fazendinha">
+            <span id="errNomeFantasia_CNPJ"></span>
+          </div>
+          <div class="field-group">
+          <label for="inpTelefone">Telefone:</label>
+          <input type="text" id="inpTelefone_CNPJ"  placeholder="(11) 99999-9999">
+          <span id="errTel_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">CEP:</label>
+          <input type="text" id="inpCEP_CNPJ"  placeholder="ex: 00000-000">
+          <span id="errCep_CNPJ"></span> 
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Número:</label>
+          <input type="text" id="inpNumero_CNPJ"  placeholder="ex: 99">
+          <span id="errNum_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Complemento:</label>
+          <input type="text" id="inpComplemento_CNPJ"  placeholder="">
+          <span id="errCom_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Logradouro:</label>
+          <input type="text" id="inpLogradouro_CNPJ"  placeholder="ex: Rua Vasconcelos">
+          <span id="errLog_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Bairro:</label>
+          <input type="text" id="inpBairro_CNPJ"  placeholder="ex: Vila Alpina">
+          <span id="errBair_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Cidade:</label>
+          <input type="text" id="inpCidade_CNPJ"  placeholder="ex: São Paulo">
+          <span id="errCid_CNPJ"></span>
+        </div>
+        <div class="field-group">
+          <label for="inpTelefone">Estado:</label>
+          <input type="text" id="inpEstado_CNPJ"  placeholder="ex: SP">
+          <span id="errEst_CNPJ"></span>
+        </div>
+
+          <button class="submit-button" onclick="registerCompany()">Cadastrar</button>
+        </div>
+
+        <p class="login">Deseja cadastrar como Pessoa Física? <span class="login-link" onclick="moveImage()">Clique aqui.</span></p>
+      </div>
+    </div>
+  </div>
+  <div id="popUp"></div>
+  <div class="code-container hidden" id="codeContainer">
+    <div class="">
+      <h2>Seu código de ativação é:</h2>
+      <h1 id="code">A7J8K0</h1>
+    </div>
+    <div class="">
+      <h3>Clique no botão abaixo para criar seu usuário utilizando seu código de ativação:</h3>
+      <button class="submit-button" onclick="window.location.href='../cadastro/index.html'">Criar conta</button>
+    </div>
+  </div>
+</body>
+
+</html>

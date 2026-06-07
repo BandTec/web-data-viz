@@ -14,13 +14,17 @@ function listar(req, res) {
   });
 }
 
-function buscarPorId(req, res) {
-  var id = req.params.id;
+function buscarPorId(req, res) {  //DEIXA AQUI
 
-  empresaModel.buscarPorId(id).then((resultado) => {
+  empresaModel.buscarPorId().then((resultado) => {
     res.status(200).json(resultado);
   });
 }
+
+
+
+
+
 
 function cadastrar(req, res) {
   var cnpj = req.body.cnpj;
@@ -39,9 +43,24 @@ function cadastrar(req, res) {
   });
 }
 
+async function buscarPorUsuario(req, res){
+  let id = req.params.id
+
+  if (!id){
+    res.status(400).send("Id do usuário está nulo ou undefined")
+  }
+
+  let dados = await empresaModel.buscarPorUsuario(id);
+  
+  res.status(200).json(dados)
+}
+
+
+
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
   listar,
+  buscarPorUsuario
 };

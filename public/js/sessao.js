@@ -14,7 +14,7 @@ function validarSessao() {
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location = "../../../index.html";
 }
 
 // carregamento (loading)
@@ -32,5 +32,20 @@ function finalizarAguardar(texto) {
         divErrosLogin.style.display = "flex";
         divErrosLogin.innerHTML = texto;
     }
+}
+
+async function adicionarNomeEmpresa() {
+    const nomeEmpresa = await fetch(`/empresas/buscarPorUsuario/${sessionStorage.ID_USUARIO}`).then(res => res.json()).catch(erro => console.log(erro))
+    const nomeUsuario = sessionStorage.NOME_USUARIO;
+    const nomeArray = nomeUsuario.split(" ")
+
+    if (nomeArray.length > 1){
+        siglaNome.innerHTML = `${nomeArray[0][0]}${nomeArray[1][0]}`;
+    }else if(nomeArray.length == 1){
+        siglaNome.innerHTML = `${nomeArray[0][0]}`;
+    }
+    nomeEmpresaId.innerHTML = `${nomeEmpresa[0].nome_empresa}`;
+    nomeUsuarioId.innerHTML = `${nomeUsuario}`;
+    nomeUsuarioHome.innerHTML = `Bem vindo, ${nomeUsuario}!`;
 }
 

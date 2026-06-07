@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | CompostEco</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <script src="../../js/sessao.js"></script>
+</head>
+
+<body onload="carregarCodigos()" class="page-body">
+
+  <aside class="sidebar">
+
+    <div class="group">
+      <p class="label">Produtor</p>
+      <div class="item active">
+          <i class="ph ph-farm icon" ></i>
+          <p class="medium" id="nomeEmpresaId"></p>
+      </div>
+      </div>
+
+    <div class="group">
+      <p class="label">Dashboard</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../index.html'">
+          <i class="ph ph-chart-line icon"></i>
+          <p>Visão Geral</p>
+        </div>
+        <div class="item" onclick="window.location.href='../alertas/index.html'">
+          <i class="ph ph-warning icon"></i>
+          <p>Alertas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Composteiras</p>
+      <div class="nav" id="composterContainer">
+        
+      </div>
+    </div>
+
+    <div class="group">
+      <p class="label">Suporte</p>
+      <div class="nav" onclick="window.location.href='../suporte/index.html'">
+        <div class="item">
+          <i class="ph ph-headset icon"></i>
+          <p class="text">Atendimento ao Cliente</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="avatar" id="siglaNome"></div>
+      <span id="nomeUsuarioId"></span>
+      <i class="ph ph-sign-out signout-icon" onclick="limparSessao()"></i>
+    </div>
+
+  </aside>
+
+
+  <main class="main-content">
+    <h1 class="page-greeting">Painel Códigos</h1>
+ 
+      <div class="composter-section">
+      
+      </div>      
+      <div class="composter-section" id="composter-section">
+        <button class="button-primary-dark" onclick="gerarCodigo()"><i class="ph-bold ph-plus"></i>Gerar código</button>
+        <div class="cards" id="containerCards">
+        </div>
+      </div>
+  </main>
+
+  <script src="script.js"></script>
+  
+</body>
+
+</html> 
