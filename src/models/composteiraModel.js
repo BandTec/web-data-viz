@@ -107,7 +107,7 @@ function buscarDadosGraficoMensal (id, userId) {
 }
 
 function buscarTodasComposteiras(id_user){
-  let instrucao = `SELECT id, produtor_id,modelo AS nome, descricao, capacidade_kg, criado_em  FROM composteira WHERE produtor_id = ${id_user}`;
+  let instrucao = `SELECT c.id, c.produtor_id, modelo AS nome, c.descricao, c.capacidade_kg, c.criado_em FROM composteira c JOIN produtor p ON c.produtor_id = p.id JOIN usuario u ON u.produtor_id = p.id WHERE u.id = ${id_user} AND c.desativado_em IS NULL AND p.desativado_em IS NULL AND u.desativado_em IS NULL`;
 
   return database.executar(instrucao)
 }
