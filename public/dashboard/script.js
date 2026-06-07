@@ -232,7 +232,26 @@ async function loadCharts () {
   })
 }
 
-function loadKPIs (kpis) {
+const priorities = {
+  0: {
+    class: "normal",
+    stableIndex: ", ",
+  },
+  1: {
+    class: "moderate",
+    stableIndex: ", ",
+  },
+  2: {
+    class: "danger",
+    stableIndex: " apenas ",
+  },
+  3: {
+    class: "urgent",
+    stableIndex: " apenas ",
+  },
+}
+
+async function loadKPIs (kpis) {
   const activeValueElement = document.getElementById("activeValue")
   const alertValueElement = document.getElementById("alertValue")
   const stableValueElement = document.getElementById("stableValue")
@@ -252,13 +271,28 @@ function loadKPIs (kpis) {
     taxaEstabilidade
   } = kpis
 
-  activeValueElement.innerText = qntComposteira
-  alertValueElement.innerText = qntComposteirasAlerta
-  stableValueElement.innerText = taxaEstabilidade + "%"
+  const totalComposters = (await pegarTodasComposteiras()).length
+  activeValueElement.innerHTML = `<span>${qntComposteira}</span>`
+  alertValueElement.innerHTML = `<span class='${getStatus("active", (100 - (qntComposteirasAlerta / qntComposteira * 100))).class}'>${qntComposteirasAlerta}</span>`
+  stableValueElement.innerHTML =`<span class='${getStatus("active", taxaEstabilidade).class}'>${taxaEstabilidade}%</span>`
 
-  activeDescElement.innerHTML = descriptionTexts.active[0] + qntComposteira + descriptionTexts.active[1]
-  alertDescElement.innerHTML = descriptionTexts.alert[0] + qntComposteirasAlerta + descriptionTexts.alert[1]
-  stableDescElement.innerHTML = descriptionTexts.stable[0] + (100 - taxaEstabilidade) + descriptionTexts.stable[1]
+  activeDescElement.innerHTML = `<p class="desc" id="activeDescription">De ${totalComposters} caixa(s) de vermicompostagem, ${qntComposteira} está(ão) sendo monitorada(s).</p>`
+  
+  alertDescElement.innerHTML = `<p class="desc " id="alertDescription">De ${totalComposters} composteira(s) ativa(s), ${qntComposteirasAlerta} está(ão) <span class="${getStatus("active", (100 - (qntComposteirasAlerta / qntComposteira * 100))).class}">fora</span> das condições ideais.</p>`
+
+  stableDescElement.innerHTML = `<p class="desc " id="stableDescription">Suas composteiras passam <span class="${getStatus("active", taxaEstabilidade).class}">${(100 - taxaEstabilidade)}% do tempo fora</span> das condições ideais.</p>`
+}
+
+function getStatus (parameter, data) {
+  console.log(parameter, data)
+  if ((parameter === "active") && (Number(data) >= 90))
+    return priorities[0]
+  if ((parameter === "active") && (Number(data) >= 60))
+    return priorities[1]
+  if ((parameter === "active") && (Number(data) >= 50))
+    return priorities[2]
+  if (parameter === "active")
+    return priorities[3]
 }
 
 function loadCompostersSidebar (composters) {

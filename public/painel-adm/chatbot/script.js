@@ -17,7 +17,7 @@ const sendMessage = async () => {
   const userMessage = document.getElementById('inpMessage').value.trim()
 
   if (!userMessage)
-    return showToast("Digite uma mensagem.", "error")
+    return alert("Digite uma mensagem")
   
   messageElement.value = ""
   buttonElement.disabled = true
@@ -41,7 +41,7 @@ const sendMessage = async () => {
     saveMessage(responseMessage)
     
   } catch {
-    showToast("Algo deu errado. Tente novamente mais tarde.", "error")
+    alert("Algo deu errado. Tente novamente mais tarde.")
   }
 
   buttonElement.disabled = false

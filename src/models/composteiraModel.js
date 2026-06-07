@@ -92,7 +92,7 @@ function buscarDadosGraficoTempoReal (id, userId) {
 }
 
 function buscarDadosGraficoHoje (id, userId) {
-  const instrucaoSql = `select temperatura, umidade, hora_registro from vw_media_por_hora where id_composteira = ${id} order by hora_registro desc`
+  const instrucaoSql = `select temperatura, umidade, hora_registro from vw_media_por_hora_composteira where id_composteira = ${id} order by hora_registro desc`
   return database.executar(instrucaoSql);
 }
 

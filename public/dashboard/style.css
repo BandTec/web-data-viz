@@ -316,29 +316,36 @@ body {
   font-size: 2.2rem;
 }
 
-.composter-section .cards .card .danger {
+.urgent {
   color: var(--danger-dark);
 }
 
-.composter-section .cards .card .success {
-  color: var(--lime-600);
+.danger {
+  color: var(--danger-base);
 }
 
-.composter-section .cards .card .warning {
-  color: var(--warning-dark);
+.moderate {
+  color: var(--warning-base);
 }
 
+.normal {
+  color: var(--lime-500);
+}
 
-.composter-section .cards > .danger {
+.composter-section .cards .card:has(.urgent) {
   border: var(--danger-dark) 3px solid;
 }
 
-.composter-section .cards > .success {
-  border: var(--lime-600) 3px solid;
+.composter-section .cards .card:has(.danger) {
+  border: var(--danger-base) 3px solid;
 }
 
-.composter-section .cards > .warning {
-  border: var(--warning-dark) 3px solid;
+.composter-section .cards .card:has(.normal) {
+  border: var(--lime-500) 3px solid;
+}
+
+.composter-section .cards .card:has(.moderate) {
+  border: var(--warning-base) 3px solid;
 }
 
 .composter-section .cards .heading {
