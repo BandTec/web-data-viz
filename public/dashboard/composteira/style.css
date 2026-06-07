@@ -306,7 +306,7 @@ body {
   margin-bottom: -2.2rem;
   background-color: transparent;
   border-radius: 10px;
-  border: none;
+  /* border: none; */
   padding: 4px;
   field-sizing: content;
   width: fit-content;
