@@ -33,6 +33,7 @@ async function carregarCodigos() {
   const containerElemento = document.getElementById("containerCards")
   const codigos = await fetch(`/codigo/buscar/${userId}`).then(res => res.json()).catch(err => console.error(err))
 
+  adicionarNomeEmpresa()
   let html = ""
   codigos.forEach(codigo => {
     console.log(codigo)

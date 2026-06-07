@@ -25,7 +25,7 @@ function cadastrar(razaoSocial, cnpj) {
 }
 
 function buscarPorUsuario(id) {
-  var instrucaoSql = `SELECT p.id as id FROM produtor p JOIN usuario u ON u.produtor_id = p.id WHERE u.id = ${id}`;
+  var instrucaoSql = `SELECT p.id as id, IFNULL(p.nome, razao_social) AS nome_empresa FROM produtor p JOIN usuario u ON u.produtor_id = p.id WHERE u.id = ${id}`;
 
   return database.executar(instrucaoSql);
 }

@@ -13,14 +13,15 @@
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <script src="../../js/sessao.js"></script>
 </head>
 <body onload="atualizarOptions()" class="page-body">
   <aside class="sidebar">
     <div class="group">
       <p class="label">ADMINISTRADOR</p>
-      <div class="item">
+      <div class="item" >
         <i class="ph ph-farm icon"></i>
-        <p class="medium">ADM Composteco</p>
+        <p class="medium" id="nomeEmpresaId"></p>
       </div>
     </div>
     <div class="group">
@@ -47,15 +48,15 @@
     <div class="group">
       <p class="label">Suporte</p>
       <div class="nav">
-        <div class="item">
+        <div class="item" onclick="window.location.href='../chatbot/index.html'">
           <i class="ph ph-headset icon"></i>
           <p class="text">Suporte - Bob IA</p>
         </div>
       </div>
     </div>
     <div class="sidebar-user">
-      <div class="avatar">AC</div>
-      <span>ADMINISTRADOR</span>
+      <div class="avatar" id="siglaNome"></div>
+      <span id="nomeUsuarioId"></span>
       <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
     </div>
   </aside>

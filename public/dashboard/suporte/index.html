@@ -14,7 +14,8 @@
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
-  
+  <script src="../../js/sessao.js"></script>
+
 </head>
 
 <body onload="loadSide()" class="page-body">
@@ -24,8 +25,8 @@
     <div class="group">
       <p class="label">Produtor</p>
       <div class="item" onclick="window.location.href='../codigos/index.html'">
-          <i class="ph ph-farm icon"></i>
-          <p class="medium">Fazendinha LTDA</p>
+        <i class="ph ph-farm icon"></i>
+        <p class="medium" id="nomeEmpresaId"></p>
       </div>
     </div>
 
@@ -53,7 +54,7 @@
     <div class="group">
       <p class="label">Suporte</p>
       <div class="nav">
-        <div class="item">
+        <div class="item" onclick="window.location.href='../suporte/index.html'">
           <i class="ph ph-headset icon"></i>
           <p class="text">Atendimento ao Cliente</p>
         </div>
@@ -61,9 +62,9 @@
     </div>
 
     <div class="sidebar-user">
-      <div class="avatar">JL</div>
-      <span>Júlia Lima</span>
-      <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
+      <div class="avatar" id="siglaNome"></div>
+      <span id="nomeUsuarioId"></span>
+      <i class="ph ph-sign-out signout-icon" onclick="limparSessao()"></i>
     </div>
 
   </aside>
@@ -73,12 +74,14 @@
       <h1>Contate-nos:</h1>
     </div>
     <div class="button-support">
-      <button onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/436499c6-6262-4a7c-a9e7-1a150690102c'">
-      Incidente
-    </button>
-    <button onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/cdb4c1ae-b55d-46f1-bac3-c1b93210b95a'">
-      Requisição
-    </button>
+      <button
+        onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/436499c6-6262-4a7c-a9e7-1a150690102c'">
+        Incidente
+      </button>
+      <button
+        onclick="window.location.href='https://composteco.atlassian.net/jira/software/form/cdb4c1ae-b55d-46f1-bac3-c1b93210b95a'">
+        Requisição
+      </button>
     </div>
   </main>
 

@@ -68,7 +68,7 @@ body {
   gap: 0.5rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between; 
   height: 100dvh;
   z-index: 40;
   overflow-y: auto;

@@ -180,6 +180,7 @@ async function loadCharts() {
   const composteiras = await getComposters();
 
   loadCompostersSidebar(composteiras)
+  adicionarNomeEmpresa()
   const { apiResponse } = composter
   console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
 

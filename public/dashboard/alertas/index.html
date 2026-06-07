@@ -19,13 +19,13 @@
 
 <body onload="loadAlerts()" class="page-body">
 
-  <aside class="sidebar">
+   <aside class="sidebar">
 
     <div class="group">
       <p class="label">Produtor</p>
       <div class="item" onclick="window.location.href='../codigos/index.html'">
         <i class="ph ph-farm icon"></i>
-        <p class="medium">Fazendinha LTDA</p>
+        <p class="medium" id="nomeEmpresaId"></p>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
           <i class="ph ph-chart-line icon"></i>
           <p>Visão Geral</p>
         </div>
-        <div class="item active">
+        <div class="item" onclick="window.location.href='../alertas/index.html'">
           <i class="ph ph-warning icon"></i>
           <p>Alertas</p>
         </div>
@@ -46,7 +46,7 @@
     <div class="group">
       <p class="label">Composteiras</p>
       <div class="nav" id="composterContainer">
-        
+
       </div>
     </div>
 
@@ -61,8 +61,8 @@
     </div>
 
     <div class="sidebar-user">
-      <div class="avatar">JL</div>
-      <span>Júlia Lima</span>
+      <div class="avatar" id="siglaNome"></div>
+      <span id="nomeUsuarioId"></span>
       <i class="ph ph-sign-out signout-icon" onclick="limparSessao()"></i>
     </div>
 
