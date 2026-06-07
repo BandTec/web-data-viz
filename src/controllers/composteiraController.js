@@ -85,11 +85,20 @@ async function buscarDadosDashboard (req, res) {
   const taxaEstabilidade = await composteiraModel.buscarTaxaEstabilidade(id)
   const buscarDadosComposteira = await composteiraModel.buscarDadosComposteira(id)
 
-  console.log(buscarDadosComposteira)
+  let indiceSaude = ""
+  if (taxaEstabilidade[0].tempo >= 90)
+    indiceSaude = "Saudável"
+  else if (taxaEstabilidade[0].tempo >= 60)
+    indiceSaude = "Sem risco"
+  else if (taxaEstabilidade[0].tempo >= 50)
+    indiceSaude = "Em risco"
+  else
+    indiceSaude = "Crítico"
+
   const response = {
     "dados": buscarDadosComposteira[0],
     "ultimaDeteccao": ultimaDeteccao[0],
-    "indiceSaude": "Em risco",
+    "indiceSaude": indiceSaude,
     "taxaEstabilidade": {
       "taxa": taxaEstabilidade[0].tempo,
       "total": taxaEstabilidade[0].qntTotal,

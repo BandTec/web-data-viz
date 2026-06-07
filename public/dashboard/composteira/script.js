@@ -227,7 +227,8 @@ const priorities = {
     icon: "info",
     temperature: "dentro da faixa ideal",
     humidity: "dentro da faixa ideal",
-    stableIndex: ", "
+    stableIndex: ", ",
+    healthIndex: "condições ideais"
   },
   1: {
     class: "moderate",
@@ -235,7 +236,8 @@ const priorities = {
     icon: "warning-diamond",
     temperature: "levemente fora da faixa ideal",
     humidity: "levemente fora da faixa ideal",
-    stableIndex: ", "
+    stableIndex: ", ",
+    healthIndex: "sem risco eminente"
   },
   2: {
     class: "danger",
@@ -243,7 +245,8 @@ const priorities = {
     icon: "warning",
     temperature: "fora da faixa ideal",
     humidity: "fora da faixa ideal",
-    stableIndex: " apenas "
+    stableIndex: " apenas ",
+    healthIndex: "risco elevado"
   },
   3: {
     class: "urgent",
@@ -251,7 +254,8 @@ const priorities = {
     icon: "warning-octagon",
     temperature: "totalmente fora da faixa ideal",
     humidity: "totalmente fora da faixa ideal",
-    stableIndex: " apenas "
+    stableIndex: " apenas ",
+    healthIndex: "risco crítico"
   },
 }
 
@@ -332,7 +336,7 @@ function loadKpis (data) {
         <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
       </h1>
       <h2 class="${getStatus("healthIndex", healthIndex).class}">${healthIndex}</h2>
-      <p class="desc">Indica <span class=""> risco elevado </span> para a
+      <p class="desc">Indica <span class=""> ${getStatus("healthIndex", healthIndex).healthIndex} </span> para a
         atividade biológica.</p>
     </div>
     <div class="card" id='stableIndexCard'>
@@ -394,13 +398,13 @@ function getStatus (parameter, data) {
   if (parameter === "stableIndex")
     return priorities[3]
 
-  if (parameter === "healthIndex" && data === "")
+  if (parameter === "healthIndex" && data === "Saudável")
     return priorities[0]
-  if (parameter === "healthIndex" && data === "")
+  if (parameter === "healthIndex" && data === "Sem risco")
     return priorities[1]
-  if (parameter === "healthIndex" && data === "")
-    return priorities[2]
   if (parameter === "healthIndex" && data === "Em risco")
+    return priorities[2]
+  if (parameter === "healthIndex" && data === "Crítico")
     return priorities[3]
 }
 
