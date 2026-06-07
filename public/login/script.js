@@ -22,6 +22,7 @@ function login () {
     // se o status do retorno da api for ok, ele transforma o retorno em json e armazena os dados contidos no localStorage
     if (res.ok) {
       res.json().then(json => { 
+        sessionStorage.ID_PRODUTOR = json[0].id_produtor
         sessionStorage.EMAIL_USUARIO = json[0].email
         sessionStorage.NOME_USUARIO = json[0].nome
         sessionStorage.ID_USUARIO = json[0].id
