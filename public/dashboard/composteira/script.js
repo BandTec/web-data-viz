@@ -149,9 +149,6 @@ async function getComposter() {
   const chartData = await fetch(`/composteira/grafico/${composterId}?tipo=hoje`)
   .then(res => res.json())
   .catch(err => console.error(err))
-  
-  
-  console.log(chartData)
 
   return {
     apiResponse,
@@ -179,9 +176,10 @@ async function loadCharts() {
   const composter = await getComposter();
   const composteiras = await getComposters();
 
+  console.log(composter)
+
   loadCompostersSidebar(composteiras)
   const { apiResponse } = composter
-  console.log(apiResponse.ultimaDeteccao.temperatura, apiResponse.ultimaDeteccao.umidade, apiResponse.indiceSaude, apiResponse.taxaEstabilidade)
 
   if (!key) load(apiResponse)
 
@@ -199,7 +197,7 @@ addDefaultValues()
 loadHistoric()
 
 async function getComposters() {
- let dado = await fetch(`/composteira/pegarTodas/${sessionStorage.ID_USUARIO}`).then(res => res.json()).catch(erro => console.log(erro))
+ let dado = await fetch(`/composteira/pegarTodas/${sessionStorage.ID_USUARIO}`).then(res => res.json()).catch(erro => console.error(erro))
   return dado;
 }
 
@@ -227,7 +225,8 @@ const priorities = {
     icon: "info",
     temperature: "dentro da faixa ideal",
     humidity: "dentro da faixa ideal",
-    stableIndex: ", "
+    stableIndex: ", ",
+    healthIndex: "condições ideais"
   },
   1: {
     class: "moderate",
@@ -235,7 +234,8 @@ const priorities = {
     icon: "warning-diamond",
     temperature: "levemente fora da faixa ideal",
     humidity: "levemente fora da faixa ideal",
-    stableIndex: ", "
+    stableIndex: ", ",
+    healthIndex: "sem risco eminente"
   },
   2: {
     class: "danger",
@@ -243,7 +243,8 @@ const priorities = {
     icon: "warning",
     temperature: "fora da faixa ideal",
     humidity: "fora da faixa ideal",
-    stableIndex: " apenas "
+    stableIndex: " apenas ",
+    healthIndex: "risco elevado"
   },
   3: {
     class: "urgent",
@@ -251,7 +252,8 @@ const priorities = {
     icon: "warning-octagon",
     temperature: "totalmente fora da faixa ideal",
     humidity: "totalmente fora da faixa ideal",
-    stableIndex: " apenas "
+    stableIndex: " apenas ",
+    healthIndex: "risco crítico"
   },
 }
 
@@ -332,7 +334,7 @@ function loadKpis (data) {
         <i class="ph-bold ph-heartbeat icon"></i>Índice de saúde
       </h1>
       <h2 class="${getStatus("healthIndex", healthIndex).class}">${healthIndex}</h2>
-      <p class="desc">Indica <span class=""> risco elevado </span> para a
+      <p class="desc">Indica <span class=""> ${getStatus("healthIndex", healthIndex).healthIndex} </span> para a
         atividade biológica.</p>
     </div>
     <div class="card" id='stableIndexCard'>
@@ -343,7 +345,6 @@ function loadKpis (data) {
       <p class="desc">De <span class="">${stableIndex.total}</span> detecções registradas nas últimas 24 horas${getStatus("stableIndex", stableIndex.taxa).stableIndex}<span class="">${stableIndex.dentro}</span> estão em condições ideais para a atividade biológica.</p>
     </div>
   `
-console.log(`${getStatus("stableIndex", stableIndex).stableIndex}`)
   cardContainerNd.innerHTML = `
     <div class="card" id='temperatureCard'>
       <h1 class="heading">
@@ -364,11 +365,9 @@ console.log(`${getStatus("stableIndex", stableIndex).stableIndex}`)
         atividade biológica.</p>
     </div>
   `
-  console.log(`<h2 class="${getStatus("humidity", humidity).class}">${humidity}%</h2>`)
 }
 
 function getStatus (parameter, data) {
-  console.log(parameter, data)
   if ((parameter === "temperature") && (Number(data) >= 20 && Number(data) <= 25))
     return priorities[0]
   if ((parameter === "temperature") && (Number(data) > 25 && Number(data) <= 30))
@@ -394,13 +393,13 @@ function getStatus (parameter, data) {
   if (parameter === "stableIndex")
     return priorities[3]
 
-  if (parameter === "healthIndex" && data === "")
+  if (parameter === "healthIndex" && data === "Saudável")
     return priorities[0]
-  if (parameter === "healthIndex" && data === "")
+  if (parameter === "healthIndex" && data === "Sem risco")
     return priorities[1]
-  if (parameter === "healthIndex" && data === "")
-    return priorities[2]
   if (parameter === "healthIndex" && data === "Em risco")
+    return priorities[2]
+  if (parameter === "healthIndex" && data === "Crítico")
     return priorities[3]
 }
 
@@ -419,7 +418,6 @@ function resetButtons (type) {
     'mensal': buttons[3]
   }
 
-  buttons.forEach(btn => console.log(btn))
   buttons.forEach(btn => btn.classList.add("less"))
 
   btnTypes[type].classList.remove("less")
@@ -432,7 +430,6 @@ async function changeChart (type) {
   const chartData = await fetch(`/composteira/grafico/${composterId}?tipo=${type}`)
   .then(res => res.json())
   .catch(err => console.error(err))
-  console.log(chartData)
 
   let time = chartData.hora_registro.reverse()
   if (type === "hoje") {
@@ -549,12 +546,11 @@ async function alterarDados(){
       id: id_composteira
     }
 
-    fetch("/composteira/alterarDadosUsuarioComum", {
+    await fetch("/composteira/alterarDadosUsuarioComum", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
-    }).then(res => console.log("Resposta do servidor:", res.status))
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    }).then(res => alert("Dados alterados com sucesso!"))
   }
 
 changeChart("hoje")
