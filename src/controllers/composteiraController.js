@@ -132,6 +132,20 @@ async function buscarDadosAtualizados (req, res) {
   
 }
 
+async function buscarTodasComposteirasController(req, res){
+  let id = req.params.id;
+
+  if (!id){
+    console.log("dado nulo ou inválido")
+    res.status(400).json("dado nulo ou inválido")
+  }
+
+  let dado = await composteiraModel.buscarTodasComposteiras(id);
+
+  console.log("todas composteiras: ", dado)
+  res.status(200).json(dado)
+}
+
 module.exports = {
   buscarPorIdComposteira,
   desativarComposteira,
@@ -139,5 +153,6 @@ module.exports = {
   alterarDados,
   buscarDadosDashboard,
   buscarHistorico,
-  buscarDadosAtualizados
+  buscarDadosAtualizados,
+  buscarTodasComposteirasController
 }
