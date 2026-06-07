@@ -22,10 +22,6 @@ async function dadosGraficoController(req, res) {
     await graficoModel.pegarComposteirasAlerta(id_user).then(async (respostaComposteiraAlerta) => {
         if (respostaComposteiraAlerta.length > 0) {
             composteiraAlerta = respostaComposteiraAlerta[0].composteira_em_alerta
-        } else {
-            console.log("não tem alerta")
-            throw new Error();
-            return
         }
     }).catch((erro) => {
 
@@ -34,10 +30,6 @@ async function dadosGraficoController(req, res) {
     await graficoModel.pegarTaxaEstabilidade(id_user).then(async (respostaTaxa) => {
         if (respostaTaxa.length > 0) {
             taxa = respostaTaxa[0].quantidade_deteccoes_faixa_ideal
-        } else {
-            console.log("Taxa não existe")
-            throw new Error();
-            return
         }
     }).catch((erro) => {
         console.log("Erro ao pegar taxa")
@@ -74,10 +66,6 @@ async function dadosGraficoController(req, res) {
                                 horaComposteira[horaComposteira.length] = inserirHora
                                 temperaturaComposteira[temperaturaComposteira.length] = inserirTemperatura
                                 umidadeComposteira[umidadeComposteira.length] = inserirUmidade
-                            } else {
-                                console.log("não tem composteira")
-                                throw new Error();
-                                return
                             }
                         }).catch((erro) => {
                             console.log(`Erro ao pegar a média da composteira  ${respostaMedia[i].nome}`)
@@ -88,10 +76,6 @@ async function dadosGraficoController(req, res) {
                         await graficoModel.pegarUltimoRegistro(id_user, idComposteiras[i]).then(async (respostaUltimoRegistro) => {
                             if (respostaMedia.length > 0) {
                                 ultimoRegistro[ultimoRegistro.length] = respostaUltimoRegistro[0]
-                            } else {
-                                console.log("não tem composteira")
-                                throw new Error();
-                                return
                             }
                         }).catch((erro) => {
                             console.log(`Erro ao pegar os dados do ultimo dregistro da ${nomeComposteiras[i]}`)
@@ -99,20 +83,12 @@ async function dadosGraficoController(req, res) {
                             res.status(400).json(`Erro ao pegar os dados do ultimo dregistro da ${nomeComposteiras[i]}`)
                         })
                     }
-                } else {
-                    console.log("não tem composteira")
-                    throw new Error();
-                    return
                 }
             }).catch((erro) => {
                 console.log("Erro ao pegar as médias por hora")
                 console.log(erro)
                 res.status(400).json("Erro ao pegar as médias por hora")
             })
-        } else {
-            console.log("não tem composteira")
-            throw new Error();
-            return
         }
     }).catch((erro) => {
         console.log("Erro ao pegar quantidade de composteiras")
