@@ -509,3 +509,13 @@ border-radius: 10px;
 .save-btn:hover {
   color: var(--lime-900);
 }
+
+.composter-section .cards .card.disabled {
+  opacity: 0.6;
+}
+
+.sensor-desativado {
+  color: var(--danger-base);
+  font-weight: bold;
+  margin-top: 8px;
+}

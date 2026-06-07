@@ -36,7 +36,7 @@ var database = require("../database/config")
 
 
 function buscarPorIdComposteira(id){
-  var instrucaoSql = `SELECT * FROM composteira WHERE produtor_id=${id} and desativado_em is null order by criado_em desc;`
+  var instrucaoSql = `SELECT * FROM composteira WHERE produtor_id=${id} and desativado_em is null order by criado_em desc LIMIT 1;`
   return database.executar(instrucaoSql);
 }
 
@@ -57,9 +57,10 @@ function alterarDados(modelo, descricao, capacidade, id){
 }
 
 
+
 module.exports = {
  buscarPorIdComposteira,
  desativarComposteira,
  cadastrarComposteira,
- alterarDados
+ alterarDados,
 };

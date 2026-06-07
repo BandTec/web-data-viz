@@ -1,119 +1,3 @@
-const { json } = require("express")
-
-const limitParameters = {
-  temperature: {
-    min: 0,
-    max: 45,
-  },
-  humidity: {
-    min: 0,
-    max: 100
-  }
-}
-
-const temperatureBackgroundZonesPlugin = {
-  id: 'temperatureBackgroundZones',
-  beforeDraw: (chart) => {
-    const { ctx, chartArea, scales } = chart
-    const yScale = scales.y
-
-    const { left, right } = chartArea
-
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(30), 
-      right - left,
-      yScale.getPixelForValue(limitParameters.temperature.max) - yScale.getPixelForValue(30)
-    )
-
-    ctx.fillStyle = 'rgba(255, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(15),
-      right - left,
-      yScale.getPixelForValue(20) - yScale.getPixelForValue(15)
-    )
-
-    ctx.fillStyle = 'rgba(0, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(20),
-      right - left,
-      yScale.getPixelForValue(25) - yScale.getPixelForValue(20)
-    )
-
-    ctx.fillStyle = 'rgba(255, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(25),
-      right - left,
-      yScale.getPixelForValue(30) - yScale.getPixelForValue(25)
-    )
-
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(limitParameters.temperature.min), 
-      right - left,
-      yScale.getPixelForValue(15) - yScale.getPixelForValue(limitParameters.temperature.min)
-    )
-  }
-}
-
-const humidityBackgroundZonesPlugin = {
-  id: 'humidityBackgroundZones',
-  beforeDraw: (chart) => {
-    const { ctx, chartArea, scales } = chart
-    const yScale = scales.y
-
-    const { left, right } = chartArea
-
-    ctx.save()
-
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(90), 
-      right - left,
-      yScale.getPixelForValue(limitParameters.humidity.max) - yScale.getPixelForValue(90)
-    )
-
-    ctx.fillStyle = 'rgba(255, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(85),
-      right - left,
-      yScale.getPixelForValue(90) - yScale.getPixelForValue(85)
-    )
-
-    ctx.fillStyle = 'rgba(0, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(70),
-      right - left,
-      yScale.getPixelForValue(85) - yScale.getPixelForValue(70)
-    )
-
-    ctx.fillStyle = 'rgba(255, 255, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(60),
-      right - left,
-      yScale.getPixelForValue(70) - yScale.getPixelForValue(60)
-    )
-
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.1)'
-    ctx.fillRect(
-      left,
-      yScale.getPixelForValue(limitParameters.temperature.min), 
-      right - left,
-      yScale.getPixelForValue(60) - yScale.getPixelForValue(limitParameters.humidity.min)
-    )
-
-    ctx.restore()
-  }
-}
 
 let showInfo = false
 function toggleShowInfo() {
@@ -318,3 +202,159 @@ async function alterarDados(indice){
   }
 
 
+  function pegaComposteiras() {
+  return fetch(`/composteira/buscarPorIdComposteira/${produtores.value}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(data => data.json()
+  .then(json => json))
+}
+
+async function atualizarOptionsSensor() {
+  const composteiraElemento = document.getElementById('composteiras')
+
+  const dados = await pegaComposteiras()
+
+  dados.forEach(dado => {
+    composteiraElemento.innerHTML += `<option value="${dado.id}">${dado.modelo} — ${dado.descricao}</option>`
+  })
+}
+
+function selecionarSensor() {
+  const section = document.getElementById("sensor-section")
+
+  if (composteiras.value == 0) {
+    section.classList.add("hidden")
+    return
+  } else {
+    section.classList.remove("hidden")
+  }
+
+  fetch(`/sensor/buscarSensor/${composteiras.value}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(resposta => resposta.json())
+  .then(listaDeSensores => {
+    containerCards.innerHTML = `
+      <div class="card add-form">
+        <h1 class="heading">
+          <label for='novoModeloSensor'>Modelo:</label>
+          <input type="text" id="novoModeloSensor">
+          <i class="ph ph-check icon save-btn" onclick="cadastrarNovoSensor()"></i>
+        </h1>
+      </div>
+    `
+
+listaDeSensores.forEach(item => {
+  const desativado = item.desativado_em !== null
+  containerCards.innerHTML += `
+    <div class="card success ${desativado ? 'disabled' : ''}">
+      <h1 class="heading">
+        <i class="ph ph-thermometer-simple icon"></i>
+        <label for='modeloSensorAtual'>Modelo:</label>
+        <P>Composteira ID: ${item.composteira_id}</p>
+        <span><input type="text" id="modeloSensorAtual-${item.id}" value="${item.modelo_sensor}" ${desativado ? 'disabled' : `onblur="alterarSensor(${item.id})"`}> ID:</span>
+        <p id="idSensor">${item.id}</p>
+        ${desativado ? '' : `<i class="ph ph-trash icon delete-icon" onclick="desativarSensor(${item.id})"></i>`}
+      </h1>
+      ${desativado ? '<p class="sensor-desativado">SENSOR DESATIVADO</p>' : ''}
+    </div>
+  `
+})
+  })
+  .catch(erro => console.error("Erro ao buscar:", erro))
+}
+
+async function desativarSensor(id) {
+  try {
+    const response = await fetch(`/sensor/desativarSensor/${id}`, {
+      method: "PUT"
+    })
+
+    if (response.ok) {
+      selecionarSensor()
+    } else {
+      console.error("Deu erro dog")
+    }
+  }
+  catch (error) {
+    console.error("deu erro bixo:", error)
+  }
+}
+
+async function cadastrarNovoSensor() {
+  const modelo = novoModeloSensor.value
+  const composteira_id = composteiras.value
+
+  if (modelo == '') {
+    alert("Modelo é necessário para o cadastro")
+    return
+  }
+
+  const sensores = await fetch(`/sensor/buscarSensor/${composteira_id}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+}).then(r => r.json())
+
+  const sensorAtivo = sensores.filter(s => s.desativado_em === null)[0]
+
+  const body = {
+    composteira_id: composteira_id,
+    modelo_sensor: modelo
+  }
+
+  const res = await fetch("/sensor/cadastrarSensor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  })
+
+  if (res.ok) {
+    alert("Sensor cadastrado com sucesso!")
+    selecionarSensor()
+  } else {
+    console.error("Erro ao cadastrar")
+  }
+}
+
+async function alterarSensor(indice) {
+  let mod = document.getElementById("modeloSensorAtual-" + indice).value
+  let composteira_id = composteiras.value
+
+  if (mod == '' || composteira_id == '') {
+    alert("Não pode deixar em branco!")
+    window.location.reload()
+    return
+  }
+
+  const body = {
+    id: indice,
+    composteira_id: composteira_id,
+    modelo_sensor: mod
+  }
+
+  fetch("/sensor/alterarSensor", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  })
+}
+
+async function deletarSensor(id) {
+  try {
+    const response = await fetch(`/sensor/deletarSensor/${id}`, {
+      method: "DELETE"
+    })
+
+    if (response.ok) {
+      selecionarSensor()
+    } else {
+      console.error("Deu erro dog")
+    }
+  }
+  catch (error) {
+    console.error("deu erro bixo:", error)
+  }
+}

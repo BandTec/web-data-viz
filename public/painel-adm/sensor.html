@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensores | CompostEco</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="../public/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+</head>
+<body onload="atualizarOptions()" class="page-body">
+  <aside class="sidebar">
+    <div class="group">
+      <p class="label">ADMINISTRADOR</p>
+      <div class="item">
+        <i class="ph ph-farm icon"></i>
+        <p class="medium">ADM Composteco</p>
+      </div>
+    </div>
+    <div class="group">
+      <p class="label">Painel</p>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../index.html'">
+          <i class="ph ph-cube icon"></i>
+          <p>Composteiras</p>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='index.html'">
+          <i class="ph ph-thermometer-simple icon"></i>
+          <p>Sensores</p>
+        </div>
+      </div>
+      <div class="nav">
+        <div class="item" onclick="window.location.href='../codigos/index.html'">
+          <i class="ph ph-numpad icon"></i>
+          <p>Códigos</p>
+        </div>
+      </div>
+    </div>
+    <div class="group">
+      <p class="label">Suporte</p>
+      <div class="nav">
+        <div class="item">
+          <i class="ph ph-headset icon"></i>
+          <p class="text">Suporte - Bob IA</p>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-user">
+      <div class="avatar">AC</div>
+      <span>ADMINISTRADOR</span>
+      <i class="ph ph-sign-out signout-icon" onclick="window.location.href='../../login/index.html'"></i>
+    </div>
+  </aside>
+  <main class="main-content">
+    <h1 class="page-greeting">Painel Sensores</h1>
+
+    <div class="composter-section">
+      <h1 class="title">Escolha um usuário:</h1>
+      <div class="cards">
+        <select name="usuário" id="produtores" class="select-produtor" onchange="atualizarOptionsSensor()">
+          <option value="0">Nenhum</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="composter-section">
+      <h1 class="title">Escolha uma composteira:</h1>
+      <div class="cards">
+        <select name="composteira" id="composteiras" class="select-produtor" onchange="selecionarSensor()">
+          <option value="0">Nenhuma</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="composter-section hidden" id="sensor-section">
+      <h1 class="title">Sensores</h1>
+      <div class="cards" id="containerCards">
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

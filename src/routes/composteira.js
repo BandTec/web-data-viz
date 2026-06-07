@@ -18,10 +18,6 @@ var composteiraController = require("../controllers/composteiraController");
 // })
 
 
-
-
-
-// GABRIEL
   router.get("/buscarPorIdComposteira/:id", function (req, res) {
     composteiraController.buscarPorIdComposteira(req, res)
   });
@@ -40,3 +36,4 @@ var composteiraController = require("../controllers/composteiraController");
   
 
 module.exports = router;
+
