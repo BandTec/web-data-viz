@@ -126,10 +126,17 @@ async function getKpis() {
   return dado;
 } 
 
+async function pegarTodasComposteiras(){
+  let dado = await fetch(`/composteira/pegarTodas/${sessionStorage.ID_USUARIO}`).then(res => res.json()).catch(erro => console.log(erro))
+  return dado;
+}
+
 async function loadCharts () {
   const dados = await getKpis();
+  const composteirasDados = await pegarTodasComposteiras();
   const { kpis, composteiras } = dados
-  loadCompostersSidebar(composteiras)
+  console.log(composteirasDados, "aspdkasodkopsak")
+  loadCompostersSidebar(composteirasDados)
   loadCompostersSummary(composteiras)
   loadKPIs(kpis)
 

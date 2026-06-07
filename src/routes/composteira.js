@@ -34,5 +34,8 @@ router.get("/grafico/:id", function (req, res) {
 router.get("/historico/:id", function (req, res) {
   composteiraController.buscarHistorico(req, res);
 })
+router.get("/pegarTodas/:id", function (req, res) {
+  composteiraController.buscarTodasComposteirasController(req, res);
+})
 
 module.exports = router;

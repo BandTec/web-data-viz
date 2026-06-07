@@ -106,6 +106,12 @@ function buscarDadosGraficoMensal (id, userId) {
   return database.executar(instrucaoSql);
 }
 
+function buscarTodasComposteiras(id_user){
+  let instrucao = `SELECT id, produtor_id,modelo AS nome, descricao, capacidade_kg, criado_em  FROM composteira WHERE produtor_id = ${id_user}`;
+
+  return database.executar(instrucao)
+}
+
 module.exports = {
   buscarPorIdComposteira,
   desativarComposteira,
@@ -120,5 +126,6 @@ module.exports = {
   buscarDadosGraficoTempoReal,
   buscarDadosGraficoHoje,
   buscarDadosGraficoSeteDias,
-  buscarDadosGraficoMensal
+  buscarDadosGraficoMensal,
+  buscarTodasComposteiras
 };
