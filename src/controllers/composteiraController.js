@@ -167,6 +167,8 @@ async function buscarTodasComposteirasController(req, res){
   res.status(200).json(dado)
 }
 
+
+
 module.exports = {
   buscarPorIdComposteira,
   desativarComposteira,

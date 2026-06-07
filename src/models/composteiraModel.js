@@ -112,6 +112,7 @@ function buscarTodasComposteiras(id_user){
   return database.executar(instrucao)
 }
 
+
 module.exports = {
   buscarPorIdComposteira,
   desativarComposteira,
