@@ -3,8 +3,7 @@ var database = require("../database/config");
 function buscarUltimasMedidas(idAquario, limite_linhas) {
 
     var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
+                        temperatura,
                         momento,
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                     FROM medida
@@ -18,8 +17,7 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
 function buscarMedidasEmTempoReal(idAquario) {
 
     var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
+                        temperatura,
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
                         fk_aquario 
                         FROM medida WHERE fk_aquario = ${idAquario} 
